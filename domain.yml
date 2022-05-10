@@ -1,0 +1,42 @@
+version: '3.1'
+intents:
+- ask_options
+- ask_plant:
+    use_entities:
+    - plant
+- goodbye
+- greet
+- greet_with_name:
+    use_entities:
+    - user_name
+entities:
+- user_name
+- plant
+slots:
+  user_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: user_name
+forms:
+  name_form:
+    required_slots:
+    - usar_name
+responses:
+  utter_greet:
+  - text: Hola
+  utter_greet_with_name:
+  - text: Hola, {user_name}
+  - text: Hola, {user_name}, en que te puedo ayudar?
+  utter_goodbye:
+  - text: Adios
+  utter_options:
+  - text: Puedes preguntarme informaciones sobre el real jardin botanica y las platas que estan dentro.
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+actions:
+- utter_goodbye
+- utter_greet
+- utter_greet_with_name
+- utter_options
