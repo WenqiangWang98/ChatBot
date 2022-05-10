@@ -1,0 +1,23 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say options anytime the user ask for it
+  steps:
+  - intent: ask_options
+  - action: utter_options
+
+- rule: grert without name
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: user_name
+  steps:
+  - intent: greet_with_name
+  - action: utter_greet_with_name
