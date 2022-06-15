@@ -6,6 +6,11 @@ nlu:
     - Hola me llamo [Jose](user_name)
     - Hola soy [Fernando](user_name)
     - Hola soy [Juan](user_name)
+    - Hola me llamo [Juan](user_name).
+    - hola soy [Antonio](user_name)
+    - Me llamo [Jose Antonio](user_name)
+    - Hola me llamo [JoseAntonio](user_name)
+    - Hola me llamo [Jose Antonio](user_name)
 - intent: greet
   examples: |
     - Hola
@@ -19,3 +24,73 @@ nlu:
   examples: |
     - que puedo preguntar?
     - Que sabes hacer?
+    - que puedes hace?
+    - Que puedes hacer?
+- intent: ask_plant_location
+  examples: |
+    - donde esta la planta [Abies alba](plant_name)?
+    - quiero saber la ubicación de [Abies alba](plant_name).
+    - Sabes donde esta [Abies alba](plant_name)?
+    - donde esta [abies alba](plant_name)?
+- intent: afirmar
+  examples: |
+    - Sí
+    - Si
+    - correcto
+    - De acuerdo
+    - Eso es
+- intent: negar
+  examples: |
+    - No 
+    - No quiero eso
+    - no estoy de acuerdo
+    - Eso no es
+- intent: preguntar_visita
+  examples: |
+    - De que se trata la visita guiada?
+    - que es la visita guiada?
+    - como vas a guiar la visita?
+- intent: iniciar_visita
+  examples: |
+    - quiero iniciar la visita
+    - quiero hacer la visita
+    - quiero visitar
+- intent: llegar_planta
+  examples: |
+    - Ya estoy donde el [Granado](plant_llegada)
+    - Estoy al lado del [punica granatum](plant_llegada)
+    - Ya estoy donde el [Tejo](plant_llegada)
+    - Estoy al lado del [taxtus baccata](plant_llegada)
+    - Ya estoy donde el [Almez](plant_llegada)
+    - Estoy al lado del [tceltis australis](plant_llegada)
+    - Ya estoy donde el [Pino del Himalaya](plant_llegada)
+    - Estoy al lado del [Pinus wallichiana](plant_llegada)
+    - Ya estoy donde el [Pavonia](plant_llegada)
+    - Estoy al lado del [pavonia hastata](plant_llegada)
+    - Ya estoy donde el [Quillay](plant_llegada)
+    - Estoy al lado del [quillaja saponaria](plant_llegada)
+    - Ya estoy donde el [Caboa americana](plant_llegada)
+    - Estoy al lado del [swietenia mahagoni](plant_llegada)
+    - ya estoy en [Granado](plant_llegada)
+    - ya estoy en [granado](plant_llegada)
+    - ya estoy en [tejo](plant_llegada)
+    - ya estoy en [almez](plant_llegada)
+    - ya estoy en [pino del himalaya](plant_llegada)
+    - ya estoy en el [Pino del Himalaya](plant_llegada)
+    - ya estoy en [pavonia](plant_llegada)
+    - ya estoy en [quillay](plant_llegada)
+    - ya estoy en [Caboa americana](plant_llegada)
+
+- intent: responder_prueba
+  examples: |
+    - La respuesta es [A](respuesta)
+    - [B](respuesta)
+    - [C](respuesta)
+    - Creo que es [A](respuesta)
+    - [A](respuesta)
+
+- intent: ver_plano
+  examples: |
+    - Quiero ver el plano
+    - mirar el plano
+    - ver mapa

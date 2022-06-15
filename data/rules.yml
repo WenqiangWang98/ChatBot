@@ -1,23 +1,77 @@
 version: "3.1"
 
 rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+    - intent: goodbye
+    - action: utter_goodbye
 
-- rule: Say goodbye anytime the user says goodbye
-  steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - rule: Say options anytime the user ask for it
+    steps:
+    - intent: ask_options
+    - action: utter_options
 
-- rule: Say options anytime the user ask for it
-  steps:
-  - intent: ask_options
-  - action: utter_options
+  - rule: grert without name
+    steps:
+    - intent: greet
+    - action: utter_greet
 
-- rule: grert without name
-  steps:
-  - intent: greet
-  - action: utter_greet
+  - rule: user_name
+    steps:
+    - intent: greet_with_name
+    - action: utter_greet_with_name
 
-- rule: user_name
-  steps:
-  - intent: greet_with_name
-  - action: utter_greet_with_name
+  - rule: visita_duda
+    steps:
+    - intent: preguntar_visita
+    - action: utter_visita_duda
+    - action: action_ask_visita
+
+  - rule: Answer the location of the plant
+    steps:
+    - intent: ask_plant_location
+    - action: action_answer_plant_location
+
+  - rule: visita
+    steps:
+    - intent: iniciar_visita
+    - action: action_iniciar_visita
+  - rule: llegada
+    steps:
+    - intent: llegar_planta
+    - action: action_avanzar_visita
+  - rule: preguntar si quiere hacer la visita y si
+    steps:
+    - action: action_ask_visita
+    - intent: afirmar
+    - action: action_iniciar_visita
+
+  - rule: preguntar si quiere hacer la visita y no
+    steps:
+    - action: action_ask_visita
+    - intent: negar
+    - action: utter_negar
+
+  - rule: preguntar si quiere hacer preuba y no
+    steps:
+    - action: action_ask_prueba
+    - intent: negar
+    - action: utter_negar
+  - rule: preguntar si quiere hacer preuba y si
+    steps:
+    - action: action_ask_prueba
+    - intent: afirmar
+    - action: action_prueba
+
+  - rule: responder prueba
+    steps:
+    - action: action_prueba
+    - intent: responder_prueba
+    - action: action_prueba
+
+  - rule: ver mapa
+    steps:
+    - intent: ver_plano
+    - action: action_ver_mapa
+
+
