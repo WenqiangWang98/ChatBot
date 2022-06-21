@@ -1,42 +1,99 @@
 version: '3.1'
 intents:
+- afirmar
 - ask_options
-- ask_plant:
+- ask_plant_location:
     use_entities:
-    - plant
+    - plant_name
 - goodbye
 - greet
 - greet_with_name:
     use_entities:
     - user_name
+- iniciar_visita
+- llegar_planta:
+    use_entities:
+    - plant_llegada
+- negar
+- preguntar_visita
+- responder_prueba:
+    use_entities:
+    - respuesta
+- ver_plano
 entities:
+- plant_name
+- plant_llegada
 - user_name
-- plant
+- respuesta
 slots:
   user_name:
     type: text
     mappings:
     - type: from_entity
       entity: user_name
-forms:
-  name_form:
-    required_slots:
-    - usar_name
+  plant_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: plant_name
+  plant_llegada:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: plant_llegada
+  is_visita_guiada:
+    type: text
+    initial_value: '0'
+    mappings:
+    - type: custom
+  is_prueba:
+    type: text
+    initial_value: '0'
+    mappings:
+    - type: custom
+  respuesta:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: respuesta
+
 responses:
   utter_greet:
-  - text: Hola
+  - text: Hola, soy un chatbot del Real Jardín Botánico, en qué te puedo ayudar?
   utter_greet_with_name:
-  - text: Hola, {user_name}
-  - text: Hola, {user_name}, en que te puedo ayudar?
+  - text: Hola, {user_name}, soy un chatbot del Real Jardín Botánico, en qué te puedo ayudar?
   utter_goodbye:
-  - text: Adios
+  - text: Adios.
   utter_options:
-  - text: Puedes preguntarme informaciones sobre el real jardin botanica y las platas que estan dentro.
+  - text: "1. Iniciar una visita guiada. \n2. Decirte informaciones sobre las plantas.\n3. Indicarte las localizaciones de las plantas.\n4. Enseñarte el plano del Real Jardín Botánico."
+  utter_visita_duda:
+  - text: La visita guiada se trata de orientarte para seguir una rutina popular dentro del jardín donde puedes experimentar las plantas más importantes.
+  utter_negar:
+  - text: Sin problema, algo más en que te puedo ayudar?
+  utter_pregunta_1:
+  - text: "Cual es la planta que pertenece a la familia de Ulmaceae? \n
+           A. Celtis autralis   B. Quillay  C. Tejo"
+  utter_pregunta_2:
+  - text: "Cual es la planta que pertenece a la familia de Taxaceae? \n
+           A. Celtis autralis   B. Almez  C. Swietenia mahagoni"
+  utter_pregunta_3:
+  - text: "Cual es la planta que pertenece a la familia de Rutaceae? \n
+           A. Quillaja saponaria   B. Granado  C. Tejo"
+
 session_config:
   session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  carry_over_slots_to_new_session: false
 actions:
+- action_answer_plant_location
+- action_avanzar_visita
+- action_iniciar_visita
+- action_ask_visita
+- action_ask_prueba
+- action_prueba
+- action_ver_mapa
 - utter_goodbye
 - utter_greet
 - utter_greet_with_name
 - utter_options
+- utter_visita_duda
+- utter_negar
