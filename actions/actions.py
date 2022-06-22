@@ -16,10 +16,9 @@ import csv
 #
 #
 
-plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
+plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caoba americana"]
 plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
-respuesta=[]
-
+respuesta=[" "," "," "]
 
 #leer csv
 
@@ -126,21 +125,26 @@ class ActionPrueba(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          nprueba=tracker.get_slot("is_prueba")
-         respuesta.append(tracker.get_slot("respuesta"))
+         
+         
          if nprueba =="0" :
              dispatcher.utter_message("Cual es la planta que pertenece a la familia de Ulmaceae? \nA. Celtis autralis   B. Quillay  C. Tejo")
              return[SlotSet("is_prueba", "1")]
 
          elif nprueba =="1" :
+
+             respuesta[0]=tracker.get_slot("respuesta")
              dispatcher.utter_message("Cual es la planta que pertenece a la familia de Taxaceae? \nA. Celtis autralis   B. Almez  C. Swietenia mahagoni")
              return[SlotSet("is_prueba", "2")]
 
          elif nprueba =="2" :
+
+             respuesta[1]=tracker.get_slot("respuesta")
              dispatcher.utter_message("Cual es la planta que pertenece a la familia de Rutaceae? \nA. Quillaja saponaria   B. Granado  C. Tejo")
              return[SlotSet("is_prueba", "3")]
          elif nprueba =="3" :
              
-             dispatcher.utter_message(respuesta[0]+respuesta[1]+respuesta[2])
+             respuesta[2]=tracker.get_slot("respuesta")
              if (respuesta[0].lower()=='a' and respuesta[1].lower()=='b' and respuesta[2].lower()=='b'):
                    dispatcher.utter_message("Enohabuena! todas tus respuestas son correctas.")
              else:
