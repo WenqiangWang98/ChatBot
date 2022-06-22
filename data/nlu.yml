@@ -32,6 +32,28 @@ nlu:
     - quiero saber la ubicación de [Abies alba](plant_name).
     - Sabes donde esta [Abies alba](plant_name)?
     - donde esta [abies alba](plant_name)?
+    - donde esta [Zelkova carpinifolia](plant_name)?
+    - donde esta [Calocedrus decurrens](plant_name)?
+    - donde esta [Lagerstroemia indica](plant_name)?
+    - donde esta [Maclura pomifera](plant_name)?
+    - donde esta [Metasequoia glyptostroboides](plant_name)?
+    - donde esta [Olea africana](plant_name)?
+    - donde esta [Robinia luxurians](plant_name)?
+    - Sabes donde esta [Ulmus americana](plant_name)?
+- intent: ask_plant_fam
+  examples: |
+    - De que familia es la planta [Abies alba](plant_name)?
+    - quiero saber la familia de [Abies alba](plant_name).
+    - Sabes de que familia es [Abies alba](plant_name)?
+    - cual es la familia de [abies alba](plant_name)?
+    - cual es la familia de [Zelkova carpinifolia](plant_name)?
+    - cual es la familia de [Calocedrus decurrens](plant_name)?
+    - cual es la familia de [Lagerstroemia indica](plant_name)?
+    - cual es la familia de [Maclura pomifera](plant_name)?
+    - cual es la familia de [Metasequoia glyptostroboides](plant_name)?
+    - cual es la familia de [Olea africana](plant_name)?
+    - cual es la familia de [Robinia luxurians](plant_name)?
+    - Sabes de que familia es [Ulmus americana](plant_name)?
 - intent: afirmar
   examples: |
     - Sí

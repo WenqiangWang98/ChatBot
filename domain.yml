@@ -5,6 +5,9 @@ intents:
 - ask_plant_location:
     use_entities:
     - plant_name
+- ask_plant_fam:
+    use_entities:
+    - plant_name
 - goodbye
 - greet
 - greet_with_name:
@@ -85,6 +88,7 @@ session_config:
   carry_over_slots_to_new_session: false
 actions:
 - action_answer_plant_location
+- action_answer_plant_fam
 - action_avanzar_visita
 - action_iniciar_visita
 - action_ask_visita

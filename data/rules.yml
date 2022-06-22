@@ -32,6 +32,11 @@ rules:
     - intent: ask_plant_location
     - action: action_answer_plant_location
 
+  - rule: Answer the fam of the plant
+    steps:
+    - intent: ask_plant_fam
+    - action: action_answer_plant_fam
+
   - rule: visita
     steps:
     - intent: iniciar_visita
