@@ -12,12 +12,27 @@ from rasa_sdk.events import FollowupAction
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+import csv
 #
 #
 
 plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
 plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
 respuesta=[]
+
+
+#leer csv
+
+name1 = []
+fam1 = []
+location1 = []
+with open('datos.csv', newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+    for row in spamreader:
+        name1.append(row[0])
+        fam1.append(row[1])
+        location1.append(row[2])
+
 class ActionAnswerPlantLocation(Action):
 
      def name(self):
@@ -26,8 +41,23 @@ class ActionAnswerPlantLocation(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         planta_asked=tracker.get_slot("plant_name")
+         
+         dispatcher.utter_message(planta_asked+" esta en "+location1[name1.index(planta_asked.lower())])
 
-         dispatcher.utter_message("is in E.1.")
+         return []
+
+class ActionAnswerPlantFam(Action):
+
+     def name(self):
+         return "action_answer_plant_fam"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         planta_asked=tracker.get_slot("plant_name")
+         
+         dispatcher.utter_message(planta_asked+" es de la familia "+fam1[name1.index(planta_asked.lower())])
 
          return []
 
@@ -83,7 +113,7 @@ class ActionVerMapa(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          
          
-         dispatcher.utter_message(image = "https://ibb.co/9WhnZd0")
+         dispatcher.utter_message(image = "http://www.rjb.csic.es/jardinbotanico/ficheros/documentos/imagenes/horticultura/planojardin.pdf")
              
          return[]
          
