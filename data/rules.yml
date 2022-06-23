@@ -79,4 +79,14 @@ rules:
     - intent: ver_plano
     - action: action_ver_mapa
 
+  - rule: preguntar actualizar datos
+    steps:
+    - intent: actualizar_datos
+    - action: utter_actualizar_datos
+
+  - rule: actualizar datos
+    steps:
+    - action: utter_actualizar_datos
+    - intent: afirmar
+    - action: action_actualizar_datos
 

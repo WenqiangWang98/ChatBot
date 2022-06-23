@@ -42,7 +42,7 @@ class ActionAnswerPlantLocation(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          planta_asked=tracker.get_slot("plant_name")
          
-         dispatcher.utter_message(planta_asked+" esta en "+location1[name1.index(planta_asked.lower())])
+         dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
 
          return []
 
@@ -70,6 +70,19 @@ class ActionAskVisita(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
          dispatcher.utter_message("¿Quieres iniciar la visita?")
+
+         return []
+
+class ActionActualizarDatos(Action):
+
+     def name(self):
+         return "action_actualizar_datos"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+         import scrap
 
          return []
 
@@ -128,19 +141,19 @@ class ActionPrueba(Action):
          
          
          if nprueba =="0" :
-             dispatcher.utter_message("Cual es la planta que pertenece a la familia de Ulmaceae? \nA. Celtis autralis   B. Quillay  C. Tejo")
+             dispatcher.utter_message("¿Cuál es la planta que pertenece a la familia de Ulmaceae? \nA. Celtis autralis   B. Quillay  C. Tejo")
              return[SlotSet("is_prueba", "1")]
 
          elif nprueba =="1" :
 
              respuesta[0]=tracker.get_slot("respuesta")
-             dispatcher.utter_message("Cual es la planta que pertenece a la familia de Taxaceae? \nA. Celtis autralis   B. Almez  C. Swietenia mahagoni")
+             dispatcher.utter_message("¿Cuál es la planta que pertenece a la familia de Taxaceae? \nA. Celtis autralis   B. Almez  C. Swietenia mahagoni")
              return[SlotSet("is_prueba", "2")]
 
          elif nprueba =="2" :
 
              respuesta[1]=tracker.get_slot("respuesta")
-             dispatcher.utter_message("Cual es la planta que pertenece a la familia de Rutaceae? \nA. Quillaja saponaria   B. Granado  C. Tejo")
+             dispatcher.utter_message("¿Cuál es la planta que pertenece a la familia de Rutaceae? \nA. Quillaja saponaria   B. Granado  C. Tejo")
              return[SlotSet("is_prueba", "3")]
          elif nprueba =="3" :
              
@@ -169,7 +182,7 @@ class ActionAvanzarVisita(Action):
              dispatcher.utter_message("Ahora sigue recto para llegar al Tejo o taxtus baccata. Avisame cuando estés.")
          elif(nplanta=="2" and (plantallegada.lower()==plants[1].lower() or plantallegada.lower()==plants1[1].lower())):
              result="3"
-             dispatcher.utter_message("Ahora gira derecha para llegar al Almez o celtis australis. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora gira a la derecha para llegar al Almez o celtis australis. Avisame cuando estés.")
          elif(nplanta=="3" and (plantallegada.lower()==plants[2].lower() or plantallegada.lower()==plants1[2].lower())):
              result="4"
              dispatcher.utter_message("Ahora sigue un poco mas a la derecha para llegar al Pino del Himalaya o Pinus wallichiana. Avisame cuando estés.")
@@ -178,13 +191,13 @@ class ActionAvanzarVisita(Action):
              dispatcher.utter_message("Ahora sigue recto hasta llegar al Paseo de Carlos III y girar a la izquierda hasta pasar por el Paseo Alto de Gómez Ortega y delante esta Pavonia o pavonia hastata. Avisame cuando estés.")
          elif(nplanta=="5" and (plantallegada.lower()==plants[4].lower() or plantallegada.lower()==plants1[4].lower())):
              result="6"
-             dispatcher.utter_message("Mirando al lago a tu izquierda esta Quillay o quillaja saponaria. Avisame cuando estés.")
+             dispatcher.utter_message("Mirando al lago a tu izquierda está Quillay o quillaja saponaria. Avisame cuando estés.")
          elif(nplanta=="6" and (plantallegada.lower()==plants[5].lower() or plantallegada.lower()==plants1[5].lower())):
              result="7"
              dispatcher.utter_message("Ahora sigue recto para llegar al Caboa americana o swietenia mahagoni. Avisame cuando estés.")
          elif(nplanta=="7" and (plantallegada.lower()==plants[6].lower() or plantallegada.lower()==plants1[6].lower())):
              result='0'
-             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer.")
+             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
              return[SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
          elif(nplanta=="0"):
              dispatcher.utter_message("No has iniciado la visita.")

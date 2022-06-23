@@ -2,6 +2,7 @@ version: '3.1'
 intents:
 - afirmar
 - ask_options
+- actualizar_datos
 - ask_plant_location:
     use_entities:
     - plant_name
@@ -68,25 +69,29 @@ responses:
   utter_goodbye:
   - text: Adios.
   utter_options:
-  - text: "1. Iniciar una visita guiada. \n2. Decirte informaciones sobre las plantas.\n3. Indicarte las localizaciones de las plantas.\n4. Enseñarte el plano del Real Jardín Botánico."
+  - text: "Puedo iniciar una visita guiada, decirte informaciones sobre las plantas, indicarte las localizaciones de las plantas y enseñarte el plano del Real Jardín Botánico."
   utter_visita_duda:
   - text: La visita guiada se trata de orientarte para seguir una rutina popular dentro del jardín donde puedes experimentar las plantas más importantes.
   utter_negar:
   - text: Sin problema, algo más en que te puedo ayudar?
   utter_pregunta_1:
-  - text: "Cual es la planta que pertenece a la familia de Ulmaceae? \n
+  - text: "¿Cuál es la planta que pertenece a la familia de Ulmaceae? 
            A. Celtis autralis   B. Quillay  C. Tejo"
   utter_pregunta_2:
-  - text: "Cual es la planta que pertenece a la familia de Taxaceae? \n
+  - text: "¿Cuál es la planta que pertenece a la familia de Taxaceae? 
            A. Celtis autralis   B. Almez  C. Swietenia mahagoni"
   utter_pregunta_3:
-  - text: "Cual es la planta que pertenece a la familia de Rutaceae? \n
+  - text: "¿Cuál es la planta que pertenece a la familia de Rutaceae?
            A. Quillaja saponaria   B. Granado  C. Tejo"
+
+  utter_actualizar_datos:
+  - text: "¿Quieres realizar la actualización de los datos? "
 
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: false
 actions:
+- action_actualizar_datos
 - action_answer_plant_location
 - action_answer_plant_fam
 - action_avanzar_visita
@@ -101,3 +106,4 @@ actions:
 - utter_options
 - utter_visita_duda
 - utter_negar
+- utter_actualizar_datos

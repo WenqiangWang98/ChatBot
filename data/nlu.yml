@@ -67,6 +67,11 @@ nlu:
     - No quiero eso
     - no estoy de acuerdo
     - Eso no es
+- intent: actualizar_datos
+  examples: |
+    - Quiero actualizar los datos.
+    - actualizar los datos
+    - Puedes actualizar los datos de las plantas?
 - intent: preguntar_visita
   examples: |
     - De que se trata la visita guiada?
@@ -91,7 +96,7 @@ nlu:
     - Estoy al lado del [pavonia hastata](plant_llegada)
     - Ya estoy donde el [Quillay](plant_llegada)
     - Estoy al lado del [quillaja saponaria](plant_llegada)
-    - Ya estoy donde el [Caboa americana](plant_llegada)
+    - Ya estoy donde el [Caoba americana](plant_llegada)
     - Estoy al lado del [swietenia mahagoni](plant_llegada)
     - ya estoy en [Granado](plant_llegada)
     - ya estoy en [granado](plant_llegada)
@@ -110,6 +115,10 @@ nlu:
     - [C](respuesta)
     - Creo que es [A](respuesta)
     - [A](respuesta)
+    - [a](respuesta)
+    - [b](respuesta)
+    - [c](respuesta)
+
 
 - intent: ver_plano
   examples: |
