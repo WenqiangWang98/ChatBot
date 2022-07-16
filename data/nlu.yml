@@ -14,6 +14,7 @@ nlu:
 - intent: greet
   examples: |
     - Hola
+    - hola
     - Buenos dias
 - intent: goodbye
   examples: |

@@ -18,6 +18,7 @@ services:
       - models
       - --cors
       - "*"
+      - -p 5008
     depends_on:
       - action-server
   action-server:
@@ -27,3 +28,8 @@ services:
       - ./actions:/app/actions
     ports:
       - 5058:5058
+    command:
+      - start
+      - --actions
+      - actions
+      - -p 5058
