@@ -2,7 +2,7 @@ version: '3'
 services:
   rasa:
     container_name: rjb-wwq-rasa-chatbot
-    image: rasa/rasa:latest
+    image: rasa/rasa:3.2.2
     ports:
       #- 5006:5006
       - 5008:5008
@@ -23,7 +23,7 @@ services:
       - action-server
   action-server:
     container_name: rjb-wwq-rasa-action
-    image: rasa/rasa-sdk:latest
+    image: rasa/rasa-sdk:3.2.0
     volumes:
       - ./actions:/app/actions
     ports:
