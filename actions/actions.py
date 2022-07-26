@@ -25,12 +25,12 @@ respuesta=[" "," "," "]
 name1 = []
 fam1 = []
 location1 = []
-#with open('datos.csv', newline='') as csvfile:
-#    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-#    for row in spamreader:
-#        name1.append(row[0])
-#        fam1.append(row[1])
-#        location1.append(row[2])
+with open('datos.csv', newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+    for row in spamreader:
+        name1.append(row[0])
+        fam1.append(row[1])
+        location1.append(row[2])
 
 class ActionAnswerPlantLocation(Action):
 
