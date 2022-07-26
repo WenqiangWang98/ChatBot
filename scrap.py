@@ -10,29 +10,21 @@ import csv
 name = []
 fam = []
 location = []
-page = []
-page.append( requests.get(
-    "http://www.rjb.csic.es/jardinbotanico/jardin/index.php?Cab=8&SubCab=548&len=en&Pag=549"))
-pag1 = "http://www.rjb.csic.es/jardinbotanico/jardin/index.php?Cab=8&SubCab=548&len=en&Pag=549&Caracter="
+page = requests.get("https://rjb.csic.es/el-jardin/las-plantas-del-jardin/arboles/")
+soup = bs(page.content)
+quotes = [unicodedata.normalize("NFKD",i.text) for i in soup.find_all("td")]
 
-for i in range(ord('B'), ord('Z')+1):
-    page.append(requests.get(pag1+chr(i)))
-for i in range(len(page)):
-
-    soup = bs(page[i].content)
-    quotes = [unicodedata.normalize("NFKD", i.text)
-              for i in soup.find_all(id="descripcion")]
-
-    for i in range(len(quotes)):
-        nam = quotes[i][1:quotes[i].find("(")].lower()
-        name.append(nam.strip())
-        fam.append(quotes[i][quotes[i].find(": ")+2:quotes[i].rfind(")")-1].lower())
-        loc = (quotes[i][quotes[i].find("n:")+3:quotes[i].rfind("\n")])
-        loc = loc.replace("video", '')
-        loc = loc.replace("foto", '')
-        loc = loc.replace("Foto", '')
-        loc=loc.lower()
-        location.append(loc.strip())
+name=[]
+fam=[]
+location=[]
+for i in range(len(quotes)):
+    buff=quotes[i]
+    if i%4==1:
+        name.append(buff)
+    elif i%4==2:
+        fam.append(buff)
+    elif i%4==3:
+        location.append(buff)
 
 with open('datos.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile, delimiter=' ',
