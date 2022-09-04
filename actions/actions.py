@@ -13,10 +13,11 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import csv
+
 #
 #
 
-plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caoba americana"]
+plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
 plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
 respuesta=[" "," "," "]
 
@@ -25,7 +26,8 @@ respuesta=[" "," "," "]
 name1 = []
 fam1 = []
 location1 = []
-with open('datos.csv', newline='') as csvfile:
+
+with open("./actions/datos.csv", newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
     for row in spamreader:
         name1.append(row[0])
@@ -124,8 +126,8 @@ class ActionVerMapa(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          
-         
-         dispatcher.utter_message(image = "http://www.rjb.csic.es/jardinbotanico/ficheros/documentos/imagenes/horticultura/planojardin.pdf")
+         dispatcher.utter_message("Aquí tienes un link para ver el mapa en datalle")
+         dispatcher.utter_message("http://www.rjb.csic.es/jardinbotanico/ficheros/documentos/imagenes/horticultura/planojardin.pdf")
              
          return[]
          
@@ -163,7 +165,46 @@ class ActionPrueba(Action):
              else:
                   dispatcher.utter_message("Alguna de tus respuestas es incorrecta.")
              return[SlotSet("is_prueba", "0")]
-         
+
+class ActionListaPlantas(Action):
+
+     def name(self):
+         return "action_lista_plantas"
+
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         lista=""
+
+         for i in range(len(name1)):
+            lista=lista +name1[i]+", "
+         dispatcher.utter_message("Esta son las plantas registradas: "+lista)
+
+class ActionConfirmarLlegada(Action):
+
+     def name(self):
+         return "action_confirmar_llegada"
+
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         nplanta=tracker.get_slot("is_visita_guiada")
+         dispatcher.utter_message("¿Ya estás al lado de "+plants[ord(nplanta)-49]+"?")
+         return[]
+
+class ActionLlegadaConfirmada(Action):
+
+     def name(self):
+         return "action_llegada_confirmada"
+
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         nplanta=tracker.get_slot("is_visita_guiada")
+         return[SlotSet("is_visita_guiada", chr(ord(nplanta))),SlotSet("plant_llegada", plants[ord(nplanta)-49]),FollowupAction(name="action_avanzar_visita")] 
 
 class ActionAvanzarVisita(Action):
 
@@ -203,7 +244,7 @@ class ActionAvanzarVisita(Action):
              dispatcher.utter_message("No has iniciado la visita.")
              return[FollowupAction(name="action_ask_prueba")]
         
-         return[SlotSet("is_visita_guiada", result)]
+         return[SlotSet("is_visita_guiada", result),FollowupAction(name="action_listen")]
          
 
 
