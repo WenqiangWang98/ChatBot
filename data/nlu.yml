@@ -55,6 +55,15 @@ nlu:
     - cual es la familia de [Olea africana](plant_name)?
     - cual es la familia de [Robinia luxurians](plant_name)?
     - Sabes de que familia es [Ulmus americana](plant_name)?
+- intent: lista_de_planta
+  examples: |
+    - muestrame la lista de plantas
+    - cuales son las plantas que tienes registrados?
+    - quiero ver la lista de plantas
+    - que plantas sabes?
+    - lista de planta
+    - ver lista de planta
+    - ver lista
 - intent: afirmar
   examples: |
     - Sí
@@ -83,6 +92,13 @@ nlu:
     - quiero iniciar la visita
     - quiero hacer la visita
     - quiero visitar
+- intent: llegar
+  examples: |
+    - Ya estoy
+    - ya he lleagado
+    - he llegado
+    - estoy ya
+    - estoy
 - intent: llegar_planta
   examples: |
     - Ya estoy donde el [Granado](plant_llegada)

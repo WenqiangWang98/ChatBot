@@ -41,10 +41,26 @@ rules:
     steps:
     - intent: iniciar_visita
     - action: action_iniciar_visita
-  - rule: llegada
+  - rule: llegada con nombre
     steps:
     - intent: llegar_planta
     - action: action_avanzar_visita
+
+  - rule: llegada
+    steps:
+    - intent: llegar
+    - action: action_confirmar_llegada
+  - rule: llegada y no
+    steps:
+    - action: action_confirmar_llegada
+    - intent: negar
+    - action: utter_negar
+  - rule: llegada y si
+    steps:
+    - action: action_confirmar_llegada
+    - intent: afirmar
+    - action: action_llegada_confirmada
+
   - rule: preguntar si quiere hacer la visita y si
     steps:
     - action: action_ask_visita
@@ -78,6 +94,10 @@ rules:
     steps:
     - intent: ver_plano
     - action: action_ver_mapa
+  - rule: ver lista
+    steps:
+    - intent: lista_de_planta
+    - action: action_lista_plantas
 
   - rule: preguntar actualizar datos
     steps:
