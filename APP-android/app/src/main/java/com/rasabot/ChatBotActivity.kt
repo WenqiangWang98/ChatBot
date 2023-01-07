@@ -71,7 +71,7 @@ class ChatBotActivity : AppCompatActivity(), View.OnClickListener {
         (mChatRecyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
         mChatRecyclerView.adapter = mChatBotRecyclerAdapter
     }
-    private fun onClickToMap(view: View){
+    fun onClickToMap(view: View){
         val intent = Intent(this, MapsActivity::class.java)
         startActivity(intent)
     }
@@ -116,6 +116,7 @@ class ChatBotActivity : AppCompatActivity(), View.OnClickListener {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 
 
 }

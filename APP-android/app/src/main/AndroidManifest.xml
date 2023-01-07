@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAYRznwmhdefybMcYe5hjIbgNz6tths7gc" />
+            android:value="" />
         <activity
             android:name="com.rasabot.ChatBotActivity"
             android:exported="true">
@@ -28,11 +28,6 @@
             android:name="com.rasabot.MapsActivity"
             android:exported="true"
             android:label="maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.rasabot.SplashScreenActivity"
             android:theme="@style/splashScreenTheme"

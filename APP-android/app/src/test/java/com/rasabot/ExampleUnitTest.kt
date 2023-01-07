@@ -1,4 +1,4 @@
-package com.shashank.rasabot
+package com.rasabot
 
 import org.junit.Test
 
