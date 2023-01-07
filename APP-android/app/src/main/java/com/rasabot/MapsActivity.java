@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -21,10 +22,12 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
@@ -35,14 +38,24 @@ import com.rasabot.R;
 import com.rasabot.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
-
+    static final Marker STATE_MARKER =null;
+    static final GoogleMap STATE_MAP =null;
+    private static final String STATE_KEY_MAP_CAMERA = null;
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private Button button;
     private Circle circle;
     private Marker marker;
 
-
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current game state
+        if (mMap != null) {
+            savedInstanceState.putParcelable(STATE_KEY_MAP_CAMERA, mMap.getCameraPosition());
+        }
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
 
 
     // Register the permissions callback, which handles the user's response to the
@@ -78,10 +91,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (savedInstanceState != null) {
+            CameraUpdate cameraPos = CameraUpdateFactory.newCameraPosition(
+                    (CameraPosition)(savedInstanceState.getParcelable(STATE_KEY_MAP_CAMERA)));
+            mMap.moveCamera(cameraPos);
+        }
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        setupMapIfNeeded();
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -135,7 +152,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MapStateManager mgr = new MapStateManager(this);
+        mgr.saveMapState(mMap);
+        Toast.makeText(this, "Map State has been save?", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupMapIfNeeded();
+    }
+    private void setupMapIfNeeded() {
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        if (mMap == null) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+        }
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -151,11 +188,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        marker=mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //marker=mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         mMap.setOnMapLongClickListener(this);
+        MapStateManager mgr = new MapStateManager(this);
+        CameraPosition position = mgr.getSavedCameraPosition();
+        if (position != null) {
+            CameraUpdate update = CameraUpdateFactory.newCameraPosition(position);
+            Toast.makeText(this, "entering Resume State", Toast.LENGTH_SHORT).show();
+            mMap.moveCamera(update);
 
+            mMap.setMapType(mgr.getSavedMapType());
+        }
 
     }
 

@@ -73,6 +73,7 @@ class ChatBotActivity : AppCompatActivity(), View.OnClickListener {
     }
     fun onClickToMap(view: View){
         val intent = Intent(this, MapsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
     override fun onClick(view: View?) {
