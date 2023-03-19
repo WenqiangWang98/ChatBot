@@ -46,7 +46,7 @@ class ActionAnswerPlantLocation(Action):
          
 #         dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
          
-         dispatcher.utter_message("map="+"40.410786,-3.690956")
+         dispatcher.utter_message("map="+"40.410786"+","+"-3.690956")
          return []
 
 class ActionAnswerPlantFam(Action):
