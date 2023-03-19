@@ -45,7 +45,7 @@ class ActionAnswerPlantLocation(Action):
          planta_asked=tracker.get_slot("plant_name")
          
          dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
-         dispatcher.utter_message(map = "41.3,41,2")
+         dispatcher.utter_message(mapUrl = "41.3,41,2")
          return []
 
 class ActionAnswerPlantFam(Action):
