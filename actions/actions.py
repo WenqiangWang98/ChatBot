@@ -45,8 +45,8 @@ class ActionAnswerPlantLocation(Action):
          planta_asked=tracker.get_slot("plant_name")
          
 #         dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
-         msg={"payload":'map',"map":"41.3,41,2"}
-         dispatcher.utter_message(json_message = msg)
+         
+         dispatcher.utter_message("map="+"40.410786, -3.690956")
          return []
 
 class ActionAnswerPlantFam(Action):
