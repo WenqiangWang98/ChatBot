@@ -44,7 +44,7 @@ class ActionAnswerPlantLocation(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          planta_asked=tracker.get_slot("plant_name")
          
-         dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
+ #        dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
 
          return []
 
@@ -127,7 +127,7 @@ class ActionVerMapa(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          
          dispatcher.utter_message("Aquí tienes un link para ver el mapa en datalle")
-         dispatcher.utter_message("http://www.rjb.csic.es/jardinbotanico/ficheros/documentos/imagenes/horticultura/planojardin.pdf")
+         dispatcher.utter_message(image = "https://rjb.csic.es/wp-content/uploads/2021/09/plano-accesible.png")
              
          return[]
          
