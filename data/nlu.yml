@@ -1,5 +1,10 @@
 version: "3.1"
 nlu:
+- intent: otras_preguntas
+  examples: |
+    - ¿Cuantos  metros puede alcanzar Abies alba?
+    - ¿A que familia pertenece Abies Alba?
+    - ¿Sabrías decirme una planta con flor de color blanco?
 - intent: greet_with_name
   examples: |
     - Hola, soy [Juan](user_name)

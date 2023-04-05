@@ -1,6 +1,11 @@
 version: "3.1"
 
 rules:
+  - rule: usar GPT3
+    steps:
+    - intent: otras_preguntas
+    - action: action_responder_GPT3
+
   - rule: Say goodbye anytime the user says goodbye
     steps:
     - intent: goodbye

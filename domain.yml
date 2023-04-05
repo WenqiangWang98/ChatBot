@@ -1,5 +1,6 @@
 version: '3.1'
 intents:
+- otras_preguntas
 - llegar
 - lista_de_planta
 - afirmar
@@ -105,6 +106,7 @@ actions:
 - action_ver_mapa
 - action_llegada_confirmada
 - action_confirmar_llegada
+- action_responder_GPT3
 - utter_goodbye
 - utter_greet
 - utter_greet_with_name

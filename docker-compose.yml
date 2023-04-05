@@ -23,7 +23,7 @@ services:
       - action-server
   action-server:
     container_name: rjb-wwq-rasa-action
-    image: rasa/rasa-sdk:3.2.0
+    image: wwq1998/rasa-sdk:3.2.0
     volumes:
       - ./actions:/app/actions
     ports:

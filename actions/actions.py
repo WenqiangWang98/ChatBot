@@ -13,8 +13,31 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import csv
+import os
 
-#
+import openai
+
+openai.api_key = "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"
+
+def get_response(pregunta):
+    return openai.Completion.create(
+                model="text-davinci-003",
+                prompt=generate_prompt(pregunta),
+                temperature=0.6,
+            ).choices[0].text
+
+def generate_prompt(pregunta):
+    return """Contesta la pregunta.
+
+Pregunta:  ¿A que familia pertenece Abies Alba?
+Respuesta: Abies alba es una especie arbórea de la familia de las pináceas.
+Pregunta: ¿Hasta cuantos metros de altura puede llegar?
+Respuesta: Puede alcanzar los 60 metros de altura.
+Pregunta: {}
+Respuesta: """.format(
+        pregunta
+    )
+
 #
 
 plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
@@ -27,7 +50,7 @@ name1 = []
 fam1 = []
 location1 = []
 
-with open("./actions/datos.csv", newline='') as csvfile:
+with open("./datos.csv", newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
     for row in spamreader:
         name1.append(row[0])
@@ -48,6 +71,21 @@ class ActionAnswerPlantLocation(Action):
          
          dispatcher.utter_message("map="+"40.410786"+","+"-3.690956")
          return []
+
+class ActionResponderGPT3(Action):
+
+     def name(self):
+         return "action_responder_GPT3"
+
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         message=tracker.latest_message['text']
+
+         dispatcher.utter_message(get_response(message))
+#         dispatcher.utter_message(message)
+         return[]
 
 class ActionAnswerPlantFam(Action):
 
