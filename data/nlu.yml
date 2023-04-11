@@ -5,6 +5,7 @@ nlu:
     - ¿Cuantos  metros puede alcanzar Abies alba?
     - ¿A que familia pertenece Abies Alba?
     - ¿Sabrías decirme una planta con flor de color blanco?
+    - ¿Como son los flores de Abies alba?
 - intent: greet_with_name
   examples: |
     - Hola, soy [Juan](user_name)
