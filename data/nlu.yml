@@ -1,5 +1,12 @@
 version: "3.1"
 nlu:
+- intent: responder_nombres
+  examples: |
+    - Somos [Juan, David,Jose Antonio, Ana Belén, y Daniel](nombres)
+    - [Juan, David,Jose Antonio, Ana Belén, y Daniel](nombres)
+    - Somos [Raquel Daniel y Juan](nombres)
+    - [Andrés, alex, dani, maría y wwq](nombres)
+
 - intent: otras_preguntas
   examples: |
     - ¿Cuantos  metros puede alcanzar Abies alba?
@@ -98,38 +105,6 @@ nlu:
     - quiero iniciar la visita
     - quiero hacer la visita
     - quiero visitar
-- intent: llegar
-  examples: |
-    - Ya estoy
-    - ya he lleagado
-    - he llegado
-    - estoy ya
-    - estoy
-- intent: llegar_planta
-  examples: |
-    - Ya estoy donde el [Granado](plant_llegada)
-    - Estoy al lado del [punica granatum](plant_llegada)
-    - Ya estoy donde el [Tejo](plant_llegada)
-    - Estoy al lado del [taxtus baccata](plant_llegada)
-    - Ya estoy donde el [Almez](plant_llegada)
-    - Estoy al lado del [tceltis australis](plant_llegada)
-    - Ya estoy donde el [Pino del Himalaya](plant_llegada)
-    - Estoy al lado del [Pinus wallichiana](plant_llegada)
-    - Ya estoy donde el [Pavonia](plant_llegada)
-    - Estoy al lado del [pavonia hastata](plant_llegada)
-    - Ya estoy donde el [Quillay](plant_llegada)
-    - Estoy al lado del [quillaja saponaria](plant_llegada)
-    - Ya estoy donde el [Caoba americana](plant_llegada)
-    - Estoy al lado del [swietenia mahagoni](plant_llegada)
-    - ya estoy en [Granado](plant_llegada)
-    - ya estoy en [granado](plant_llegada)
-    - ya estoy en [tejo](plant_llegada)
-    - ya estoy en [almez](plant_llegada)
-    - ya estoy en [pino del himalaya](plant_llegada)
-    - ya estoy en el [Pino del Himalaya](plant_llegada)
-    - ya estoy en [pavonia](plant_llegada)
-    - ya estoy en [quillay](plant_llegada)
-    - ya estoy en [Caboa americana](plant_llegada)
 
 - intent: responder_prueba
   examples: |
