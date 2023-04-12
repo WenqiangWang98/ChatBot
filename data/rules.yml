@@ -47,36 +47,30 @@ rules:
     - intent: iniciar_visita
     - action: utter_explicar_visita
     - action: action_ask_visita
-
   - rule: preguntar si quiere hacer la visita y si
     steps:
     - action: action_ask_visita
     - intent: afirmar
     - action: action_iniciar_visita
-    
-  - rule: reponder nombres
+  - rule: responder nombres
     steps:
     - action: utter_preguntar_nombres
     - intent: responder_nombres
     - action: action_registrar_nombres
-    
-   - rule: comprobar nombres y si
+  - rule: comprobar nombres y si
     steps:
     - action: action_registrar_nombres
     - intent: afirmar
     - action: action_prueba
-    
   - rule: comprobar nombres y no
     steps:
     - action: action_registrar_nombres
     - intent: negar
     - action: utter_preguntar_nombres
-    
   - rule: terminar visita
     steps:
     - intent: terminar_visita
-    - action: action_ask_visita
-    
+    - action: action_ask_prueba
   - rule: preguntar si quiere hacer la visita y no
     steps:
     - action: action_ask_visita
@@ -88,7 +82,6 @@ rules:
     - action: action_ask_prueba
     - intent: negar
     - action: utter_negar
-    
   - rule: preguntar si quiere hacer preuba y si
     steps:
     - action: action_ask_prueba
@@ -120,4 +113,3 @@ rules:
     - action: utter_actualizar_datos
     - intent: afirmar
     - action: action_actualizar_datos
-

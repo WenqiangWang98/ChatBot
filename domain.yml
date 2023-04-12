@@ -1,12 +1,14 @@
 version: '3.1'
 intents:
-- otras_preguntas
+- otras_preguntas:
+    use_entities:
+    - plant_name
 - llegar
 - lista_de_planta
 - afirmar
 - ask_options
 - actualizar_datos
-- responder_nombres
+- responder_nombres:
     use_entities:
     - nombres
 - terminar_visita
@@ -36,7 +38,7 @@ entities:
 - plant_llegada
 - user_name
 - respuesta
-- n_persona
+- nombres
 slots:
   user_name:
     type: text
@@ -88,7 +90,7 @@ responses:
   utter_negar:
   - text: Sin problema, algo más en que te puedo ayudar?
   utter_preguntar_nombres:
-  - text: ¿Cuantas personas sois en el grupo?
+  - text: ¿Cuales vuestros nombres? Indícamelos separados por coma por favor.?
   utter_pregunta_1:
   - text: "¿Cuál es la planta que pertenece a la familia de Ulmaceae? \n
            A. Celtis autralis   B. Quillay  C. Tejo"
@@ -117,6 +119,7 @@ actions:
 - action_ver_mapa
 - action_responder_GPT3
 - action_preguntar_nombres
+- action_registrar_nombres
 - utter_goodbye
 - utter_greet
 - utter_greet_with_name

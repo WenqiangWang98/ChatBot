@@ -17,7 +17,7 @@ import os
 import random
 import openai
 
-openai.api_key = ""
+openai.api_key = "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"
 
 def get_response(pregunta):
     return openai.Completion.create(
@@ -86,7 +86,7 @@ name1 = []
 fam1 = []
 location1 = []
 
-with open("./datos.csv", newline='') as csvfile:
+with open("actions/datos.csv", newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
     for row in spamreader:
         name1.append(row[0])
@@ -118,7 +118,6 @@ class ActionResponderGPT3(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          message=tracker.latest_message['text']
-         list_plants.append(tracker.get_slot("plant_name"))
          dispatcher.utter_message(get_response(message))
 #         dispatcher.utter_message(message)
          return[]
@@ -132,7 +131,7 @@ class ActionAnswerPlantFam(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          planta_asked=tracker.get_slot("plant_name")
-         list_plants.append(tracker.get_slot("plant_name"))
+         list_plants.append(planta_asked)
          dispatcher.utter_message(planta_asked+" es de la familia "+fam1[name1.index(planta_asked.lower())])
 
          return []
@@ -192,8 +191,8 @@ class ActionIniciarVisita(Action):
          else:
              dispatcher.utter_message("Ya has iniciado la visita.")
              return[]
-        
- class ActionRegistrarNombres(Action):
+
+class ActionRegistrarNombres(Action):
 
      def name(self):
          return "action_registrar_nombres"
@@ -203,10 +202,12 @@ class ActionIniciarVisita(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          
          nombres=tracker.get_slot("nombres").split(",")
+         stringaux=""
          for i in nombres:
-            i.strip()
-            respuestasCorrectas.append(chr(ord(A)+random.range(0,2)))
-         dispatcher.utter_message(nombres+" verdad?")
+            i=i.replace(",y "," ").strip()
+            respuestasCorrectas.append(chr(65+random.randint(0,2)))
+            stringaux=stringaux+i+", "
+         dispatcher.utter_message(stringaux+" verdad?")
          random.shuffle(nombres)
          return[]
     
@@ -223,7 +224,7 @@ class ActionVerMapa(Action):
          dispatcher.utter_message(image = "https://rjb.csic.es/wp-content/uploads/2021/09/plano-accesible.png")
              
          return[]
-         
+
 class ActionPrueba(Action):
 
      def name(self):
@@ -233,23 +234,19 @@ class ActionPrueba(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          nprueba=int(tracker.get_slot("is_prueba"))
-         
-         
-         if nprueba < nombres.len():
+         if nprueba < len(nombres):
              respuesta.append(tracker.get_slot("respuesta"))
              dispatcher.utter_message(nombres[nprueba]+", esta pregunta es para tí: \n"+get_response_prueba(random.choice(list_plants),respuestasCorrectas[nprueba]))
-             return[SlotSet("is_prueba", str(nprueba+1)]
-         
-         elif nprueba ==nombres.len() :
+             return[SlotSet("is_prueba", str(nprueba+1))]
+         elif nprueba ==len(nombres) :
              string1=""
-             for i in range(respuesta.len()):
+             for i in range(len(respuesta)):
                   if respuesta[i] !=respuestasCorrectas[i]:
                        string1=string1+nombres[i]+" se ha equivocado, la respuesta correcta es:"+respuestasCorrectas[i]+". "
-                            
              if string1 =="":
                   dispatcher.utter_message("Enohabuena! todas vuestras respuestas son correctas.")
              else:
-                  dispatcher.utter_message(string1 "Enohabuena! todas vuestras respuestas son correctas.")         
+                  dispatcher.utter_message(string1)
              return[SlotSet("is_prueba", "0")]
 
 class ActionListaPlantas(Action):
