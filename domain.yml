@@ -6,6 +6,7 @@ intents:
 - afirmar
 - ask_options
 - actualizar_datos
+- responder_nombres
 - ask_plant_location:
     use_entities:
     - plant_name
@@ -32,6 +33,7 @@ entities:
 - plant_llegada
 - user_name
 - respuesta
+- n_persona
 slots:
   user_name:
     type: text
@@ -48,6 +50,11 @@ slots:
     mappings:
     - type: from_entity
       entity: plant_llegada
+  nombres:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: nombres
   is_visita_guiada:
     type: text
     initial_value: '0'
@@ -66,17 +73,19 @@ slots:
 
 responses:
   utter_greet:
-  - text: Hola, soy un chatbot del Real Jardín Botánico, en qué te puedo ayudar?
+  - text: Hola, soy un chatbot del Real Jardín Botánico, en qué te puedo ayudar? Puedes hacerme preguntas sobre las plantas y su localización dentro del jardín, y tambien informaciones sobre el jardín como el plano del jardín o dónde está los aseos. También puedes iniciar una visita guiada dentro del jardín.
   utter_greet_with_name:
   - text: Hola, {user_name}, soy un chatbot del Real Jardín Botánico, en qué te puedo ayudar?
   utter_goodbye:
   - text: Adios.
   utter_options:
-  - text: "Puedo iniciar una visita guiada, decirte informaciones sobre las plantas, indicarte las localizaciones de las plantas y enseñarte el plano del Real Jardín Botánico."
-  utter_visita_duda:
-  - text: La visita guiada se trata de orientarte para seguir una rutina popular dentro del jardín donde puedes experimentar las plantas más importantes.
+  - text: Puedes hacerme preguntas sobre las plantas y su localización dentro del jardín, y tambien informaciones sobre el jardín como el plano del jardín o dónde está los aseos. También puedes iniciar una visita guiada dentro del jardín.
+  utter_explicar_visita:
+  - text: La visita guiada registra las plantas que has encontrado o hallas preguntado al mi. Una vez terminado la visita te haré una pequeña prueba sobre las plantas.
   utter_negar:
   - text: Sin problema, algo más en que te puedo ayudar?
+  utter_preguntar_nombres:
+  - text: ¿Cuantas personas sois en el grupo?
   utter_pregunta_1:
   - text: "¿Cuál es la planta que pertenece a la familia de Ulmaceae? \n
            A. Celtis autralis   B. Quillay  C. Tejo"
@@ -97,16 +106,14 @@ actions:
 - action_actualizar_datos
 - action_answer_plant_location
 - action_answer_plant_fam
-- action_avanzar_visita
 - action_iniciar_visita
 - action_lista_plantas
 - action_ask_visita
 - action_ask_prueba
 - action_prueba
 - action_ver_mapa
-- action_llegada_confirmada
-- action_confirmar_llegada
 - action_responder_GPT3
+- action_preguntar_nombres
 - utter_goodbye
 - utter_greet
 - utter_greet_with_name
