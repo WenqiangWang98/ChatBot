@@ -6,7 +6,12 @@ nlu:
     - [Juan, David,Jose Antonio, Ana Belén, y Daniel](nombres)
     - Somos [Raquel Daniel y Juan](nombres)
     - [Andrés, alex, dani, maría y wwq](nombres)
-
+- intent: terminar_visita
+  examples: |
+    - Quiro terminar la visita
+    - ya me voy
+    - ya no quiero visitar más
+    - termina la visita
 - intent: otras_preguntas
   examples: |
     - ¿Cuantos  metros puede alcanzar Abies alba?
