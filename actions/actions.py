@@ -14,15 +14,29 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import csv
 import os
-
+import random
 import openai
 
-openai.api_key = "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"
+openai.api_key = ""
 
 def get_response(pregunta):
     return openai.Completion.create(
                 model="text-davinci-003",
                 prompt=generate_prompt(pregunta),
+                temperature=0.6,
+            ).choices[0].text
+
+def get_similar_response(pregunta):
+    return openai.Completion.create(
+                model="text-davinci-003",
+                prompt=generate_prompt_similar(pregunta),
+                temperature=0.6,
+            ).choices[0].text
+
+def get_response_prueba(pregunta,respuesta):
+    return openai.Completion.create(
+                model="text-davinci-003",
+                prompt=generate_prompt_prueba(pregunta,respuesta),
                 temperature=0.6,
             ).choices[0].text
 
@@ -38,12 +52,34 @@ Respuesta: """.format(
         pregunta
     )
 
+def generate_prompt_similar(pregunta):
+    return """Genera una frase del mismo significado.
+
+Frase: {}
+Respuesta: """.format(
+        pregunta
+    )
+
+def generate_prompt_prueba(pregunta,respuesta):
+    return """Genera una pregunta de tipo test sobre propiedades de {} con el siguiente formato y que la respuesta correcta sea la {}:
+
+"¿Cuál es la planta que pertenece a la familia de Ulmaceae? 
+           A. Celtis autralis   B. Quillay  C. Tejo
+¿Cuatos metros puede alcanzar Quercus frainetto? 
+           A. 10 m  B. 20 m  C. 30 m
+¿Que planta tiene  los flores precoces, agrupadas en inflorescencias de hasta 30 flores?
+           A. Taxus cuspidata  B. Ulmus minor  C. Quercus ilex ballota"
+: """.format(
+        pregunta,respuesta
+    )
 #
 
-plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
-plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
-respuesta=[" "," "," "]
-
+#plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
+#plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
+respuesta=[]
+list_plants=[]
+nombres=[]
+respuestasCorrectas=[]
 #leer csv
 
 name1 = []
@@ -66,7 +102,7 @@ class ActionAnswerPlantLocation(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          planta_asked=tracker.get_slot("plant_name")
-         
+         list_plants.append(tracker.get_slot("plant_name"))
 #         dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
          
          dispatcher.utter_message("map="+"40.410786"+","+"-3.690956")
@@ -82,7 +118,7 @@ class ActionResponderGPT3(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          message=tracker.latest_message['text']
-
+         list_plants.append(tracker.get_slot("plant_name"))
          dispatcher.utter_message(get_response(message))
 #         dispatcher.utter_message(message)
          return[]
@@ -96,7 +132,7 @@ class ActionAnswerPlantFam(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          planta_asked=tracker.get_slot("plant_name")
-         
+         list_plants.append(tracker.get_slot("plant_name"))
          dispatcher.utter_message(planta_asked+" es de la familia "+fam1[name1.index(planta_asked.lower())])
 
          return []
@@ -150,12 +186,30 @@ class ActionIniciarVisita(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          
          if(tracker.get_slot("is_visita_guiada")=='0'):
-             dispatcher.utter_message("Visita iniciada. \nEn la izquierda de la entrada esta el Granado o Punica granatum. Avisame cuando estés.")
+             dispatcher.utter_message("Visita iniciada.")
+             
              return[SlotSet("is_visita_guiada", "1")]
          else:
              dispatcher.utter_message("Ya has iniciado la visita.")
              return[]
+        
+ class ActionRegistrarNombres(Action):
 
+     def name(self):
+         return "action_registrar_nombres"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         
+         nombres=tracker.get_slot("nombres").split(",")
+         for i in nombres:
+            i.strip()
+            respuestasCorrectas.append(chr(ord(A)+random.range(0,2)))
+         dispatcher.utter_message(nombres+" verdad?")
+         random.shuffle(nombres)
+         return[]
+    
 class ActionVerMapa(Action):
 
      def name(self):
@@ -178,31 +232,24 @@ class ActionPrueba(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         nprueba=tracker.get_slot("is_prueba")
+         nprueba=int(tracker.get_slot("is_prueba"))
          
          
-         if nprueba =="0" :
-             dispatcher.utter_message("¿Cuál es la planta que pertenece a la familia de Ulmaceae? \nA. Celtis autralis   B. Quillay  C. Tejo")
-             return[SlotSet("is_prueba", "1")]
-
-         elif nprueba =="1" :
-
-             respuesta[0]=tracker.get_slot("respuesta")
-             dispatcher.utter_message("¿Cuál es la planta que pertenece a la familia de Taxaceae? \nA. Celtis autralis   B. Almez  C. Swietenia mahagoni")
-             return[SlotSet("is_prueba", "2")]
-
-         elif nprueba =="2" :
-
-             respuesta[1]=tracker.get_slot("respuesta")
-             dispatcher.utter_message("¿Cuál es la planta que pertenece a la familia de Rutaceae? \nA. Quillaja saponaria   B. Granado  C. Tejo")
-             return[SlotSet("is_prueba", "3")]
-         elif nprueba =="3" :
-             
-             respuesta[2]=tracker.get_slot("respuesta")
-             if (respuesta[0].lower()=='a' and respuesta[1].lower()=='b' and respuesta[2].lower()=='b'):
-                   dispatcher.utter_message("Enohabuena! todas tus respuestas son correctas.")
+         if nprueba < nombres.len():
+             respuesta.append(tracker.get_slot("respuesta"))
+             dispatcher.utter_message(nombres[nprueba]+", esta pregunta es para tí: \n"+get_response_prueba(random.choice(list_plants),respuestasCorrectas[nprueba]))
+             return[SlotSet("is_prueba", str(nprueba+1)]
+         
+         elif nprueba ==nombres.len() :
+             string1=""
+             for i in range(respuesta.len()):
+                  if respuesta[i] !=respuestasCorrectas[i]:
+                       string1=string1+nombres[i]+" se ha equivocado, la respuesta correcta es:"+respuestasCorrectas[i]+". "
+                            
+             if string1 =="":
+                  dispatcher.utter_message("Enohabuena! todas vuestras respuestas son correctas.")
              else:
-                  dispatcher.utter_message("Alguna de tus respuestas es incorrecta.")
+                  dispatcher.utter_message(string1 "Enohabuena! todas vuestras respuestas son correctas.")         
              return[SlotSet("is_prueba", "0")]
 
 class ActionListaPlantas(Action):
@@ -214,77 +261,8 @@ class ActionListaPlantas(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         lista=""
+         dispatcher.utter_message("Esta son las plantas registradas: "+list_plants)
 
-         for i in range(len(name1)):
-            lista=lista +name1[i]+", "
-         dispatcher.utter_message("Esta son las plantas registradas: "+lista)
-
-class ActionConfirmarLlegada(Action):
-
-     def name(self):
-         return "action_confirmar_llegada"
-
-
-     def run(self, dispatcher: CollectingDispatcher,
-             tracker: Tracker,
-             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         nplanta=tracker.get_slot("is_visita_guiada")
-         dispatcher.utter_message("¿Ya estás al lado de "+plants[ord(nplanta)-49]+"?")
-         return[]
-
-class ActionLlegadaConfirmada(Action):
-
-     def name(self):
-         return "action_llegada_confirmada"
-
-
-     def run(self, dispatcher: CollectingDispatcher,
-             tracker: Tracker,
-             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         nplanta=tracker.get_slot("is_visita_guiada")
-         return[SlotSet("is_visita_guiada", chr(ord(nplanta))),SlotSet("plant_llegada", plants[ord(nplanta)-49]),FollowupAction(name="action_avanzar_visita")] 
-
-class ActionAvanzarVisita(Action):
-
-     def name(self):
-         return "action_avanzar_visita"
-
-
-     def run(self, dispatcher: CollectingDispatcher,
-             tracker: Tracker,
-             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-         nplanta=tracker.get_slot("is_visita_guiada")
-         plantallegada=tracker.get_slot("plant_llegada")
-         if(nplanta=="1" and (plantallegada.lower()==plants[0].lower() or plantallegada.lower()==plants1[0].lower())):
-             result="2"
-             dispatcher.utter_message("Ahora sigue recto para llegar al Tejo o taxtus baccata. Avisame cuando estés.")
-         elif(nplanta=="2" and (plantallegada.lower()==plants[1].lower() or plantallegada.lower()==plants1[1].lower())):
-             result="3"
-             dispatcher.utter_message("Ahora gira a la derecha para llegar al Almez o celtis australis. Avisame cuando estés.")
-         elif(nplanta=="3" and (plantallegada.lower()==plants[2].lower() or plantallegada.lower()==plants1[2].lower())):
-             result="4"
-             dispatcher.utter_message("Ahora sigue un poco mas a la derecha para llegar al Pino del Himalaya o Pinus wallichiana. Avisame cuando estés.")
-         elif(nplanta=="4" and (plantallegada.lower()==plants[3].lower() or plantallegada.lower()==plants1[3].lower())):
-             result="5"
-             dispatcher.utter_message("Ahora sigue recto hasta llegar al Paseo de Carlos III y girar a la izquierda hasta pasar por el Paseo Alto de Gómez Ortega y delante esta Pavonia o pavonia hastata. Avisame cuando estés.")
-         elif(nplanta=="5" and (plantallegada.lower()==plants[4].lower() or plantallegada.lower()==plants1[4].lower())):
-             result="6"
-             dispatcher.utter_message("Mirando al lago a tu izquierda está Quillay o quillaja saponaria. Avisame cuando estés.")
-         elif(nplanta=="6" and (plantallegada.lower()==plants[5].lower() or plantallegada.lower()==plants1[5].lower())):
-             result="7"
-             dispatcher.utter_message("Ahora sigue recto para llegar al Caboa americana o swietenia mahagoni. Avisame cuando estés.")
-         elif(nplanta=="7" and (plantallegada.lower()==plants[6].lower() or plantallegada.lower()==plants1[6].lower())):
-             result='0'
-             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
-             return[SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
-         elif(nplanta=="0"):
-             dispatcher.utter_message("No has iniciado la visita.")
-             return[FollowupAction(name="action_ask_prueba")]
-        
-         return[SlotSet("is_visita_guiada", result),FollowupAction(name="action_listen")]
-         
 
 
 
