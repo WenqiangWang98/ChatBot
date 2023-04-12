@@ -72,6 +72,11 @@ rules:
     - intent: negar
     - action: utter_preguntar_nombres
     
+  - rule: terminar visita
+    steps:
+    - intent: terminar_visita
+    - action: action_ask_visita
+    
   - rule: preguntar si quiere hacer la visita y no
     steps:
     - action: action_ask_visita
@@ -83,6 +88,7 @@ rules:
     - action: action_ask_prueba
     - intent: negar
     - action: utter_negar
+    
   - rule: preguntar si quiere hacer preuba y si
     steps:
     - action: action_ask_prueba
