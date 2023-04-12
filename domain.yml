@@ -7,6 +7,8 @@ intents:
 - ask_options
 - actualizar_datos
 - responder_nombres
+    use_entities:
+    - nombres
 - terminar_visita
 - ask_plant_location:
     use_entities:
