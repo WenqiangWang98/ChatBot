@@ -29,7 +29,6 @@ rules:
   - rule: visita_duda
     steps:
     - intent: preguntar_visita
-    - action: utter_explicar_visita
     - action: action_ask_visita
 
   - rule: Answer the location of the plant
@@ -41,17 +40,15 @@ rules:
     steps:
     - intent: ask_plant_fam
     - action: action_answer_plant_fam
-
-  - rule: visita
-    steps:
-    - intent: iniciar_visita
-    - action: utter_explicar_visita
-    - action: action_ask_visita
   - rule: preguntar si quiere hacer la visita y si
     steps:
     - action: action_ask_visita
     - intent: afirmar
     - action: action_iniciar_visita
+  - rule: llegada
+    steps:
+    - intent: llegar
+    - action: action_avanzar_visita
   - rule: responder nombres
     steps:
     - action: utter_preguntar_nombres
