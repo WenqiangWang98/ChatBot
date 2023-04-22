@@ -41,7 +41,7 @@ def get_response_prueba(pregunta,respuesta):
             ).choices[0].text
 
 def generate_prompt(pregunta):
-    return """Contesta la pregunta.
+    return """Soy un chatbot de real Jadrín botánico, puedo contertar las preguntas sobre las plantas y sobre el jardñin botánico.
 
 Pregunta:  ¿A que familia pertenece Abies Alba?
 Respuesta: Abies alba es una especie arbórea de la familia de las pináceas.
@@ -74,8 +74,8 @@ def generate_prompt_prueba(pregunta,respuesta):
     )
 #
 
-#plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
-#plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
+visita1Plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
+visita1Plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
 respuesta=[]
 list_plants=[]
 nombres=[]
@@ -260,6 +260,56 @@ class ActionListaPlantas(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          dispatcher.utter_message("Esta son las plantas registradas: "+list_plants)
 
+class ActionConfirmarLlegada(Action):
 
+     def name(self):
+         return "action_confirmar_llegada"
+
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         nplanta=tracker.get_slot("is_visita_guiada")
+         dispatcher.utter_message("¿Ya estás al lado de "+plants[ord(nplanta)-49]+", y pasar a la siguiente planta de la visita?")
+         return[]
+
+class ActionAvanzarVisita(Action):
+
+     def name(self):
+         return "action_avanzar_visita"
+
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+         nplanta=tracker.get_slot("is_visita_guiada")
+         if(nplanta=="1"):
+             result="2"
+             dispatcher.utter_message("Ahora sigue recto para llegar al Tejo o taxtus baccata. Avisame cuando estés.")
+         elif(nplanta=="2"):
+             result="3"
+             dispatcher.utter_message("Ahora gira a la derecha para llegar al Almez o celtis australis. Avisame cuando estés.")
+         elif(nplanta=="3"):
+             result="4"
+             dispatcher.utter_message("Ahora sigue un poco mas a la derecha para llegar al Pino del Himalaya o Pinus wallichiana. Avisame cuando estés.")
+         elif(nplanta=="4"):
+             result="5"
+             dispatcher.utter_message("Ahora sigue recto hasta llegar al Paseo de Carlos III y girar a la izquierda hasta pasar por el Paseo Alto de Gómez Ortega y delante esta Pavonia o pavonia hastata. Avisame cuando estés.")
+         elif(nplanta=="5"):
+             result="6"
+             dispatcher.utter_message("Mirando al lago a tu izquierda está Quillay o quillaja saponaria. Avisame cuando estés.")
+         elif(nplanta=="6"):
+             result="7"
+             dispatcher.utter_message("Ahora sigue recto para llegar al Caboa americana o swietenia mahagoni. Avisame cuando estés.")
+         elif(nplanta=="7"):
+             result='0'
+             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
+             return[SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
+         elif(nplanta=="0"):
+             dispatcher.utter_message("No has iniciado la visita.")
+             return[FollowupAction(name="action_ask_prueba")]
+
+         return[SlotSet("is_visita_guiada", result),FollowupAction(name="action_listen")]
 
 
