@@ -24,9 +24,6 @@ intents:
     use_entities:
     - user_name
 - iniciar_visita
-- llegar_planta:
-    use_entities:
-    - plant_llegada
 - negar
 - preguntar_visita
 - responder_prueba:
@@ -35,7 +32,6 @@ intents:
 - ver_plano
 entities:
 - plant_name
-- plant_llegada
 - user_name
 - respuesta
 - nombres
@@ -116,6 +112,8 @@ actions:
 - action_ask_visita
 - action_ask_prueba
 - action_prueba
+- action_avanzar_visita
+- action_confirmar_llegada
 - action_ver_mapa
 - action_responder_GPT3
 - action_preguntar_nombres
