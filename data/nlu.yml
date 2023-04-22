@@ -128,3 +128,30 @@ nlu:
     - Quiero ver el plano
     - mirar el plano
     - ver mapa
+- intent: llegar
+  examples: |
+    - Ya estoy donde el Granado
+    - Estoy al lado del punica granatum
+    - Ya estoy donde el Tejo
+    - Estoy al lado del taxtus baccata
+    - Ya estoy donde el Almez
+    - Estoy al lado del tceltis australis
+    - Ya estoy donde el Pino del Himalaya
+    - Estoy al lado del Pinus wallichiana
+    - Ya estoy donde el Pavonia
+    - Estoy al lado del pavonia hastata
+    - Ya estoy donde el Quillay
+    - Estoy al lado del quillaja saponaria
+    - Ya estoy donde el Caoba americana
+    - Estoy al lado del swietenia mahagoni
+    - ya estoy en Granado
+    - ya estoy en granado
+    - ya estoy en tejo
+    - ya estoy en almez
+    - ya estoy en pino del himalaya
+    - ya estoy en el Pino del Himalaya
+    - ya estoy en pavonia
+    - ya estoy en quillay
+    - ya estoy en Caboa americana
+    - ya he llegado
+    - siguiente planta
