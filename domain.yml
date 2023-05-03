@@ -24,6 +24,9 @@ intents:
     use_entities:
     - user_name
 - iniciar_visita
+- contestar_visita_1
+- contestar_visita_2
+- contestar_visita_3
 - negar
 - preguntar_visita
 - responder_prueba:
@@ -84,7 +87,7 @@ responses:
   utter_explicar_visita:
   - text: La visita guiada registra las plantas que has encontrado o hallas preguntado al mi. Una vez terminado la visita te haré una pequeña prueba sobre las plantas.
   utter_negar:
-  - text: Sin problema, algo más en que te puedo ayudar?
+  - text: Sin problema. ¿En que te puedo ayudar?
   utter_preguntar_nombres:
   - text: ¿Cuales vuestros nombres? Indícamelos separados por coma por favor.?
   utter_pregunta_1:
@@ -107,7 +110,9 @@ actions:
 - action_actualizar_datos
 - action_answer_plant_location
 - action_answer_plant_fam
-- action_iniciar_visita
+- action_iniciar_visita_1
+- action_iniciar_visita_2
+- action_iniciar_visita_3
 - action_lista_plantas
 - action_ask_visita
 - action_ask_prueba

@@ -1,5 +1,29 @@
 version: "3.1"
 nlu:
+- intent: contestar_visita_1
+  examples: |
+    - Quiero la visita guiada simple
+    - La simple
+    - Me gustaría probar la visita guiada simple
+    - Yo quiero la visita simple
+    - La visita guiada simple
+    - La visita simple
+- intent: contestar_visita_2
+  examples: |
+    - Quiero la visita guiada completa
+    - La completa
+    - Me gustaría probar la visita guiada completa por favor
+    - Yo quiero la visita completa
+    - La visita guiada completa
+    - La visita completa
+- intent: contestar_visita_2
+  examples: |
+    - Quiero la visita guiada casual
+    - La casual
+    - Me gustaría probar la visita guiada casual por favor
+    - Yo quiero la visita casual
+    - La visita guiada casual
+    - La visita casual
 - intent: responder_nombres
   examples: |
     - Somos [Juan, David,Jose Antonio, Ana Belén, y Daniel](nombres)
@@ -104,13 +128,8 @@ nlu:
   examples: |
     - De que se trata la visita guiada?
     - que es la visita guiada?
+    - Que es la visita guiada?
     - como vas a guiar la visita?
-- intent: iniciar_visita
-  examples: |
-    - quiero iniciar la visita
-    - quiero hacer la visita
-    - quiero visitar
-
 - intent: responder_prueba
   examples: |
     - La respuesta es [A](respuesta)

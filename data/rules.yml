@@ -40,11 +40,21 @@ rules:
     steps:
     - intent: ask_plant_fam
     - action: action_answer_plant_fam
-  - rule: preguntar si quiere hacer la visita y si
+  - rule: preguntar si quiere hacer la visita y 1
     steps:
     - action: action_ask_visita
-    - intent: afirmar
-    - action: action_iniciar_visita
+    - intent: contestar_visita_1
+    - action: action_iniciar_visita_1
+  - rule: preguntar si quiere hacer la visita y 2
+    steps:
+    - action: action_ask_visita
+    - intent: contestar_visita_2
+    - action: action_iniciar_visita_2
+  - rule: preguntar si quiere hacer la visita y 3
+    steps:
+    - action: action_ask_visita
+    - intent: contestar_visita_3
+    - action: action_iniciar_visita_3
   - rule: llegada
     steps:
     - intent: llegar
@@ -68,12 +78,6 @@ rules:
     steps:
     - intent: terminar_visita
     - action: action_ask_prueba
-  - rule: preguntar si quiere hacer la visita y no
-    steps:
-    - action: action_ask_visita
-    - intent: negar
-    - action: utter_negar
-
   - rule: preguntar si quiere hacer preuba y no
     steps:
     - action: action_ask_prueba
