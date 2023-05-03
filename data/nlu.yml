@@ -130,6 +130,7 @@ nlu:
     - que es la visita guiada?
     - Que es la visita guiada?
     - como vas a guiar la visita?
+    - que es una visita guiada?
 - intent: responder_prueba
   examples: |
     - La respuesta es [A](respuesta)
