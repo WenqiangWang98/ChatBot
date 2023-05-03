@@ -24,7 +24,7 @@
 
 <body>
     <div class="container">
-
+        <div class="map" id="map"></div>
         <!-- Modal for rendering the charts, declare this if you want to render charts, 
          else you remove the modal -->
         <div id="modal1" class="modal">
@@ -88,7 +88,11 @@
 
     <!--Chart.js Script -->
     <script type="text/javascript" src="static/js/chart.min.js"></script>
-
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKTrBFsgxIySiFHIn8MtONdV6CqTcG9V8&callback=initMap">
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
+            defer></script>
 </body>
 
 </html>
