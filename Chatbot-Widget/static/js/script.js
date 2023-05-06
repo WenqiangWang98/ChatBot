@@ -1,5 +1,4 @@
 
-
 //Bot pop-up intro
 document.addEventListener('DOMContentLoaded', function() {
     var elemsTap = document.querySelector('.tap-target');
@@ -25,8 +24,7 @@ $(document).ready(function() {
     //initiate the modal for displaying the charts, if you dont have charts, then you comment the below line
     $('.modal').modal();
 
-
-
+    
     //enable this if u have configured the bot to start the conversation. 
     r = [{"text": "Hola! Soy un Chatbot del Real Jard\u00edn Bot\u00e1nico!"}]
     //setBotResponse(r);
@@ -445,8 +443,8 @@ $("#close").click(function() {
     scrollToBottomOfResults();
 });
 $(".map").click(function () {
-    $(".profile_div").toggle();
-    $(".widget").toggle();
+    $(".profile_div").toggle(true);
+    $(".widget").toggle(false);
     scrollToBottomOfResults();
 });
 
@@ -566,22 +564,12 @@ $(document).on("click", ".quickReplies .chip", function() {
 //====================================== Get User Location ==================================================
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getUserPosition, handleLocationAccessError);
+        navigator.geolocation.getCurrentPosition(setCurrentLocation, handleLocationAccessError);
     } else {
         response = "Geolocation is not supported by this browser.";
     }
 }
 
-function getUserPosition(position) {
-    response = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
-    console.log("location: ", response);
-
-    //here you add the intent which you want to trigger 
-    response = '/inform{"latitude":' + position.coords.latitude + ',"longitude":' + position.coords.longitude + '}';
-    $("#userInput").prop('disabled', false);
-    send(response);
-    showBotTyping();
-}
 
 function handleLocationAccessError(error) {
 
@@ -756,27 +744,92 @@ function createChartinModal(title, labels, backgroundColor, chartsData, chartTyp
 
 }
 
-function initMap() {
-    // The location of Uluru
-    const rjb = { lat: 40.411092, lng: -3.690975 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 19,
-        center: rjb,
-    });
-    // The marker, positioned at Uluru
+let map, infoWindow, marker, locationIcon, locationButton;
 
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 40.411092, lng: -3.690975 },
+        zoom: 19,
+    });
+    //infoWindow = new google.maps.InfoWindow();
+
+    locationButton = document.createElement("button");
+
+    locationButton.textContent = "Current Location";
+    locationButton.classList.add("custom-map-control-button");
+    locationButton.style.textAlign = "center";
+    locationButton.style.margin = "8px 0 22px";
+    locationButton.style.lineHeight = "38px";
+    locationButton.style.fontFamily = "Roboto,Arial,sans-serif";
+    locationButton.style.fontSize = "16px";
+    locationButton.style.backgroundColor = "#fff";
+    locationButton.style.border = "2px solid #fff";
+    locationButton.style.borderRadius = "3px";
+    locationButton.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+    locationButton.style.color = "rgb(25,25,25)";
+    locationButton.style.cursor = "pointer";
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+    locationButton.addEventListener("click", () => {
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    
+                    //infoWindow.setPosition(pos);
+                    //infoWindow.setContent("Location found.");
+                    //infoWindow.open(map);
+                    map.setCenter(pos);
+                    setCurrentLocation(pos);
+                },
+                () => {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                }
+            );
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+    });
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(
+        browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation."
+    );
+    infoWindow.open(map);
 }
 function setMarker(coord) {
-    const rjb = { lat: 40.411092, lng: -3.690975 };
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 19,
-        center: rjb,
-    });
+    
     // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position: coord,
         map: map,
+    });
+    map.setCenter(coord, 19);
+}
+function setCurrentLocation(coord) {
+    
+    
+    var icon = {
+        url: './static/img/location-icon.png',
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(25, 25),
+        scaledSize: new google.maps.Size(50, 50)
+    };
+    //map.setCenter( 40.411092,  -3.690975,  19);
+    // The marker, positioned at Uluru
+    locationIcon = new google.maps.Marker({
+        position: coord,
+        map: map,
+        icon: icon,
     });
 }
 window.initMap = initMap;
