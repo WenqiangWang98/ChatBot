@@ -1,4 +1,5 @@
 
+
 //Bot pop-up intro
 document.addEventListener('DOMContentLoaded', function() {
     var elemsTap = document.querySelector('.tap-target');
@@ -27,7 +28,7 @@ $(document).ready(function() {
 
 
     //enable this if u have configured the bot to start the conversation. 
-    r = [{"text": "Hola! Soy un Chatbot!"}]
+    r = [{"text": "Hola! Soy un Chatbot del Real Jard\u00edn Bot\u00e1nico!"}]
     //setBotResponse(r);
     showBotTyping();
     setTimeout(() => {
@@ -110,6 +111,7 @@ $(".usrInput").on("keyup keypress", function(e) {
             $(".suggestions").remove();
             $(".quickReplies").remove();
             $(".usrInput").blur();
+            $(".usrInput").focus();
             setUserResponse(text);
             send(text);
             e.preventDefault();
@@ -132,6 +134,7 @@ $("#sendButton").on("click touchstart", function(e) {
         $("#paginated_cards").remove();
         $(".quickReplies").remove();
         $(".usrInput").blur();
+        $(".usrInput").focus();
         setUserResponse(text);
         send(text);
         e.preventDefault();
@@ -264,6 +267,7 @@ function setBotResponse(response) {
                         setMarker(coord);
                         
                     }
+
                 }
                 //check if the response contains "custom" message  
                 if (response[i].hasOwnProperty("custom")) {
@@ -436,6 +440,11 @@ $("#clear").click(function() {
 
 //close function to close the widget.
 $("#close").click(function() {
+    $(".profile_div").toggle();
+    $(".widget").toggle();
+    scrollToBottomOfResults();
+});
+$(".map").click(function () {
     $(".profile_div").toggle();
     $(".widget").toggle();
     scrollToBottomOfResults();
@@ -749,22 +758,20 @@ function createChartinModal(title, labels, backgroundColor, chartsData, chartTyp
 
 function initMap() {
     // The location of Uluru
-    const uluru = { lat: -25.344, lng: 131.031 };
+    const rjb = { lat: 40.411092, lng: -3.690975 };
     // The map, centered at Uluru
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: uluru,
+        zoom: 19,
+        center: rjb,
     });
     // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-    });
+
 }
 function setMarker(coord) {
+    const rjb = { lat: 40.411092, lng: -3.690975 };
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 19,
-        center: coord,
+        center: rjb,
     });
     // The marker, positioned at Uluru
     const marker = new google.maps.Marker({
