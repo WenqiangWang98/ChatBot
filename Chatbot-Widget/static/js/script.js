@@ -162,8 +162,8 @@ function scrollToBottomOfResults() {
 function send(message) {
 
     $.ajax({
-        //url: "http://localhost:5008/webhooks/rest/webhook",
-        url: "http:// 20.160.58.77:5008/webhooks/rest/webhook",
+        url: "http://localhost:5008/webhooks/rest/webhook",
+        //url: "http://chatbotrealjardinbotanico.westeurope.cloudapp.azure.com:5008/webhooks/rest/webhook",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ message: message, sender: user_id }),
