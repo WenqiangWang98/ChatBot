@@ -163,7 +163,7 @@ function send(message) {
 
     $.ajax({
         //url: "http://localhost:5008/webhooks/rest/webhook",
-        url: "http://chatbots.ieef.upm.es:5008/webhooks/rest/webhook",
+        url: "http:// 20.160.58.77:5008/webhooks/rest/webhook",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({ message: message, sender: user_id }),
