@@ -2,7 +2,7 @@ version: '3'
 services:
   rasa:
     container_name: rjb-wwq-rasa-chatbot
-    image: rasa/rasa:3.2.2
+    build: ./docker/server
     ports:
       #- 5006:5006
       - 5008:5008
@@ -11,13 +11,14 @@ services:
     command:
       - run
       #- --ssl-certificate
-      #- ssl.pem
+      #- cert.pem
       #- --ssl-keyfile
-      #- ssl.key
+      #- key.pem
       - -m
       - models
       - --cors
       - "*"
+      - --enable-api
       - -p 5008
     depends_on:
       - action-server
