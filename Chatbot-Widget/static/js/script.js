@@ -263,6 +263,8 @@ function setBotResponse(response) {
                         var aux = mapCoord.substring(4).split(",");
                         var coord = { lat: parseFloat(aux[0]), lng: parseFloat(aux[1]) };
                         setMarker(coord);
+                        $(".profile_div").toggle(true);
+                        $(".widget").toggle(false);
                         
                     }
 
@@ -445,7 +447,7 @@ $("#close").click(function() {
 $(".map").click(function () {
     $(".profile_div").toggle(true);
     $(".widget").toggle(false);
-    scrollToBottomOfResults();
+    
 });
 
 //====================================== Cards Carousel =========================================
