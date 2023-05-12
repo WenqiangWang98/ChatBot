@@ -8,17 +8,19 @@ body {
 }
 
 .map {
-  height: 100%; /* The height is 400 pixels */
-  width: 100%; /* The width is the width of the web page */
+    height: 90%; /* The height is 400 pixels */
+    width: 90%; /* The width is the width of the web page */
+    margin-top: 5%;
+    
 }
-
 
 /* ============= css related to chats =============== */
 
 .widget {
     display: none;
-    width: 350px;
-    right: 15px;
+    width: 95%;
+    max-width: 350px;
+    right: 3%;
     height: 500px;
     bottom: 5%;
     position: fixed;
@@ -183,7 +185,7 @@ textarea-webkit-scrollbar {
     /* display: none; */
     position: fixed;
     padding: 5px;
-    width: 5%;
+    width: 100px;
     bottom: 0;
     right: 0;
     cursor: pointer;
