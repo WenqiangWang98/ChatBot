@@ -97,15 +97,38 @@ nlu:
     - cual es la familia de [Olea africana](plant_name)?
     - cual es la familia de [Robinia luxurians](plant_name)?
     - Sabes de que familia es [Ulmus americana](plant_name)?
-- intent: lista_de_planta
+- intent: preguntar_platas_que_hay
   examples: |
     - muestrame la lista de plantas
     - cuales son las plantas que tienes registrados?
     - quiero ver la lista de plantas
     - que plantas sabes?
-    - lista de planta
-    - ver lista de planta
-    - ver lista
+    - lista de plantas
+    - ver lista de plantas
+    - Dime una planta
+    - ¿Qué plantas hay?
+- intent: planta_aleatoria
+  examples: |
+    - Dime una planta aleatoria
+    - Dime el nombre cientifico de una planta cualquiera
+    - Dime una planta
+    - Di una planta aleatoria
+    - Una aleatoria
+    - Aleatoria.
+- intent: planta_con_inicial
+  examples: |
+    - Dime las plantas que empiezan con [a](inicial_planta)
+    - Las que empiezan con [A](inicial_planta)
+    - La lista de plantas que empiezan con [A](inicial_planta)
+    - Dime la lista de plantas que empiezan con [A](inicial_planta)
+    - Dime las plantas que empiezan con [b](inicial_planta)
+    - Las que empiezan con [B](inicial_planta)
+    - La lista de plantas que empiezan con [B](inicial_planta)
+    - Dime la lista de plantas que empiezan con [B](inicial_planta)
+    - Dime las plantas que empiezan con [C](inicial_planta)
+    - Las que empiezan con [c](inicial_planta)
+    - La lista de plantas que empiezan con [C](inicial_planta)
+    - Dime la lista de plantas que empiezan con [C](inicial_planta)
 - intent: afirmar
   examples: |
     - Sí

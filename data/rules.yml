@@ -99,18 +99,26 @@ rules:
     steps:
     - intent: ver_plano
     - action: action_ver_mapa
-  - rule: ver lista
-    steps:
-    - intent: lista_de_planta
-    - action: action_lista_plantas
-
   - rule: preguntar actualizar datos
     steps:
     - intent: actualizar_datos
     - action: utter_actualizar_datos
 
+  - rule: Responder una planta aleatoria
+    steps:
+    - intent: planta_aleatoria
+    - action: action_random_planta
+
+  - rule: Responder con platas de lista inicial
+    steps:
+    - intent: planta_con_inicial
+    - action: action_lista_plantas_inicial
   - rule: actualizar datos
     steps:
     - action: utter_actualizar_datos
     - intent: afirmar
     - action: action_actualizar_datos
+  - rule: Preguntar que planta quiere que le diga
+    steps:
+    - intent: preguntar_platas_que_hay
+    - action: utter_preguntar_opcion_de_planta

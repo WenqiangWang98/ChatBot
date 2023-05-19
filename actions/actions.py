@@ -180,6 +180,8 @@ with open("actions/datos.csv", newline='') as csvfile:
         fam1.append(row[1])
         location1.append(row[2])
 
+
+
 class ActionAnswerPlantLocation(Action):
 
      def name(self):
@@ -189,12 +191,19 @@ class ActionAnswerPlantLocation(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          planta_asked=tracker.get_slot("plant_name")
-         list_plants.append(tracker.get_slot("plant_name"))
-#         dispatcher.utter_message(planta_asked+" está en "+location1[name1.index(planta_asked.lower())])
          mapLocation=location1[name1.index(planta_asked.lower())]
          dispatcher.utter_message(attachment = get_location(mapLocation.split(",")[0]) )
-#         dispatcher.utter_message(mapLocation.split(",")[0])
-#         dispatcher.utter_message(get_location(mapLocation.split(",")[0]))
+         return []
+
+class ActionRandomPlanta(Action):
+
+     def name(self):
+         return "action_random_planta"
+
+     def run(self, dispatcher: CollectingDispatcher,
+             tracker: Tracker,
+             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         dispatcher.utter_message(text =random.choice(name1))
          return []
 
 class ActionResponderGPT3(Action):
@@ -220,7 +229,6 @@ class ActionAnswerPlantFam(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          planta_asked=tracker.get_slot("plant_name")
-         list_plants.append(planta_asked)
          dispatcher.utter_message(planta_asked+" es de la familia "+fam1[name1.index(planta_asked.lower())])
 
          return []
@@ -378,16 +386,25 @@ class ActionPrueba(Action):
                   dispatcher.utter_message(string1)
              return[SlotSet("is_prueba", "0")]
 
-class ActionListaPlantas(Action):
+class ActionListaPlantasInicial(Action):
 
      def name(self):
-         return "action_lista_plantas"
+         return "action_lista_plantas_inicial"
 
 
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         dispatcher.utter_message("Esta son las plantas registradas: "+list_plants)
+         letra=tracker.get_slot("inicial_planta").lower()
+         lista=[]
+         for nombre in name1:
+             e=nombre.split()[0]+" "+nombre.split()[1]
+             if e not in lista and e.startswith(letra):
+                 lista.append(e)
+         dispatcher.utter_message("Esta son las plantas qu empiezan con la letra '" +letra+ "' : " +", ".join(lista)+".")
+         return[]
+
+
 
 class ActionConfirmarLlegada(Action):
 

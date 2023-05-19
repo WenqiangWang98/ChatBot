@@ -33,17 +33,28 @@ intents:
     use_entities:
     - respuesta
 - ver_plano
+- preguntar_platas_que_hay
+- planta_aleatoria
+- planta_con_inicial:
+    use_entities:
+    - inicial_planta
 entities:
 - plant_name
 - user_name
 - respuesta
 - nombres
+- inicial_planta
 slots:
   user_name:
     type: text
     mappings:
     - type: from_entity
       entity: user_name
+  inicial_planta:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: inicial_planta
   plant_name:
     type: text
     mappings:
@@ -82,6 +93,8 @@ responses:
   - text: Hola, {user_name}, soy un chatbot del Real Jardín Botánico, en qué te puedo ayudar?
   utter_goodbye:
   - text: Adios.
+  utter_preguntar_opcion_de_planta:
+  - text: ¿Quieres que te diga una planta aleatoria o todas las plantas que empiezan por una letra específica?
   utter_options:
   - text: Puedes hacerme preguntas sobre las plantas y su localización dentro del jardín, y tambien informaciones sobre el jardín como el plano del jardín o dónde está los aseos. También puedes iniciar una visita guiada dentro del jardín.
   utter_explicar_visita:
@@ -104,16 +117,17 @@ responses:
   - text: "¿Quieres realizar la actualización de los datos? "
 
 session_config:
-  session_expiration_time: 60
+  session_expiration_time: 600
   carry_over_slots_to_new_session: false
 actions:
 - action_actualizar_datos
 - action_answer_plant_location
+- action_random_planta
+- action_lista_plantas_inicial
 - action_answer_plant_fam
 - action_iniciar_visita_1
 - action_iniciar_visita_2
 - action_iniciar_visita_3
-- action_lista_plantas
 - action_ask_visita
 - action_ask_prueba
 - action_prueba
@@ -130,3 +144,4 @@ actions:
 - utter_visita_duda
 - utter_negar
 - utter_actualizar_datos
+- utter_preguntar_opcion_de_planta
