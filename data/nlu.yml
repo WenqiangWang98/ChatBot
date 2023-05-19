@@ -28,8 +28,9 @@ nlu:
   examples: |
     - Somos [Juan, David,Jose Antonio, Ana Belén, y Daniel](nombres)
     - [Juan, David,Jose Antonio, Ana Belén, y Daniel](nombres)
-    - Somos [Raquel Daniel y Juan](nombres)
+    - Somos [Raquel, Daniel y Juan](nombres)
     - [Andrés, alex, dani, maría y wwq](nombres)
+    - [Andrés, Alex, Danie, María, WWQ](nombres)
 - intent: terminar_visita
   examples: |
     - Quiro terminar la visita

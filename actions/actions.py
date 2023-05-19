@@ -12,7 +12,9 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import csv
 import os
+import json
 import random
+import requests
 import openai
 
 openai.api_key = ""
@@ -77,11 +79,8 @@ def generate_prompt_prueba(pregunta,respuesta):
 #
 
 visita1Plants=["Granado","Tejo","Almez","Pino del Himalaya","Pavonia","Quillay","Caboa americana"]
-visita1Plants1=["Punica granatum","taxtus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
-respuesta=[]
-list_plants=[]
+visita1Plants1=["Punica granatum","taxus baccata","celtis australis","Pinus wallichiana","pavonia hastata","quillaja saponaria","swietenia mahagoni"]
 nombres=[]
-respuestasCorrectas=[]
 
 coordenadas=[["c.1","map=40.412209,-3.691701"],
     ["c.2","map=40.412157,-3.692182"],
@@ -165,8 +164,11 @@ def get_location(location):
             return i[1]
 
     return ""
-
-
+def get_image(plant):
+    response = requests.get("https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&piprop=original&titles="+plant)
+    j=response.json()
+    page=list(j["query"]["pages"].values())
+    return page[0]["original"]["source"]
 #leer csv
 
 name1 = []
@@ -286,7 +288,6 @@ class ActionIniciarVisita1(Action):
          if(tracker.get_slot("is_visita_guiada")=='0'):
              dispatcher.utter_message("Visita guiada simple iniciada. En la izquierda de la entrada de Puerta Norte del Real Jardín Botánico está el Granado o Punica granatum. Avisame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.1"))
-#             dispatcher.utter_message(attachment = "map="+"40.412209"+","+"-3.691701" )
              return[SlotSet("is_visita_guiada", "1")]
          else:
              dispatcher.utter_message("Ya habías iniciado la visita guiada..")
@@ -304,7 +305,6 @@ class ActionIniciarVisita2(Action):
          if(tracker.get_slot("is_visita_guiada")=='0'):
              dispatcher.utter_message("Visita guiada completa iniciada. En la derecha de la entrada de Puerta Norte del Real Jardín Botánico está el fraxinus pennsylvanica o fresno rojo americano. Avisame cuando llegues")
              dispatcher.utter_message(attachment = get_location("c.2"))
-#             dispatcher.utter_message(attachment = "map="+"40.412209"+","+"-3.691701" )
              return[SlotSet("is_visita_guiada", "201")]
          else:
              dispatcher.utter_message("Ya habías iniciado la visita guiada..")
@@ -323,7 +323,6 @@ class ActionIniciarVisita3(Action):
          if(tracker.get_slot("is_visita_guiada")=='0'):
              dispatcher.utter_message("Visita guiada casual iniciada. En la derecha de la entrada de Puerta Norte del Real Jardín Botánico está el morus alba o morera blanca. Avísame cuando llegues por favor.")
              dispatcher.utter_message(attachment = get_location("c.4"))
-#             dispatcher.utter_message(attachment = "map="+"40.412209"+","+"-3.691701" )
              return[SlotSet("is_visita_guiada", "301")]
          else:
              dispatcher.utter_message("Ya habías iniciado la visita guiada..")
@@ -337,14 +336,11 @@ class ActionRegistrarNombres(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+         nombres.clear()
+         for i in tracker.latest_message['entities']:
+             nombres.append(i['value']) 
          
-         nombres=tracker.get_slot("nombres").split(",")
-         stringaux=""
-         for i in nombres:
-            i=i.replace(",y "," ").strip()
-            respuestasCorrectas.append(chr(65+random.randint(0,2)))
-            stringaux=stringaux+i+", "
-         dispatcher.utter_message(stringaux+" verdad?")
+         dispatcher.utter_message(", ".join(nombres[0:-1])+" y "+nombres[-1]+" verdad?")
          random.shuffle(nombres)
          return[]
     
@@ -370,21 +366,72 @@ class ActionPrueba(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         nprueba=int(tracker.get_slot("is_prueba"))
-         if nprueba < len(nombres):
-             respuesta.append(tracker.get_slot("respuesta"))
-             dispatcher.utter_message(nombres[nprueba]+", esta pregunta es para tí: \n"+get_response_prueba(random.choice(list_plants),respuestasCorrectas[nprueba]))
-             return[SlotSet("is_prueba", str(nprueba+1))]
-         elif nprueba ==len(nombres) :
-             string1=""
-             for i in range(len(respuesta)):
-                  if respuesta[i] !=respuestasCorrectas[i]:
-                       string1=string1+nombres[i]+" se ha equivocado, la respuesta correcta es:"+respuestasCorrectas[i]+". "
-             if string1 =="":
-                  dispatcher.utter_message("Enohabuena! todas vuestras respuestas son correctas.")
+         nprueba=tracker.get_slot("is_prueba")
+         if nprueba =="100":
+             respuesta=tracker.get_slot("respuesta")
+             dispatcher.utter_message(nombres[0]+", esta pregunta es para tí: \n"+"¿Cuál es la planta que muestra en la imagen?")
+             dispatcher.utter_message(image = get_image("Pinus wallichiana"))
+             dispatcher.utter_message("A. Pinus wallichiana\nB. Celtis australis\nC. Taxus baccata")
+             return[SlotSet("is_prueba", "101")]
+         elif nprueba =="101":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="a":
+                 dispatcher.utter_message(nombres[0]+", ¡enhorabuena! Efectivamente, la respuesta correcta es Pinus wallichiana.")
              else:
-                  dispatcher.utter_message(string1)
+                 dispatcher.utter_message(nombres[0]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es A. Pinus wallichiana.")
+             dispatcher.utter_message(nombres[1%len(nombres)]+", esta pregunta es para tí: \n"+"¿Cuál es la planta que muestra en la imagen?")
+             dispatcher.utter_message(image = get_image("pavonia hastata"))
+             dispatcher.utter_message("A. Taxus baccata\nB. Pavonia hastata\nC. Quillaja saponaria")
+             return[SlotSet("is_prueba", "102")]
+         elif nprueba =="102":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="b":
+                 dispatcher.utter_message(nombres[1%len(nombres)]+", ¡enhorabuena! Efectivamente, la respuesta correcta es Pavonia hastata.")
+             else:
+                 dispatcher.utter_message(nombres[1%len(nombres)]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es B. Pavonia hastata.")
+             dispatcher.utter_message(nombres[2%len(nombres)]+", esta pregunta es para tí: \n"+"¿Cuál de las imagenes es Swietenia mahagoni?")
+             dispatcher.utter_message("A.")
+             dispatcher.utter_message(image = get_image("Swietenia mahagoni"))
+             dispatcher.utter_message("B.")
+             dispatcher.utter_message(image = get_image("celtis laevigata"))
+             dispatcher.utter_message("C.")
+             dispatcher.utter_message(image = get_image("picea abies"))
+             return[SlotSet("is_prueba", "103")]
+         elif nprueba =="103":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="b":
+                 dispatcher.utter_message(nombres[2%len(nombres)]+", ¡enhorabuena! Efectivamente, la respuesta correcta es Pavonia hastata.")
+             else:
+                 dispatcher.utter_message(nombres[2%len(nombres)]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es B. Pavonia hastata.")
+             dispatcher.utter_message(nombres[3%len(nombres)]+", esta pregunta es para tí: \n"+"¿Cuál es la planta que muestra en la imagen?")
+             dispatcher.utter_message(image = get_image("celtis laevigata"))
+             dispatcher.utter_message("A. Taxus baccata\nB. Celtis laevigata\nC. Quillaja saponaria")
+             return[SlotSet("is_prueba", "104")]
+         elif nprueba =="104":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="b":
+                 dispatcher.utter_message(nombres[3%len(nombres)]+", ¡enhorabuena! Efectivamente, la respuesta correcta es Pavonia hastata.")
+             else:
+                 dispatcher.utter_message(nombres[3%len(nombres)]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es B. Pavonia hastata.")
+             dispatcher.utter_message(nombres[4%len(nombres)]+", esta pregunta es para tí: \n"+"¿Cuál de las imagenes es Taxus baccata?")
+             dispatcher.utter_message("A.")
+             dispatcher.utter_message(image = get_image("quercus ilex"))
+             dispatcher.utter_message("B.")
+             dispatcher.utter_message(image = get_image("Taxus baccata"))
+             dispatcher.utter_message("C.")
+             dispatcher.utter_message(image = get_image("quercus suber"))
+             return[SlotSet("is_prueba", "105")]
+         elif nprueba =="105":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="b":
+                 dispatcher.utter_message(nombres[4%len(nombres)]+", ¡enhorabuena! Efectivamente, la respuesta correcta es Pavonia hastata.")
+             else:
+                 dispatcher.utter_message(nombres[4%len(nombres)]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es B. Pavonia hastata.")
+             dispatcher.utter_message("Prueba terminada. ¿Algo más en te puedo ayudar?")
              return[SlotSet("is_prueba", "0")]
+
+         dispatcher.utter_message("error:action_prueba "+nprueba)
+         return[]
 
 class ActionListaPlantasInicial(Action):
 
@@ -401,23 +448,14 @@ class ActionListaPlantasInicial(Action):
              e=nombre.split()[0]+" "+nombre.split()[1]
              if e not in lista and e.startswith(letra):
                  lista.append(e)
-         dispatcher.utter_message("Esta son las plantas qu empiezan con la letra '" +letra+ "' : " +", ".join(lista)+".")
+         if lista :
+             dispatcher.utter_message("Estas son las plantas que empiezan con la letra '" +letra+ "' : " +", ".join(lista)+".")
+         else:
+             dispatcher.utter_message("No hay ninguna planta de la base de datos que empieza con la letra '"+letra+"'.")
          return[]
 
 
 
-class ActionConfirmarLlegada(Action):
-
-     def name(self):
-         return "action_confirmar_llegada"
-
-
-     def run(self, dispatcher: CollectingDispatcher,
-             tracker: Tracker,
-             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         nplanta=tracker.get_slot("is_visita_guiada")
-         dispatcher.utter_message("¿Ya estás al lado de "+plants[ord(nplanta)-49]+", y pasar a la siguiente planta de la visita?")
-         return[]
 
 class ActionAvanzarVisita(Action):
 
@@ -432,7 +470,7 @@ class ActionAvanzarVisita(Action):
          nplanta=tracker.get_slot("is_visita_guiada")
          if(nplanta=="1"):
              result="2"
-             dispatcher.utter_message("Ahora sigue recto para llegar al Tejo o taxtus baccata. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora sigue recto para llegar al Tejo o taxus baccata. Avisame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.3"))
          elif(nplanta=="2"):
              result="3"
@@ -451,13 +489,12 @@ class ActionAvanzarVisita(Action):
              dispatcher.utter_message("Mirando al lago a tu izquierda está Quillay o quillaja saponaria. Avisame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.5"))
          elif(nplanta=="6"):
-             result="-1"
+             result="7"
              dispatcher.utter_message("Ahora sigue recto para llegar al Caboa americana o swietenia mahagoni. Avisame cuando estés.")
              dispatcher.utter_message(attachment = get_location("v.2"))
-         elif(nplanta=="-1"):
-             result='0'
+         elif(nplanta=="7"):
              dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
-             return[SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
+             return[SlotSet("is_prueba", "100"),SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
          elif(nplanta=="0"):
              dispatcher.utter_message("No has iniciado la visita.")
              return[FollowupAction(name="action_ask_visita")]
@@ -514,9 +551,12 @@ class ActionAvanzarVisita(Action):
              dispatcher.utter_message("Sigue camiando hacia el oeste un poco más y verás a melia azedarach o cinamomo. Avisame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.7"))
          elif(nplanta=="214"):
-             result='-1'
+             result='215'
              dispatcher.utter_message("Finalmente, sigue camiando hacia el oeste un poco más y verás a aesculus x carnea briotii o castaño de Indias rojo. Avisame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.3"))
+         elif(nplanta=="215"):
+             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
+             return[SlotSet("is_prueba", "200"),SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
 
          return[SlotSet("is_visita_guiada", result),FollowupAction(name="action_listen")]
 

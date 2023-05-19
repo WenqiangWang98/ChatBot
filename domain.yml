@@ -102,7 +102,7 @@ responses:
   utter_negar:
   - text: Sin problema. ¿En que te puedo ayudar?
   utter_preguntar_nombres:
-  - text: ¿Cuales vuestros nombres? Indícamelos separados por coma por favor.?
+  - text: ¿Cuales son vuestros nombres? Indíquemelos separados por comas por favor.
   utter_pregunta_1:
   - text: "¿Cuál es la planta que pertenece a la familia de Ulmaceae? \n
            A. Celtis autralis   B. Quillay  C. Tejo"
@@ -132,7 +132,6 @@ actions:
 - action_ask_prueba
 - action_prueba
 - action_avanzar_visita
-- action_confirmar_llegada
 - action_ver_mapa
 - action_responder_GPT3
 - action_preguntar_nombres
