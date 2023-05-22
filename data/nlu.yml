@@ -37,23 +37,399 @@ nlu:
     - ya me voy
     - ya no quiero visitar más
     - termina la visita
-- intent: otras_preguntas
+- intent: preguntas_sobre_planta
   examples: |
-    - ¿Cuantos  metros puede alcanzar Abies alba?
-    - ¿A que familia pertenece Abies Alba?
-    - ¿Sabrías decirme una planta con flor de color blanco?
-    - ¿Como son los flores de Abies alba?
-- intent: greet_with_name
-  examples: |
-    - Hola, soy [Juan](user_name)
-    - Hola me llamo [Jose](user_name)
-    - Hola soy [Fernando](user_name)
-    - Hola soy [Juan](user_name)
-    - Hola me llamo [Juan](user_name).
-    - hola soy [Antonio](user_name)
-    - Me llamo [Jose Antonio](user_name)
-    - Hola me llamo [JoseAntonio](user_name)
-    - Hola me llamo [Jose Antonio](user_name)
+    - ¿Cuantos metros puede alcanzar [Abies alba](plant_name)?
+    - ¿Como son las plantas de [Abies alba](plant_name)?
+    - ¿Como son los flores de [Abies alba](plant_name)?
+    - Dime más información sobre [Abies alba](plant_name), por favor.
+    - Dime más información sobre [Abies alba](plant_name).
+    - Por favor, dime más información sobre [Abies alba](plant_name).
+    - ¿Qué más sabes sobre [Abies alba](plant_name)?
+    - ¿Qué más puedes decirme sobre [Abies alba](plant_name)?
+    - ¿Cuantos metros puede alcanzar [Juglans regia](plant_name)?
+    - ¿Como son las plantas de [Juglans regia](plant_name)?
+    - ¿Como son los flores de [Juglans regia](plant_name)?
+    - Dime más información sobre [Juglans regia](plant_name), por favor.
+    - Dime más información sobre [Juglans regia](plant_name).
+    - Por favor, dime más información sobre [Juglans regia](plant_name).
+    - ¿Qué más sabes sobre [Juglans regia](plant_name)?
+    - ¿Qué más puedes decirme sobre [Juglans regia](plant_name)?
+    - ¿Cuantos metros puede alcanzar [Abies bracteata](plant_name)?
+    - ¿Como son las plantas de [Abies bracteata](plant_name)?
+    - ¿Como son los flores de [Abies bracteata](plant_name)?
+    - Dime más información sobre [Abies bracteata](plant_name), por favor.
+    - Dime más información sobre [Abies bracteata](plant_name).
+    - Por favor, dime más información sobre [Abies bracteata](plant_name).
+    - ¿Qué más sabes sobre [Abies bracteata](plant_name)?
+    - ¿Qué más puedes decirme sobre [Abies bracteata](plant_name)?
+    - ¿Cuantos metros puede alcanzar [Abies bracteata](plant_name)?
+    - ¿Como son las plantas de [Abies bracteata](plant_name)?
+    - ¿Como son los flores de [Abies bracteata](plant_name)?
+    - Dime más información sobre [Abies bracteata](plant_name), por favor.
+    - Dime más información sobre [Abies bracteata](plant_name).
+    - Por favor, dime más información sobre [Abies bracteata](plant_name).
+    - ¿Qué más sabes sobre [Abies bracteata](plant_name)?
+    - ¿Qué más puedes decirme sobre [Abies bracteata](plant_name)?
+    - ¿Cuantos metros puede alcanzar [Acacia dealbata](plant_name)?
+    - ¿Como son las plantas de [Acacia dealbata](plant_name)?
+    - ¿Como son los flores de [Acacia dealbata](plant_name)?
+    - Dime más información sobre [Acacia dealbata](plant_name), por favor.
+    - Dime más información sobre [Acacia dealbata](plant_name).
+    - Por favor, dime más información sobre [Acacia dealbata](plant_name).
+    - ¿Qué más sabes sobre [Acacia dealbata](plant_name)?
+    - ¿Qué más puedes decirme sobre [Acacia dealbata](plant_name)?
+    - ¿Cuantos metros puede alcanzar [Acer campestre](plant_name)?
+    - ¿Como son las plantas de [Acer campestre](plant_name)?
+    - ¿Como son los flores de [Acer campestre](plant_name)?
+    - Dime más información sobre [Acer campestre](plant_name), por favor.
+    - Dime más información sobre [Acer campestre](plant_name).
+    - Por favor, dime más información sobre [Acer campestre](plant_name).
+    - ¿Qué más sabes sobre [Acer campestre](plant_name)?
+    - ¿Qué más puedes decirme sobre [Acer campestre](plant_name)?
+    - ¿Cuantos metros puede alcanzar [Betula alba](plant_name)?
+    - ¿Como son las plantas de [Betula alba](plant_name)?
+    - ¿Como son los flores de [Betula alba](plant_name)?
+    - Dime más información sobre [Betula alba](plant_name), por favor.
+    - Dime más información sobre [Betula alba](plant_name).
+    - Por favor, dime más información sobre [Betula alba](plant_name).
+    - ¿Qué más sabes sobre [Betula alba](plant_name)?
+    - ¿Qué más puedes decirme sobre [Betula alba](plant_name)?
+    - ¿Como son las plantas de [abies bracteata](plant_name)?
+    - ¿Como son las plantas de [abies cephalonica](plant_name)?
+    - ¿Como son las plantas de [abies concolor](plant_name)?
+    - ¿Como son las plantas de [abies koreana](plant_name)?
+    - ¿Como son las plantas de [abies nordmanniana](plant_name)?
+    - ¿Como son las plantas de [abies pinsapo](plant_name)?
+    - ¿Como son las plantas de [acacia dealbata](plant_name)?
+    - ¿Como son las plantas de [acacia seyal](plant_name)?
+    - ¿Como son las plantas de [acer buergerianum](plant_name)?
+    - ¿Como son las plantas de [acer campestre](plant_name)?
+    - ¿Como son las plantas de [acer cappadocicum 'rubrum'](plant_name)?
+    - ¿Como son las plantas de [acer circinatum 'pacific fire'](plant_name)?
+    - ¿Como son las plantas de [acer granatense](plant_name)?
+    - ¿Como son las plantas de [acer griseum](plant_name)?
+    - ¿Como son las plantas de [acer griseum x pseudoplatanus](plant_name)?
+    - ¿Como son las plantas de [acer heldreichii](plant_name)?
+    - ¿Como son las plantas de [acer japonicum 'aconitifolium'](plant_name)?
+    - ¿Como son las plantas de [acer mono](plant_name)?
+    - ¿Como son las plantas de [acer monspessulanum](plant_name)?
+    - ¿Como son las plantas de [acer negundo](plant_name)?
+    - ¿Como son las plantas de [acer obtusifolium](plant_name)?
+    - ¿Como son las plantas de [acer opalus](plant_name)?
+    - ¿Como son las plantas de [acer palmatum](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'aka shigitatsu sawa'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'ao shime-no-uchi'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'aoyagi'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'asahi zuru'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'atropurpureum'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'attraction'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'baldsmith'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'beni chidori'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'beni komachi'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'beni shichihenge'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'beni ubi gohon'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'bi-hoo'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'bloodgood'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'burgundy lace'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'butterfly'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'coonara pygmy'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'crimson prince '](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'crimson queen'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'crippsii'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'desh j '](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'emerald lace'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'fireglow'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'garnet'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'genshu yama'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'goshiki kotohime'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'green cascade'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'hogyoku'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'inaba shidare'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'kamagata'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'kasagi yama'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'kashima'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'katsura'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'koreanum'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'koto no ito'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'linearilobum red'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'linearilobum'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'little princess'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'murasaki kiyohime'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum subsp. matsumurae](plant_name)?
+    - ¿Como son las plantas de [acer palmatum var. dissectum 'seiryu'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum var. dissectum 'viride'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'matsuyoi'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'mikawa yatsubusa'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'omureyama'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'orange dream'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'oregon sunset'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'osakazuki'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'palmatifidium'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'peaches & cream'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'red pygmy'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'red wood'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'reticulatum'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'roseo marginatum'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'samidare'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'sango kaku'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'satzuki-beni'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'scolopendriifolium'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'seigen'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'seiryu'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'sharp's pygmy'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'shidava gold'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'shishigashira'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'shojo'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'skeeter's broom'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'sumi nagashi'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'trompenburg'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'ukon'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'villa taranto'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'viridis'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'winter flame'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'yama otome'](plant_name)?
+    - ¿Como son las plantas de [acer palmatum 'yasemin'](plant_name)?
+    - ¿Como son las plantas de [acer pensylvanicum 'erythrocladum'](plant_name)?
+    - ¿Como son las plantas de [acer platanoides](plant_name)?
+    - ¿Como son las plantas de [acer platanoides 'schwedleri'](plant_name)?
+    - ¿Como son las plantas de [acer pseudoplatanus](plant_name)?
+    - ¿Como son las plantas de [acer pseudoplatanus 'atropurpureum'](plant_name)?
+    - ¿Como son las plantas de [acer rubrum](plant_name)?
+    - ¿Como son las plantas de [acer rufinerve 'erythrocladum'](plant_name)?
+    - ¿Como son las plantas de [acer saccharinum](plant_name)?
+    - ¿Como son las plantas de [acer saccharum subsp. saccharum](plant_name)?
+    - ¿Como son las plantas de [acer sempervirens](plant_name)?
+    - ¿Como son las plantas de [acer shirasawanum 'autumn moon'](plant_name)?
+    - ¿Como son las plantas de [acer sinense](plant_name)?
+    - ¿Como son las plantas de [acer tataricum subsp. guinnala](plant_name)?
+    - ¿Como son las plantas de [acer truncatum](plant_name)?
+    - ¿Como son las plantas de [acer x conspicuum 'red flamingo'](plant_name)?
+    - ¿Como son las plantas de [acer x freemanii 'autumm blaze'](plant_name)?
+    - ¿Como son las plantas de [aesculus flava](plant_name)?
+    - ¿Como son las plantas de [aesculus hippocastanum](plant_name)?
+    - ¿Como son las plantas de [aesculus indica](plant_name)?
+    - ¿Como son las plantas de [aesculus pavia 'atrosanguinea'](plant_name)?
+    - ¿Como son las plantas de [aesculus splendens](plant_name)?
+    - ¿Como son las plantas de [aesculus turbinata](plant_name)?
+    - ¿Como son las plantas de [aesculus x carnea](plant_name)?
+    - ¿Como son las plantas de [aesculus x carnea briotii](plant_name)?
+    - ¿Como son las plantas de [ailanthus altissima](plant_name)?
+    - ¿Como son las plantas de [amelanchier laevis](plant_name)?
+    - ¿Como son las plantas de [amelanchier lamarckii](plant_name)?
+    - ¿Como son las plantas de [aphananthe aspera](plant_name)?
+    - ¿Como son las plantas de [araucaria angustifolia](plant_name)?
+    - ¿Como son las plantas de [araucaria araucana](plant_name)?
+    - ¿Como son las plantas de [arbutus andrachne](plant_name)?
+    - ¿Como son las plantas de [arbutus unedo](plant_name)?
+    - ¿Como son las plantas de [arbutus x andrachnoides](plant_name)?
+    - ¿Como son las plantas de [betula alba](plant_name)?
+    - ¿Como son las plantas de [betula pendula](plant_name)?
+    - ¿Como son las plantas de [betula pendula fontqueri](plant_name)?
+    - ¿Como son las plantas de [brachychiton populneus](plant_name)?
+    - ¿Como son las plantas de [brahea armata](plant_name)?
+    - ¿Como son las plantas de [brahea brandegeei](plant_name)?
+    - ¿Como son las plantas de [brahea edulis](plant_name)?
+    - ¿Como son las plantas de [broussonetia papyrifera](plant_name)?
+    - ¿Como son las plantas de [butia capitata](plant_name)?
+    - ¿Como son las plantas de [calocedrus decurrens](plant_name)?
+    - ¿Como son las plantas de [calocedrus decurrens 'aureovariegata'](plant_name)?
+    - ¿Como son las plantas de [cedrus atlantica](plant_name)?
+    - ¿Como son las plantas de [cedrus atlantica 'glauca'](plant_name)?
+    - ¿Como son las plantas de [cedrus deodara](plant_name)?
+    - ¿Como son las plantas de [cedrus libani](plant_name)?
+    - ¿Como son las plantas de [celtis australis](plant_name)?
+    - ¿Como son las plantas de [celtis bungeana](plant_name)?
+    - ¿Como son las plantas de [celtis caucasica](plant_name)?
+    - ¿Como son las plantas de [celtis laevigata](plant_name)?
+    - ¿Como son las plantas de [celtis occidentalis](plant_name)?
+    - ¿Como son las plantas de [celtis reticulata](plant_name)?
+    - ¿Como son las plantas de [celtis sinensis](plant_name)?
+    - ¿Como son las plantas de [celtis spinosa](plant_name)?
+    - ¿Como son las plantas de [cercidiphyllum japonicum](plant_name)?
+    - ¿Como son las plantas de [cercis chinensis](plant_name)?
+    - ¿Como son las plantas de [cercis siliquastrum](plant_name)?
+    - ¿Como son las plantas de [chamaecyparis funebris](plant_name)?
+    - ¿Como son las plantas de [chamaecyparis lawsoniana forsteckensis](plant_name)?
+    - ¿Como son las plantas de [chamaecyparis nootkatensis pendula](plant_name)?
+    - ¿Como son las plantas de [cinnamomum camphora](plant_name)?
+    - ¿Como son las plantas de [citrus aurantium](plant_name)?
+    - ¿Como son las plantas de [cladrastis kentukea](plant_name)?
+    - ¿Como son las plantas de [cordyline australis](plant_name)?
+    - ¿Como son las plantas de [cryptomeria japonica 'araucaroides'](plant_name)?
+    - ¿Como son las plantas de [cunninghamia lanceolata](plant_name)?
+    - ¿Como son las plantas de [cupressus arizonica](plant_name)?
+    - ¿Como son las plantas de [cupressus lusitanica](plant_name)?
+    - ¿Como son las plantas de [cupressus sempervirens](plant_name)?
+    - ¿Como son las plantas de [cupressus sempervirens stricta](plant_name)?
+    - ¿Como son las plantas de [cupressus sempervirens swane' s gold](plant_name)?
+    - ¿Como son las plantas de [diospyros duclouxii](plant_name)?
+    - ¿Como son las plantas de [diospyros glaucifolia](plant_name)?
+    - ¿Como son las plantas de [diospyros kaki sylvestris](plant_name)?
+    - ¿Como son las plantas de [diospyros kaki](plant_name)?
+    - ¿Como son las plantas de [diospyros lotus](plant_name)?
+    - ¿Como son las plantas de [diospyros virginiana](plant_name)?
+    - ¿Como son las plantas de [diospyros wilsonii](plant_name)?
+    - ¿Como son las plantas de [ehretia dicksonii var.japonica](plant_name)?
+    - ¿Como son las plantas de [elaeagnus angustifolia](plant_name)?
+    - ¿Como son las plantas de [eucalyptus camaldulensis](plant_name)?
+    - ¿Como son las plantas de [eucommia ulmoides](plant_name)?
+    - ¿Como son las plantas de [fagus orientalis](plant_name)?
+    - ¿Como son las plantas de [fagus sylvatica 'pendula'](plant_name)?
+    - ¿Como son las plantas de [fagus sylvatica var. purpurea](plant_name)?
+    - ¿Como son las plantas de [fagus sylvatica](plant_name)?
+    - ¿Como son las plantas de [ficus carica](plant_name)?
+    - ¿Como son las plantas de [firmiana simplex](plant_name)?
+    - ¿Como son las plantas de [fraxinus chinensis var.rhyncophylla](plant_name)?
+    - ¿Como son las plantas de [fraxinus chinensis](plant_name)?
+    - ¿Como son las plantas de [fraxinus excelsior](plant_name)?
+    - ¿Como son las plantas de [fraxinus latifolia](plant_name)?
+    - ¿Como son las plantas de [fraxinus ornus](plant_name)?
+    - ¿Como son las plantas de [fraxinus pennsylvanica](plant_name)?
+    - ¿Como son las plantas de [ginkgo biloba](plant_name)?
+    - ¿Como son las plantas de [gleditsia caspica](plant_name)?
+    - ¿Como son las plantas de [gleditsia macracantha](plant_name)?
+    - ¿Como son las plantas de [gleditsia sinensis](plant_name)?
+    - ¿Como son las plantas de [gleditsia triacanthos](plant_name)?
+    - ¿Como son las plantas de [gymnocladus dioicus](plant_name)?
+    - ¿Como son las plantas de [hovenia dulcis](plant_name)?
+    - ¿Como son las plantas de [juglans nigra](plant_name)?
+    - ¿Como son las plantas de [juglans regia](plant_name)?
+    - ¿Como son las plantas de [juniperus cedrus](plant_name)?
+    - ¿Como son las plantas de [juniperus thurifera](plant_name)?
+    - ¿Como son las plantas de [koelreuteria paniculata](plant_name)?
+    - ¿Como son las plantas de [lagerstroemia indica](plant_name)?
+    - ¿Como son las plantas de [larix laricinia](plant_name)?
+    - ¿Como son las plantas de [laurus azorica](plant_name)?
+    - ¿Como son las plantas de [laurus nobilis](plant_name)?
+    - ¿Como son las plantas de [ligustrum lucidum](plant_name)?
+    - ¿Como son las plantas de [liquidambar formosana  'monticola'](plant_name)?
+    - ¿Como son las plantas de [liquidambar formosana](plant_name)?
+    - ¿Como son las plantas de [liquidambar styraciflua](plant_name)?
+    - ¿Como son las plantas de [liriodendron tulipifera](plant_name)?
+    - ¿Como son las plantas de [luehea divaricata](plant_name)?
+    - ¿Como son las plantas de [maclura pomifera](plant_name)?
+    - ¿Como son las plantas de [magnolia grandiflora](plant_name)?
+    - ¿Como son las plantas de [malus domestica](plant_name)?
+    - ¿Como son las plantas de [malus floribunda](plant_name)?
+    - ¿Como son las plantas de [malus fusca](plant_name)?
+    - ¿Como son las plantas de [melia azedarach](plant_name)?
+    - ¿Como son las plantas de [mespilus germanica](plant_name)?
+    - ¿Como son las plantas de [metasequoia glyptostroboides](plant_name)?
+    - ¿Como son las plantas de [morus alba 'pendula'](plant_name)?
+    - ¿Como son las plantas de [morus alba](plant_name)?
+    - ¿Como son las plantas de [morus nigra](plant_name)?
+    - ¿Como son las plantas de [nyssa sylvatica](plant_name)?
+    - ¿Como son las plantas de [olea africana](plant_name)?
+    - ¿Como son las plantas de [olea europaea](plant_name)?
+    - ¿Como son las plantas de [olea europaea 'lech n de granada'](plant_name)?
+    - ¿Como son las plantas de [olea europaea 'limoncillo'](plant_name)?
+    - ¿Como son las plantas de [olea europaea 'picual'](plant_name)?
+    - ¿Como son las plantas de [olea europaea 'real sevillana'](plant_name)?
+    - ¿Como son las plantas de [olea europaea var. sylvestris](plant_name)?
+    - ¿Como son las plantas de [parrotia persica](plant_name)?
+    - ¿Como son las plantas de [paulownia tomentosa](plant_name)?
+    - ¿Como son las plantas de [persea indica](plant_name)?
+    - ¿Como son las plantas de [phellodendron amurense var.sachalinense](plant_name)?
+    - ¿Como son las plantas de [phellodendron amurense](plant_name)?
+    - ¿Como son las plantas de [phellodendron lavallei](plant_name)?
+    - ¿Como son las plantas de [phoenix canariensis](plant_name)?
+    - ¿Como son las plantas de [phoenix reclinata](plant_name)?
+    - ¿Como son las plantas de [photinia serratifolia](plant_name)?
+    - ¿Como son las plantas de [picea abies 'little gem'](plant_name)?
+    - ¿Como son las plantas de [picea abies](plant_name)?
+    - ¿Como son las plantas de [picea orientalis 'aurea'](plant_name)?
+    - ¿Como son las plantas de [picea pungens 'koster'](plant_name)?
+    - ¿Como son las plantas de [pinus brutia](plant_name)?
+    - ¿Como son las plantas de [pinus canariensis](plant_name)?
+    - ¿Como son las plantas de [pinus densiflora 'umbraculifera'](plant_name)?
+    - ¿Como son las plantas de [pinus halepensis](plant_name)?
+    - ¿Como son las plantas de [pinus leucodermis](plant_name)?
+    - ¿Como son las plantas de [pinus nigra](plant_name)?
+    - ¿Como son las plantas de [pinus pinaster](plant_name)?
+    - ¿Como son las plantas de [pinus pinea](plant_name)?
+    - ¿Como son las plantas de [pinus radiata](plant_name)?
+    - ¿Como son las plantas de [pinus sylvestris](plant_name)?
+    - ¿Como son las plantas de [pinus tabuliformis](plant_name)?
+    - ¿Como son las plantas de [pinus wallichiana](plant_name)?
+    - ¿Como son las plantas de [platanus orientalis var.acerifolia](plant_name)?
+    - ¿Como son las plantas de [podocarpus macrophyllus](plant_name)?
+    - ¿Como son las plantas de [podocarpus neriifolius](plant_name)?
+    - ¿Como son las plantas de [podocarpus nubigenus](plant_name)?
+    - ¿Como son las plantas de [populus alba 'roumi'](plant_name)?
+    - ¿Como son las plantas de [prumnopitys andina](plant_name)?
+    - ¿Como son las plantas de [prunus cerasifera](plant_name)?
+    - ¿Como son las plantas de [prunus domestica](plant_name)?
+    - ¿Como son las plantas de [prunus dulcis](plant_name)?
+    - ¿Como son las plantas de [prunus laurocerasus](plant_name)?
+    - ¿Como son las plantas de [prunus lusitanica](plant_name)?
+    - ¿Como son las plantas de [prunus serrulata](plant_name)?
+    - ¿Como son las plantas de [pseudotsuga macrocarpa](plant_name)?
+    - ¿Como son las plantas de [pseudotsuga menziesii](plant_name)?
+    - ¿Como son las plantas de [pterocarya fraxinifolia](plant_name)?
+    - ¿Como son las plantas de [punica granatum "legrelleae"](plant_name)?
+    - ¿Como son las plantas de [punica granatum](plant_name)?
+    - ¿Como son las plantas de [pyrus communis](plant_name)?
+    - ¿Como son las plantas de [pyrus salicifolia 'pendula'](plant_name)?
+    - ¿Como son las plantas de [quercus calliprinos](plant_name)?
+    - ¿Como son las plantas de [quercus canariensis](plant_name)?
+    - ¿Como son las plantas de [quercus coccifera](plant_name)?
+    - ¿Como son las plantas de [quercus faginea](plant_name)?
+    - ¿Como son las plantas de [quercus frainetto](plant_name)?
+    - ¿Como son las plantas de [quercus ilex](plant_name)?
+    - ¿Como son las plantas de [quercus ilex ballota](plant_name)?
+    - ¿Como son las plantas de [quercus macrocarpa](plant_name)?
+    - ¿Como son las plantas de [quercus pubescens](plant_name)?
+    - ¿Como son las plantas de [quercus pyrenaica](plant_name)?
+    - ¿Como son las plantas de [quercus robur](plant_name)?
+    - ¿Como son las plantas de [quercus shumardii](plant_name)?
+    - ¿Como son las plantas de [quercus suber](plant_name)?
+    - ¿Como son las plantas de [quillaja saponaria](plant_name)?
+    - ¿Como son las plantas de [robinia luxurians](plant_name)?
+    - ¿Como son las plantas de [robinia pseudacacia](plant_name)?
+    - ¿Como son las plantas de [salix aegyptiaca](plant_name)?
+    - ¿Como son las plantas de [salix alba alba](plant_name)?
+    - ¿Como son las plantas de [salix babylonica](plant_name)?
+    - ¿Como son las plantas de [salix caprea](plant_name)?
+    - ¿Como son las plantas de [sassafras albidum](plant_name)?
+    - ¿Como son las plantas de [schinus lentiscifolius](plant_name)?
+    - ¿Como son las plantas de [schinus polygamus](plant_name)?
+    - ¿Como son las plantas de [sequoia sempervirens](plant_name)?
+    - ¿Como son las plantas de [sequoiadendron giganteum](plant_name)?
+    - ¿Como son las plantas de [sophora japonica 'pendula'](plant_name)?
+    - ¿Como son las plantas de [sophora japonica](plant_name)?
+    - ¿Como son las plantas de [sorbus aria 'decaisneana'](plant_name)?
+    - ¿Como son las plantas de [sorbus aucuparia 'fastigiata'](plant_name)?
+    - ¿Como son las plantas de [sorbus aucuparia](plant_name)?
+    - ¿Como son las plantas de [taiwania cryptomerioides](plant_name)?
+    - ¿Como son las plantas de [taxodium ascendens 'nutans'](plant_name)?
+    - ¿Como son las plantas de [taxodium distichum](plant_name)?
+    - ¿Como son las plantas de [taxus baccata 'adpressa'](plant_name)?
+    - ¿Como son las plantas de [taxus baccata 'aurea'](plant_name)?
+    - ¿Como son las plantas de [taxus baccata 'fastigiata aurea'](plant_name)?
+    - ¿Como son las plantas de [taxus baccata 'overeynderi'](plant_name)?
+    - ¿Como son las plantas de [taxus baccata 'semperaurea'](plant_name)?
+    - ¿Como son las plantas de [taxus baccata](plant_name)?
+    - ¿Como son las plantas de [taxus cuspidata](plant_name)?
+    - ¿Como son las plantas de [tetraclinis articulata](plant_name)?
+    - ¿Como son las plantas de [thuja orientalis](plant_name)?
+    - ¿Como son las plantas de [tilia cordata](plant_name)?
+    - ¿Como son las plantas de [tilia henryana](plant_name)?
+    - ¿Como son las plantas de [tilia oliveri](plant_name)?
+    - ¿Como son las plantas de [tilia platyphyllos](plant_name)?
+    - ¿Como son las plantas de [tilia tomentosa](plant_name)?
+    - ¿Como son las plantas de [tilia tomentosa 'petiolaris'](plant_name)?
+    - ¿Como son las plantas de [tilia x vulgaris](plant_name)?
+    - ¿Como son las plantas de [torreya nucifera](plant_name)?
+    - ¿Como son las plantas de [trachycarpus fortunei](plant_name)?
+    - ¿Como son las plantas de [tsuga canadensis 'seddelhoj'](plant_name)?
+    - ¿Como son las plantas de [ulmus americana](plant_name)?
+    - ¿Como son las plantas de [ulmus glabra](plant_name)?
+    - ¿Como son las plantas de [ulmus glabra 'pendula'](plant_name)?
+    - ¿Como son las plantas de [ulmus minor](plant_name)?
+    - ¿Como son las plantas de [x cupressocyparis leylandii](plant_name)?
+    - ¿Como son las plantas de [zelkova carpinifolia](plant_name)?
+    - ¿Como son las plantas de [zelkova schneideriana](plant_name)?
 - intent: greet
   examples: |
     - Hola
@@ -84,6 +460,321 @@ nlu:
     - donde esta [Olea africana](plant_name)?
     - donde esta [Robinia luxurians](plant_name)?
     - Sabes donde esta [Ulmus americana](plant_name)?
+    -¿Sabes dónde está [abies bracteata](plant_name)?
+    -¿Sabes dónde está [abies cephalonica](plant_name)?
+    -¿Sabes dónde está [abies concolor](plant_name)?
+    -¿Sabes dónde está [abies koreana](plant_name)?
+    -¿Sabes dónde está [abies nordmanniana](plant_name)?
+    -¿Sabes dónde está [abies pinsapo](plant_name)?
+    -¿Sabes dónde está [acacia dealbata](plant_name)?
+    -¿Sabes dónde está [acacia seyal](plant_name)?
+    -¿Sabes dónde está [acer buergerianum](plant_name)?
+    -¿Sabes dónde está [acer campestre](plant_name)?
+    -¿Sabes dónde está [acer cappadocicum 'rubrum'](plant_name)?
+    -¿Sabes dónde está [acer circinatum 'pacific fire'](plant_name)?
+    -¿Sabes dónde está [acer granatense](plant_name)?
+    -¿Sabes dónde está [acer griseum](plant_name)?
+    -¿Sabes dónde está [acer griseum x pseudoplatanus](plant_name)?
+    -¿Sabes dónde está [acer heldreichii](plant_name)?
+    -¿Sabes dónde está [acer japonicum 'aconitifolium'](plant_name)?
+    -¿Sabes dónde está [acer mono](plant_name)?
+    -¿Sabes dónde está [acer monspessulanum](plant_name)?
+    -¿Sabes dónde está [acer negundo](plant_name)?
+    -¿Sabes dónde está [acer obtusifolium](plant_name)?
+    -¿Sabes dónde está [acer opalus](plant_name)?
+    -¿Sabes dónde está [acer palmatum](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'aka shigitatsu sawa'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'ao shime-no-uchi'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'aoyagi'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'asahi zuru'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'atropurpureum'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'attraction'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'baldsmith'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'beni chidori'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'beni komachi'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'beni shichihenge'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'beni ubi gohon'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'bi-hoo'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'bloodgood'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'burgundy lace'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'butterfly'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'coonara pygmy'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'crimson prince '](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'crimson queen'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'crippsii'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'desh j '](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'emerald lace'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'fireglow'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'garnet'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'genshu yama'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'goshiki kotohime'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'green cascade'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'hogyoku'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'inaba shidare'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'kamagata'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'kasagi yama'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'kashima'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'katsura'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'koreanum'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'koto no ito'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'linearilobum red'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'linearilobum'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'little princess'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'murasaki kiyohime'](plant_name)?
+    -¿Sabes dónde está [acer palmatum subsp. matsumurae](plant_name)?
+    -¿Sabes dónde está [acer palmatum var. dissectum 'seiryu'](plant_name)?
+    -¿Sabes dónde está [acer palmatum var. dissectum 'viride'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'matsuyoi'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'mikawa yatsubusa'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'omureyama'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'orange dream'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'oregon sunset'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'osakazuki'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'palmatifidium'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'peaches & cream'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'red pygmy'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'red wood'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'reticulatum'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'roseo marginatum'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'samidare'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'sango kaku'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'satzuki-beni'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'scolopendriifolium'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'seigen'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'seiryu'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'sharp's pygmy'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'shidava gold'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'shishigashira'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'shojo'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'skeeter's broom'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'sumi nagashi'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'trompenburg'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'ukon'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'villa taranto'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'viridis'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'winter flame'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'yama otome'](plant_name)?
+    -¿Sabes dónde está [acer palmatum 'yasemin'](plant_name)?
+    -¿Sabes dónde está [acer pensylvanicum 'erythrocladum'](plant_name)?
+    -¿Sabes dónde está [acer platanoides](plant_name)?
+    -¿Sabes dónde está [acer platanoides 'schwedleri'](plant_name)?
+    -¿Sabes dónde está [acer pseudoplatanus](plant_name)?
+    -¿Sabes dónde está [acer pseudoplatanus 'atropurpureum'](plant_name)?
+    -¿Sabes dónde está [acer rubrum](plant_name)?
+    -¿Sabes dónde está [acer rufinerve 'erythrocladum'](plant_name)?
+    -¿Sabes dónde está [acer saccharinum](plant_name)?
+    -¿Sabes dónde está [acer saccharum subsp. saccharum](plant_name)?
+    -¿Sabes dónde está [acer sempervirens](plant_name)?
+    -¿Sabes dónde está [acer shirasawanum 'autumn moon'](plant_name)?
+    -¿Sabes dónde está [acer sinense](plant_name)?
+    -¿Sabes dónde está [acer tataricum subsp. guinnala](plant_name)?
+    -¿Sabes dónde está [acer truncatum](plant_name)?
+    -¿Sabes dónde está [acer x conspicuum 'red flamingo'](plant_name)?
+    -¿Sabes dónde está [acer x freemanii 'autumm blaze'](plant_name)?
+    -¿Sabes dónde está [aesculus flava](plant_name)?
+    -¿Sabes dónde está [aesculus hippocastanum](plant_name)?
+    -¿Sabes dónde está [aesculus indica](plant_name)?
+    -¿Sabes dónde está [aesculus pavia 'atrosanguinea'](plant_name)?
+    -¿Sabes dónde está [aesculus splendens](plant_name)?
+    -¿Sabes dónde está [aesculus turbinata](plant_name)?
+    -¿Sabes dónde está [aesculus x carnea](plant_name)?
+    -¿Sabes dónde está [aesculus x carnea briotii](plant_name)?
+    -¿Sabes dónde está [ailanthus altissima](plant_name)?
+    -¿Sabes dónde está [amelanchier laevis](plant_name)?
+    -¿Sabes dónde está [amelanchier lamarckii](plant_name)?
+    -¿Sabes dónde está [aphananthe aspera](plant_name)?
+    -¿Sabes dónde está [araucaria angustifolia](plant_name)?
+    -¿Sabes dónde está [araucaria araucana](plant_name)?
+    -¿Sabes dónde está [arbutus andrachne](plant_name)?
+    -¿Sabes dónde está [arbutus unedo](plant_name)?
+    -¿Sabes dónde está [arbutus x andrachnoides](plant_name)?
+    -¿Sabes dónde está [betula alba](plant_name)?
+    -¿Sabes dónde está [betula pendula](plant_name)?
+    -¿Sabes dónde está [betula pendula fontqueri](plant_name)?
+    -¿Sabes dónde está [brachychiton populneus](plant_name)?
+    -¿Sabes dónde está [brahea armata](plant_name)?
+    -¿Sabes dónde está [brahea brandegeei](plant_name)?
+    -¿Sabes dónde está [brahea edulis](plant_name)?
+    -¿Sabes dónde está [broussonetia papyrifera](plant_name)?
+    -¿Sabes dónde está [butia capitata](plant_name)?
+    -¿Sabes dónde está [calocedrus decurrens](plant_name)?
+    -¿Sabes dónde está [calocedrus decurrens 'aureovariegata'](plant_name)?
+    -¿Sabes dónde está [cedrus atlantica](plant_name)?
+    -¿Sabes dónde está [cedrus atlantica 'glauca'](plant_name)?
+    -¿Sabes dónde está [cedrus deodara](plant_name)?
+    -¿Sabes dónde está [cedrus libani](plant_name)?
+    -¿Sabes dónde está [celtis australis](plant_name)?
+    -¿Sabes dónde está [celtis bungeana](plant_name)?
+    -¿Sabes dónde está [celtis caucasica](plant_name)?
+    -¿Sabes dónde está [celtis laevigata](plant_name)?
+    -¿Sabes dónde está [celtis occidentalis](plant_name)?
+    -¿Sabes dónde está [celtis reticulata](plant_name)?
+    -¿Sabes dónde está [celtis sinensis](plant_name)?
+    -¿Sabes dónde está [celtis spinosa](plant_name)?
+    -¿Sabes dónde está [cercidiphyllum japonicum](plant_name)?
+    -¿Sabes dónde está [cercis chinensis](plant_name)?
+    -¿Sabes dónde está [cercis siliquastrum](plant_name)?
+    -¿Sabes dónde está [chamaecyparis funebris](plant_name)?
+    -¿Sabes dónde está [chamaecyparis lawsoniana forsteckensis](plant_name)?
+    -¿Sabes dónde está [chamaecyparis nootkatensis pendula](plant_name)?
+    -¿Sabes dónde está [cinnamomum camphora](plant_name)?
+    -¿Sabes dónde está [citrus aurantium](plant_name)?
+    -¿Sabes dónde está [cladrastis kentukea](plant_name)?
+    -¿Sabes dónde está [cordyline australis](plant_name)?
+    -¿Sabes dónde está [cryptomeria japonica 'araucaroides'](plant_name)?
+    -¿Sabes dónde está [cunninghamia lanceolata](plant_name)?
+    -¿Sabes dónde está [cupressus arizonica](plant_name)?
+    -¿Sabes dónde está [cupressus lusitanica](plant_name)?
+    -¿Sabes dónde está [cupressus sempervirens](plant_name)?
+    -¿Sabes dónde está [cupressus sempervirens stricta](plant_name)?
+    -¿Sabes dónde está [cupressus sempervirens swane' s gold](plant_name)?
+    -¿Sabes dónde está [diospyros duclouxii](plant_name)?
+    -¿Sabes dónde está [diospyros glaucifolia](plant_name)?
+    -¿Sabes dónde está [diospyros kaki sylvestris](plant_name)?
+    -¿Sabes dónde está [diospyros kaki](plant_name)?
+    -¿Sabes dónde está [diospyros lotus](plant_name)?
+    -¿Sabes dónde está [diospyros virginiana](plant_name)?
+    -¿Sabes dónde está [diospyros wilsonii](plant_name)?
+    -¿Sabes dónde está [ehretia dicksonii var.japonica](plant_name)?
+    -¿Sabes dónde está [elaeagnus angustifolia](plant_name)?
+    -¿Sabes dónde está [eucalyptus camaldulensis](plant_name)?
+    -¿Sabes dónde está [eucommia ulmoides](plant_name)?
+    -¿Sabes dónde está [fagus orientalis](plant_name)?
+    -¿Sabes dónde está [fagus sylvatica 'pendula'](plant_name)?
+    -¿Sabes dónde está [fagus sylvatica var. purpurea](plant_name)?
+    -¿Sabes dónde está [fagus sylvatica](plant_name)?
+    -¿Sabes dónde está [ficus carica](plant_name)?
+    -¿Sabes dónde está [firmiana simplex](plant_name)?
+    -¿Sabes dónde está [fraxinus chinensis var.rhyncophylla](plant_name)?
+    -¿Sabes dónde está [fraxinus chinensis](plant_name)?
+    -¿Sabes dónde está [fraxinus excelsior](plant_name)?
+    -¿Sabes dónde está [fraxinus latifolia](plant_name)?
+    -¿Sabes dónde está [fraxinus ornus](plant_name)?
+    -¿Sabes dónde está [fraxinus pennsylvanica](plant_name)?
+    -¿Sabes dónde está [ginkgo biloba](plant_name)?
+    -¿Sabes dónde está [gleditsia caspica](plant_name)?
+    -¿Sabes dónde está [gleditsia macracantha](plant_name)?
+    -¿Sabes dónde está [gleditsia sinensis](plant_name)?
+    -¿Sabes dónde está [gleditsia triacanthos](plant_name)?
+    -¿Sabes dónde está [gymnocladus dioicus](plant_name)?
+    -¿Sabes dónde está [hovenia dulcis](plant_name)?
+    -¿Sabes dónde está [juglans nigra](plant_name)?
+    -¿Sabes dónde está [juglans regia](plant_name)?
+    -¿Sabes dónde está [juniperus cedrus](plant_name)?
+    -¿Sabes dónde está [juniperus thurifera](plant_name)?
+    -¿Sabes dónde está [koelreuteria paniculata](plant_name)?
+    -¿Sabes dónde está [lagerstroemia indica](plant_name)?
+    -¿Sabes dónde está [larix laricinia](plant_name)?
+    -¿Sabes dónde está [laurus azorica](plant_name)?
+    -¿Sabes dónde está [laurus nobilis](plant_name)?
+    -¿Sabes dónde está [ligustrum lucidum](plant_name)?
+    -¿Sabes dónde está [liquidambar formosana  'monticola'](plant_name)?
+    -¿Sabes dónde está [liquidambar formosana](plant_name)?
+    -¿Sabes dónde está [liquidambar styraciflua](plant_name)?
+    -¿Sabes dónde está [liriodendron tulipifera](plant_name)?
+    -¿Sabes dónde está [luehea divaricata](plant_name)?
+    -¿Sabes dónde está [maclura pomifera](plant_name)?
+    -¿Sabes dónde está [magnolia grandiflora](plant_name)?
+    -¿Sabes dónde está [malus domestica](plant_name)?
+    -¿Sabes dónde está [malus floribunda](plant_name)?
+    -¿Sabes dónde está [malus fusca](plant_name)?
+    -¿Sabes dónde está [melia azedarach](plant_name)?
+    -¿Sabes dónde está [mespilus germanica](plant_name)?
+    -¿Sabes dónde está [metasequoia glyptostroboides](plant_name)?
+    -¿Sabes dónde está [morus alba 'pendula'](plant_name)?
+    -¿Sabes dónde está [morus alba](plant_name)?
+    -¿Sabes dónde está [morus nigra](plant_name)?
+    -¿Sabes dónde está [nyssa sylvatica](plant_name)?
+    -¿Sabes dónde está [olea africana](plant_name)?
+    -¿Sabes dónde está [olea europaea](plant_name)?
+    -¿Sabes dónde está [olea europaea 'lech n de granada'](plant_name)?
+    -¿Sabes dónde está [olea europaea 'limoncillo'](plant_name)?
+    -¿Sabes dónde está [olea europaea 'picual'](plant_name)?
+    -¿Sabes dónde está [olea europaea 'real sevillana'](plant_name)?
+    -¿Sabes dónde está [olea europaea var. sylvestris](plant_name)?
+    -¿Sabes dónde está [parrotia persica](plant_name)?
+    -¿Sabes dónde está [paulownia tomentosa](plant_name)?
+    -¿Sabes dónde está [persea indica](plant_name)?
+    -¿Sabes dónde está [phellodendron amurense var.sachalinense](plant_name)?
+    -¿Sabes dónde está [phellodendron amurense](plant_name)?
+    -¿Sabes dónde está [phellodendron lavallei](plant_name)?
+    -¿Sabes dónde está [phoenix canariensis](plant_name)?
+    -¿Sabes dónde está [phoenix reclinata](plant_name)?
+    -¿Sabes dónde está [photinia serratifolia](plant_name)?
+    -¿Sabes dónde está [picea abies 'little gem'](plant_name)?
+    -¿Sabes dónde está [picea abies](plant_name)?
+    -¿Sabes dónde está [picea orientalis 'aurea'](plant_name)?
+    -¿Sabes dónde está [picea pungens 'koster'](plant_name)?
+    -¿Sabes dónde está [pinus brutia](plant_name)?
+    -¿Sabes dónde está [pinus canariensis](plant_name)?
+    -¿Sabes dónde está [pinus densiflora 'umbraculifera'](plant_name)?
+    -¿Sabes dónde está [pinus halepensis](plant_name)?
+    -¿Sabes dónde está [pinus leucodermis](plant_name)?
+    -¿Sabes dónde está [pinus nigra](plant_name)?
+    -¿Sabes dónde está [pinus pinaster](plant_name)?
+    -¿Sabes dónde está [pinus pinea](plant_name)?
+    -¿Sabes dónde está [pinus radiata](plant_name)?
+    -¿Sabes dónde está [pinus sylvestris](plant_name)?
+    -¿Sabes dónde está [pinus tabuliformis](plant_name)?
+    -¿Sabes dónde está [pinus wallichiana](plant_name)?
+    -¿Sabes dónde está [platanus orientalis var.acerifolia](plant_name)?
+    -¿Sabes dónde está [podocarpus macrophyllus](plant_name)?
+    -¿Sabes dónde está [podocarpus neriifolius](plant_name)?
+    -¿Sabes dónde está [podocarpus nubigenus](plant_name)?
+    -¿Sabes dónde está [populus alba 'roumi'](plant_name)?
+    -¿Sabes dónde está [prumnopitys andina](plant_name)?
+    -¿Sabes dónde está [prunus cerasifera](plant_name)?
+    -¿Sabes dónde está [prunus domestica](plant_name)?
+    -¿Sabes dónde está [prunus dulcis](plant_name)?
+    -¿Sabes dónde está [prunus laurocerasus](plant_name)?
+    -¿Sabes dónde está [prunus lusitanica](plant_name)?
+    -¿Sabes dónde está [prunus serrulata](plant_name)?
+    -¿Sabes dónde está [pseudotsuga macrocarpa](plant_name)?
+    -¿Sabes dónde está [pseudotsuga menziesii](plant_name)?
+    -¿Sabes dónde está [pterocarya fraxinifolia](plant_name)?
+    -¿Sabes dónde está [punica granatum "legrelleae"](plant_name)?
+    -¿Sabes dónde está [punica granatum](plant_name)?
+    -¿Sabes dónde está [pyrus communis](plant_name)?
+    -¿Sabes dónde está [pyrus salicifolia 'pendula'](plant_name)?
+    -¿Sabes dónde está [quercus calliprinos](plant_name)?
+    -¿Sabes dónde está [quercus canariensis](plant_name)?
+    -¿Sabes dónde está [quercus coccifera](plant_name)?
+    -¿Sabes dónde está [quercus faginea](plant_name)?
+    -¿Sabes dónde está [quercus frainetto](plant_name)?
+    -¿Sabes dónde está [quercus ilex](plant_name)?
+    -¿Sabes dónde está [quercus ilex ballota](plant_name)?
+    -¿Sabes dónde está [quercus macrocarpa](plant_name)?
+    -¿Sabes dónde está [quercus pubescens](plant_name)?
+    -¿Sabes dónde está [quercus pyrenaica](plant_name)?
+    -¿Sabes dónde está [quercus robur](plant_name)?
+    -¿Sabes dónde está [quercus shumardii](plant_name)?
+    -¿Sabes dónde está [quercus suber](plant_name)?
+    -¿Sabes dónde está [quillaja saponaria](plant_name)?
+    -¿Sabes dónde está [robinia luxurians](plant_name)?
+    -¿Sabes dónde está [robinia pseudacacia](plant_name)?
+    -¿Sabes dónde está [salix aegyptiaca](plant_name)?
+    -¿Sabes dónde está [salix alba alba](plant_name)?
+    -¿Sabes dónde está [salix babylonica](plant_name)?
+    -¿Sabes dónde está [salix caprea](plant_name)?
+    -¿Sabes dónde está [sassafras albidum](plant_name)?
+    -¿Sabes dónde está [schinus lentiscifolius](plant_name)?
+    -¿Sabes dónde está [schinus polygamus](plant_name)?
+    -¿Sabes dónde está [sequoia sempervirens](plant_name)?
+    -¿Sabes dónde está [sequoiadendron giganteum](plant_name)?
+    -¿Sabes dónde está [sophora japonica 'pendula'](plant_name)?
+    -¿Sabes dónde está [sophora japonica](plant_name)?
+    -¿Sabes dónde está [sorbus aria 'decaisneana'](plant_name)?
+    -¿Sabes dónde está [sorbus aucuparia 'fastigiata'](plant_name)?
+    -¿Sabes dónde está [sorbus aucuparia](plant_name)?
+    -¿Sabes dónde está [taiwania cryptomerioides](plant_name)?
+    -¿Sabes dónde está [taxodium ascendens 'nutans'](plant_name)?
+    -¿Sabes dónde está [taxodium distichum](plant_name)?
+    -¿Sabes dónde está [taxus baccata 'adpressa'](plant_name)?
+    -¿Sabes dónde está [taxus baccata 'aurea'](plant_name)?
+    -¿Sabes dónde está [taxus baccata 'fastigiata aurea'](plant_name)?
+    -¿Sabes dónde está [taxus baccata 'overeynderi'](plant_name)?
+    -¿Sabes dónde está [taxus baccata 'semperaurea'](plant_name)?
+    -¿Sabes dónde está [taxus baccata](plant_name)?
 - intent: ask_plant_fam
   examples: |
     - De que familia es la planta [Abies alba](plant_name)?
@@ -98,6 +789,341 @@ nlu:
     - cual es la familia de [Olea africana](plant_name)?
     - cual es la familia de [Robinia luxurians](plant_name)?
     - Sabes de que familia es [Ulmus americana](plant_name)?
+    -¿A qué familia pertenece [abies bracteata](plant_name)?
+    -¿A qué familia pertenece [abies cephalonica](plant_name)?
+    -¿A qué familia pertenece [abies concolor](plant_name)?
+    -¿A qué familia pertenece [abies koreana](plant_name)?
+    -¿A qué familia pertenece [abies nordmanniana](plant_name)?
+    -¿A qué familia pertenece [abies pinsapo](plant_name)?
+    -¿A qué familia pertenece [acacia dealbata](plant_name)?
+    -¿A qué familia pertenece [acacia seyal](plant_name)?
+    -¿A qué familia pertenece [acer buergerianum](plant_name)?
+    -¿A qué familia pertenece [acer campestre](plant_name)?
+    -¿A qué familia pertenece [acer cappadocicum 'rubrum'](plant_name)?
+    -¿A qué familia pertenece [acer circinatum 'pacific fire'](plant_name)?
+    -¿A qué familia pertenece [acer granatense](plant_name)?
+    -¿A qué familia pertenece [acer griseum](plant_name)?
+    -¿A qué familia pertenece [acer griseum x pseudoplatanus](plant_name)?
+    -¿A qué familia pertenece [acer heldreichii](plant_name)?
+    -¿A qué familia pertenece [acer japonicum 'aconitifolium'](plant_name)?
+    -¿A qué familia pertenece [acer mono](plant_name)?
+    -¿A qué familia pertenece [acer monspessulanum](plant_name)?
+    -¿A qué familia pertenece [acer negundo](plant_name)?
+    -¿A qué familia pertenece [acer obtusifolium](plant_name)?
+    -¿A qué familia pertenece [acer opalus](plant_name)?
+    -¿A qué familia pertenece [acer palmatum](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'aka shigitatsu sawa'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'ao shime-no-uchi'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'aoyagi'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'asahi zuru'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'atropurpureum'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'attraction'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'baldsmith'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'beni chidori'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'beni komachi'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'beni shichihenge'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'beni ubi gohon'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'bi-hoo'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'bloodgood'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'burgundy lace'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'butterfly'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'coonara pygmy'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'crimson prince '](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'crimson queen'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'crippsii'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'desh j '](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'emerald lace'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'fireglow'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'garnet'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'genshu yama'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'goshiki kotohime'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'green cascade'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'hogyoku'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'inaba shidare'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'kamagata'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'kasagi yama'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'kashima'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'katsura'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'koreanum'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'koto no ito'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'linearilobum red'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'linearilobum'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'little princess'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'murasaki kiyohime'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum subsp. matsumurae](plant_name)?
+    -¿A qué familia pertenece [acer palmatum var. dissectum 'seiryu'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum var. dissectum 'viride'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'matsuyoi'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'mikawa yatsubusa'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'omureyama'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'orange dream'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'oregon sunset'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'osakazuki'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'palmatifidium'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'peaches & cream'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'red pygmy'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'red wood'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'reticulatum'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'roseo marginatum'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'samidare'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'sango kaku'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'satzuki-beni'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'scolopendriifolium'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'seigen'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'seiryu'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'sharp's pygmy'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'shidava gold'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'shishigashira'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'shojo'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'skeeter's broom'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'sumi nagashi'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'trompenburg'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'ukon'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'villa taranto'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'viridis'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'winter flame'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'yama otome'](plant_name)?
+    -¿A qué familia pertenece [acer palmatum 'yasemin'](plant_name)?
+    -¿A qué familia pertenece [acer pensylvanicum 'erythrocladum'](plant_name)?
+    -¿A qué familia pertenece [acer platanoides](plant_name)?
+    -¿A qué familia pertenece [acer platanoides 'schwedleri'](plant_name)?
+    -¿A qué familia pertenece [acer pseudoplatanus](plant_name)?
+    -¿A qué familia pertenece [acer pseudoplatanus 'atropurpureum'](plant_name)?
+    -¿A qué familia pertenece [acer rubrum](plant_name)?
+    -¿A qué familia pertenece [acer rufinerve 'erythrocladum'](plant_name)?
+    -¿A qué familia pertenece [acer saccharinum](plant_name)?
+    -¿A qué familia pertenece [acer saccharum subsp. saccharum](plant_name)?
+    -¿A qué familia pertenece [acer sempervirens](plant_name)?
+    -¿A qué familia pertenece [acer shirasawanum 'autumn moon'](plant_name)?
+    -¿A qué familia pertenece [acer sinense](plant_name)?
+    -¿A qué familia pertenece [acer tataricum subsp. guinnala](plant_name)?
+    -¿A qué familia pertenece [acer truncatum](plant_name)?
+    -¿A qué familia pertenece [acer x conspicuum 'red flamingo'](plant_name)?
+    -¿A qué familia pertenece [acer x freemanii 'autumm blaze'](plant_name)?
+    -¿A qué familia pertenece [aesculus flava](plant_name)?
+    -¿A qué familia pertenece [aesculus hippocastanum](plant_name)?
+    -¿A qué familia pertenece [aesculus indica](plant_name)?
+    -¿A qué familia pertenece [aesculus pavia 'atrosanguinea'](plant_name)?
+    -¿A qué familia pertenece [aesculus splendens](plant_name)?
+    -¿A qué familia pertenece [aesculus turbinata](plant_name)?
+    -¿A qué familia pertenece [aesculus x carnea](plant_name)?
+    -¿A qué familia pertenece [aesculus x carnea briotii](plant_name)?
+    -¿A qué familia pertenece [ailanthus altissima](plant_name)?
+    -¿A qué familia pertenece [amelanchier laevis](plant_name)?
+    -¿A qué familia pertenece [amelanchier lamarckii](plant_name)?
+    -¿A qué familia pertenece [aphananthe aspera](plant_name)?
+    -¿A qué familia pertenece [araucaria angustifolia](plant_name)?
+    -¿A qué familia pertenece [araucaria araucana](plant_name)?
+    -¿A qué familia pertenece [arbutus andrachne](plant_name)?
+    -¿A qué familia pertenece [arbutus unedo](plant_name)?
+    -¿A qué familia pertenece [arbutus x andrachnoides](plant_name)?
+    -¿A qué familia pertenece [betula alba](plant_name)?
+    -¿A qué familia pertenece [betula pendula](plant_name)?
+    -¿A qué familia pertenece [betula pendula fontqueri](plant_name)?
+    -¿A qué familia pertenece [brachychiton populneus](plant_name)?
+    -¿A qué familia pertenece [brahea armata](plant_name)?
+    -¿A qué familia pertenece [brahea brandegeei](plant_name)?
+    -¿A qué familia pertenece [brahea edulis](plant_name)?
+    -¿A qué familia pertenece [broussonetia papyrifera](plant_name)?
+    -¿A qué familia pertenece [butia capitata](plant_name)?
+    -¿A qué familia pertenece [calocedrus decurrens](plant_name)?
+    -¿A qué familia pertenece [calocedrus decurrens 'aureovariegata'](plant_name)?
+    -¿A qué familia pertenece [cedrus atlantica](plant_name)?
+    -¿A qué familia pertenece [cedrus atlantica 'glauca'](plant_name)?
+    -¿A qué familia pertenece [cedrus deodara](plant_name)?
+    -¿A qué familia pertenece [cedrus libani](plant_name)?
+    -¿A qué familia pertenece [celtis australis](plant_name)?
+    -¿A qué familia pertenece [celtis bungeana](plant_name)?
+    -¿A qué familia pertenece [celtis caucasica](plant_name)?
+    -¿A qué familia pertenece [celtis laevigata](plant_name)?
+    -¿A qué familia pertenece [celtis occidentalis](plant_name)?
+    -¿A qué familia pertenece [celtis reticulata](plant_name)?
+    -¿A qué familia pertenece [celtis sinensis](plant_name)?
+    -¿A qué familia pertenece [celtis spinosa](plant_name)?
+    -¿A qué familia pertenece [cercidiphyllum japonicum](plant_name)?
+    -¿A qué familia pertenece [cercis chinensis](plant_name)?
+    -¿A qué familia pertenece [cercis siliquastrum](plant_name)?
+    -¿A qué familia pertenece [chamaecyparis funebris](plant_name)?
+    -¿A qué familia pertenece [chamaecyparis lawsoniana forsteckensis](plant_name)?
+    -¿A qué familia pertenece [chamaecyparis nootkatensis pendula](plant_name)?
+    -¿A qué familia pertenece [cinnamomum camphora](plant_name)?
+    -¿A qué familia pertenece [citrus aurantium](plant_name)?
+    -¿A qué familia pertenece [cladrastis kentukea](plant_name)?
+    -¿A qué familia pertenece [cordyline australis](plant_name)?
+    -¿A qué familia pertenece [cryptomeria japonica 'araucaroides'](plant_name)?
+    -¿A qué familia pertenece [cunninghamia lanceolata](plant_name)?
+    -¿A qué familia pertenece [cupressus arizonica](plant_name)?
+    -¿A qué familia pertenece [cupressus lusitanica](plant_name)?
+    -¿A qué familia pertenece [cupressus sempervirens](plant_name)?
+    -¿A qué familia pertenece [cupressus sempervirens stricta](plant_name)?
+    -¿A qué familia pertenece [cupressus sempervirens swane' s gold](plant_name)?
+    -¿A qué familia pertenece [diospyros duclouxii](plant_name)?
+    -¿A qué familia pertenece [diospyros glaucifolia](plant_name)?
+    -¿A qué familia pertenece [diospyros kaki sylvestris](plant_name)?
+    -¿A qué familia pertenece [diospyros kaki](plant_name)?
+    -¿A qué familia pertenece [diospyros lotus](plant_name)?
+    -¿A qué familia pertenece [diospyros virginiana](plant_name)?
+    -¿A qué familia pertenece [diospyros wilsonii](plant_name)?
+    -¿A qué familia pertenece [ehretia dicksonii var.japonica](plant_name)?
+    -¿A qué familia pertenece [elaeagnus angustifolia](plant_name)?
+    -¿A qué familia pertenece [eucalyptus camaldulensis](plant_name)?
+    -¿A qué familia pertenece [eucommia ulmoides](plant_name)?
+    -¿A qué familia pertenece [fagus orientalis](plant_name)?
+    -¿A qué familia pertenece [fagus sylvatica 'pendula'](plant_name)?
+    -¿A qué familia pertenece [fagus sylvatica var. purpurea](plant_name)?
+    -¿A qué familia pertenece [fagus sylvatica](plant_name)?
+    -¿A qué familia pertenece [ficus carica](plant_name)?
+    -¿A qué familia pertenece [firmiana simplex](plant_name)?
+    -¿A qué familia pertenece [fraxinus chinensis var.rhyncophylla](plant_name)?
+    -¿A qué familia pertenece [fraxinus chinensis](plant_name)?
+    -¿A qué familia pertenece [fraxinus excelsior](plant_name)?
+    -¿A qué familia pertenece [fraxinus latifolia](plant_name)?
+    -¿A qué familia pertenece [fraxinus ornus](plant_name)?
+    -¿A qué familia pertenece [fraxinus pennsylvanica](plant_name)?
+    -¿A qué familia pertenece [ginkgo biloba](plant_name)?
+    -¿A qué familia pertenece [gleditsia caspica](plant_name)?
+    -¿A qué familia pertenece [gleditsia macracantha](plant_name)?
+    -¿A qué familia pertenece [gleditsia sinensis](plant_name)?
+    -¿A qué familia pertenece [gleditsia triacanthos](plant_name)?
+    -¿A qué familia pertenece [gymnocladus dioicus](plant_name)?
+    -¿A qué familia pertenece [hovenia dulcis](plant_name)?
+    -¿A qué familia pertenece [juglans nigra](plant_name)?
+    -¿A qué familia pertenece [juglans regia](plant_name)?
+    -¿A qué familia pertenece [juniperus cedrus](plant_name)?
+    -¿A qué familia pertenece [juniperus thurifera](plant_name)?
+    -¿A qué familia pertenece [koelreuteria paniculata](plant_name)?
+    -¿A qué familia pertenece [lagerstroemia indica](plant_name)?
+    -¿A qué familia pertenece [larix laricinia](plant_name)?
+    -¿A qué familia pertenece [laurus azorica](plant_name)?
+    -¿A qué familia pertenece [laurus nobilis](plant_name)?
+    -¿A qué familia pertenece [ligustrum lucidum](plant_name)?
+    -¿A qué familia pertenece [liquidambar formosana  'monticola'](plant_name)?
+    -¿A qué familia pertenece [liquidambar formosana](plant_name)?
+    -¿A qué familia pertenece [liquidambar styraciflua](plant_name)?
+    -¿A qué familia pertenece [liriodendron tulipifera](plant_name)?
+    -¿A qué familia pertenece [luehea divaricata](plant_name)?
+    -¿A qué familia pertenece [maclura pomifera](plant_name)?
+    -¿A qué familia pertenece [magnolia grandiflora](plant_name)?
+    -¿A qué familia pertenece [malus domestica](plant_name)?
+    -¿A qué familia pertenece [malus floribunda](plant_name)?
+    -¿A qué familia pertenece [malus fusca](plant_name)?
+    -¿A qué familia pertenece [melia azedarach](plant_name)?
+    -¿A qué familia pertenece [mespilus germanica](plant_name)?
+    -¿A qué familia pertenece [metasequoia glyptostroboides](plant_name)?
+    -¿A qué familia pertenece [morus alba 'pendula'](plant_name)?
+    -¿A qué familia pertenece [morus alba](plant_name)?
+    -¿A qué familia pertenece [morus nigra](plant_name)?
+    -¿A qué familia pertenece [nyssa sylvatica](plant_name)?
+    -¿A qué familia pertenece [olea africana](plant_name)?
+    -¿A qué familia pertenece [olea europaea](plant_name)?
+    -¿A qué familia pertenece [olea europaea 'lech n de granada'](plant_name)?
+    -¿A qué familia pertenece [olea europaea 'limoncillo'](plant_name)?
+    -¿A qué familia pertenece [olea europaea 'picual'](plant_name)?
+    -¿A qué familia pertenece [olea europaea 'real sevillana'](plant_name)?
+    -¿A qué familia pertenece [olea europaea var. sylvestris](plant_name)?
+    -¿A qué familia pertenece [parrotia persica](plant_name)?
+    -¿A qué familia pertenece [paulownia tomentosa](plant_name)?
+    -¿A qué familia pertenece [persea indica](plant_name)?
+    -¿A qué familia pertenece [phellodendron amurense var.sachalinense](plant_name)?
+    -¿A qué familia pertenece [phellodendron amurense](plant_name)?
+    -¿A qué familia pertenece [phellodendron lavallei](plant_name)?
+    -¿A qué familia pertenece [phoenix canariensis](plant_name)?
+    -¿A qué familia pertenece [phoenix reclinata](plant_name)?
+    -¿A qué familia pertenece [photinia serratifolia](plant_name)?
+    -¿A qué familia pertenece [picea abies 'little gem'](plant_name)?
+    -¿A qué familia pertenece [picea abies](plant_name)?
+    -¿A qué familia pertenece [picea orientalis 'aurea'](plant_name)?
+    -¿A qué familia pertenece [picea pungens 'koster'](plant_name)?
+    -¿A qué familia pertenece [pinus brutia](plant_name)?
+    -¿A qué familia pertenece [pinus canariensis](plant_name)?
+    -¿A qué familia pertenece [pinus densiflora 'umbraculifera'](plant_name)?
+    -¿A qué familia pertenece [pinus halepensis](plant_name)?
+    -¿A qué familia pertenece [pinus leucodermis](plant_name)?
+    -¿A qué familia pertenece [pinus nigra](plant_name)?
+    -¿A qué familia pertenece [pinus pinaster](plant_name)?
+    -¿A qué familia pertenece [pinus pinea](plant_name)?
+    -¿A qué familia pertenece [pinus radiata](plant_name)?
+    -¿A qué familia pertenece [pinus sylvestris](plant_name)?
+    -¿A qué familia pertenece [pinus tabuliformis](plant_name)?
+    -¿A qué familia pertenece [pinus wallichiana](plant_name)?
+    -¿A qué familia pertenece [platanus orientalis var.acerifolia](plant_name)?
+    -¿A qué familia pertenece [podocarpus macrophyllus](plant_name)?
+    -¿A qué familia pertenece [podocarpus neriifolius](plant_name)?
+    -¿A qué familia pertenece [podocarpus nubigenus](plant_name)?
+    -¿A qué familia pertenece [populus alba 'roumi'](plant_name)?
+    -¿A qué familia pertenece [prumnopitys andina](plant_name)?
+    -¿A qué familia pertenece [prunus cerasifera](plant_name)?
+    -¿A qué familia pertenece [prunus domestica](plant_name)?
+    -¿A qué familia pertenece [prunus dulcis](plant_name)?
+    -¿A qué familia pertenece [prunus laurocerasus](plant_name)?
+    -¿A qué familia pertenece [prunus lusitanica](plant_name)?
+    -¿A qué familia pertenece [prunus serrulata](plant_name)?
+    -¿A qué familia pertenece [pseudotsuga macrocarpa](plant_name)?
+    -¿A qué familia pertenece [pseudotsuga menziesii](plant_name)?
+    -¿A qué familia pertenece [pterocarya fraxinifolia](plant_name)?
+    -¿A qué familia pertenece [punica granatum "legrelleae"](plant_name)?
+    -¿A qué familia pertenece [punica granatum](plant_name)?
+    -¿A qué familia pertenece [pyrus communis](plant_name)?
+    -¿A qué familia pertenece [pyrus salicifolia 'pendula'](plant_name)?
+    -¿A qué familia pertenece [quercus calliprinos](plant_name)?
+    -¿A qué familia pertenece [quercus canariensis](plant_name)?
+    -¿A qué familia pertenece [quercus coccifera](plant_name)?
+    -¿A qué familia pertenece [quercus faginea](plant_name)?
+    -¿A qué familia pertenece [quercus frainetto](plant_name)?
+    -¿A qué familia pertenece [quercus ilex](plant_name)?
+    -¿A qué familia pertenece [quercus ilex ballota](plant_name)?
+    -¿A qué familia pertenece [quercus macrocarpa](plant_name)?
+    -¿A qué familia pertenece [quercus pubescens](plant_name)?
+    -¿A qué familia pertenece [quercus pyrenaica](plant_name)?
+    -¿A qué familia pertenece [quercus robur](plant_name)?
+    -¿A qué familia pertenece [quercus shumardii](plant_name)?
+    -¿A qué familia pertenece [quercus suber](plant_name)?
+    -¿A qué familia pertenece [quillaja saponaria](plant_name)?
+    -¿A qué familia pertenece [robinia luxurians](plant_name)?
+    -¿A qué familia pertenece [robinia pseudacacia](plant_name)?
+    -¿A qué familia pertenece [salix aegyptiaca](plant_name)?
+    -¿A qué familia pertenece [salix alba alba](plant_name)?
+    -¿A qué familia pertenece [salix babylonica](plant_name)?
+    -¿A qué familia pertenece [salix caprea](plant_name)?
+    -¿A qué familia pertenece [sassafras albidum](plant_name)?
+    -¿A qué familia pertenece [schinus lentiscifolius](plant_name)?
+    -¿A qué familia pertenece [schinus polygamus](plant_name)?
+    -¿A qué familia pertenece [sequoia sempervirens](plant_name)?
+    -¿A qué familia pertenece [sequoiadendron giganteum](plant_name)?
+    -¿A qué familia pertenece [sophora japonica 'pendula'](plant_name)?
+    -¿A qué familia pertenece [sophora japonica](plant_name)?
+    -¿A qué familia pertenece [sorbus aria 'decaisneana'](plant_name)?
+    -¿A qué familia pertenece [sorbus aucuparia 'fastigiata'](plant_name)?
+    -¿A qué familia pertenece [sorbus aucuparia](plant_name)?
+    -¿A qué familia pertenece [taiwania cryptomerioides](plant_name)?
+    -¿A qué familia pertenece [taxodium ascendens 'nutans'](plant_name)?
+    -¿A qué familia pertenece [taxodium distichum](plant_name)?
+    -¿A qué familia pertenece [taxus baccata 'adpressa'](plant_name)?
+    -¿A qué familia pertenece [taxus baccata 'aurea'](plant_name)?
+    -¿A qué familia pertenece [taxus baccata 'fastigiata aurea'](plant_name)?
+    -¿A qué familia pertenece [taxus baccata 'overeynderi'](plant_name)?
+    -¿A qué familia pertenece [taxus baccata 'semperaurea'](plant_name)?
+    -¿A qué familia pertenece [taxus baccata](plant_name)?
+    -¿A qué familia pertenece [taxus cuspidata](plant_name)?
+    -¿A qué familia pertenece [tetraclinis articulata](plant_name)?
+    -¿A qué familia pertenece [thuja orientalis](plant_name)?
+    -¿A qué familia pertenece [tilia cordata](plant_name)?
+    -¿A qué familia pertenece [tilia henryana](plant_name)?
+    -¿A qué familia pertenece [tilia oliveri](plant_name)?
+    -¿A qué familia pertenece [tilia platyphyllos](plant_name)?
+    -¿A qué familia pertenece [tilia tomentosa](plant_name)?
+    -¿A qué familia pertenece [tilia tomentosa 'petiolaris'](plant_name)?
+    -¿A qué familia pertenece [tilia x vulgaris](plant_name)?
+    -¿A qué familia pertenece [torreya nucifera](plant_name)?
+    -¿A qué familia pertenece [trachycarpus fortunei](plant_name)?
+    -¿A qué familia pertenece [tsuga canadensis 'seddelhoj'](plant_name)?
+    -¿A qué familia pertenece [ulmus americana](plant_name)?
+    -¿A qué familia pertenece [ulmus glabra](plant_name)?
+    -¿A qué familia pertenece [ulmus glabra 'pendula'](plant_name)?
+    -¿A qué familia pertenece [ulmus minor](plant_name)?
+    -¿A qué familia pertenece [x cupressocyparis leylandii](plant_name)?
+    -¿A qué familia pertenece [zelkova carpinifolia](plant_name)?
+    -¿A qué familia pertenece [zelkova schneideriana](plant_name)?
 - intent: preguntar_platas_que_hay
   examples: |
     - muestrame la lista de plantas

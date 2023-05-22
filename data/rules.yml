@@ -1,10 +1,10 @@
 version: "3.1"
 
 rules:
-  - rule: usar GPT3
+  - rule: usar wikipedia
     steps:
-    - intent: otras_preguntas
-    - action: action_responder_GPT3
+    - intent: preguntas_sobre_planta
+    - action: action_responder_wikipedia
 
   - rule: Say goodbye anytime the user says goodbye
     steps:
@@ -77,7 +77,7 @@ rules:
   - rule: terminar visita
     steps:
     - intent: terminar_visita
-    - action: action_ask_prueba
+    - action: action_terminar_visita
   - rule: preguntar si quiere hacer preuba y no
     steps:
     - action: action_ask_prueba

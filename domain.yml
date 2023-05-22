@@ -1,6 +1,6 @@
 version: '3.1'
 intents:
-- otras_preguntas:
+- preguntas_sobre_planta:
     use_entities:
     - plant_name
 - llegar
@@ -134,8 +134,10 @@ actions:
 - action_avanzar_visita
 - action_ver_mapa
 - action_responder_GPT3
+- action_responder_wikipedia
 - action_preguntar_nombres
 - action_registrar_nombres
+- action_terminar_visita
 - utter_goodbye
 - utter_greet
 - utter_greet_with_name
