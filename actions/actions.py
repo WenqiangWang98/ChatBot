@@ -287,11 +287,11 @@ class ActionTerminarVisita(Action):
          dispatcher.utter_message("Visita guiada terminada.")
          nvisita=tracker.get_slot("is_visita_guiada")
          if(nvisita.startswith("1")):
-             return[SlotSet("is_prueba", "100"), FollowupAction(name="action_ask_prueba")]
+             return[SlotSet("is_prueba", "100"),SlotSet("is_visita_guiada", "0"), FollowupAction(name="action_ask_prueba")]
          if(nvisita.startswith("2")):
-             return[SlotSet("is_prueba", "200"), FollowupAction(name="action_ask_prueba")]
+             return[SlotSet("is_prueba", "200"),SlotSet("is_visita_guiada", "0"), FollowupAction(name="action_ask_prueba")]
          if(nvisita.startswith("3")):
-             return[SlotSet("is_prueba", "300"), FollowupAction(name="action_ask_prueba")]
+             return[SlotSet("is_prueba", "300"), SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
          return []
 
 class ActionIniciarVisita1(Action):
