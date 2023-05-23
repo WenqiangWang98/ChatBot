@@ -756,7 +756,6 @@ function initMap() {
     });
     //infoWindow = new google.maps.InfoWindow();
     marker = new google.maps.Marker({
-        position: coord,
         map: map,
     });
     locationButton = document.createElement("button");
