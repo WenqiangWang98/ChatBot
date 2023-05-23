@@ -216,6 +216,7 @@ function setBotResponse(response) {
 
             //if we get response from Rasa
             for (i = 0; i < response.length; i++) {
+                sleep(100);
                 //check if the response contains "text"
                 if (response[i].hasOwnProperty("text")) {
                     if(response[i].text.endsWith("wav")){
@@ -754,7 +755,10 @@ function initMap() {
         zoom: 19,
     });
     //infoWindow = new google.maps.InfoWindow();
-
+    marker = new google.maps.Marker({
+        position: coord,
+        map: map,
+    });
     locationButton = document.createElement("button");
 
     locationButton.textContent = "Current Location";
@@ -810,10 +814,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 function setMarker(coord) {
     
     // The marker, positioned at Uluru
-    marker = new google.maps.Marker({
-        position: coord,
-        map: map,
-    });
+    marker.setPosition(coord);
     map.setCenter(coord, 19);
 }
 function setCurrentLocation(coord) {
