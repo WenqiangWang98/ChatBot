@@ -5,7 +5,7 @@ services:
     build: ./docker/server
     ports:
       #- 5006:5006
-      - 5008:5008
+      - 5005:5005
     volumes:
       - .:/app
     command:
@@ -19,18 +19,18 @@ services:
       - --cors
       - "*"
       - --enable-api
-      - -p 5008
+      - -p 5005
     depends_on:
       - action-server
   action-server:
     container_name: rjb-wwq-rasa-action
-    image: wwq1998/rasa-sdk:3.2.0
+    build: ./docker/actions
     volumes:
       - ./actions:/app/actions
     ports:
-      - 5058:5058
+      - 5055:5055
     command:
       - start
       - --actions
       - actions
-      - -p 5058
+      - -p 5055

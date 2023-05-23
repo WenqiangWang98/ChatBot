@@ -60,12 +60,7 @@ slots:
     mappings:
     - type: from_entity
       entity: plant_name
-  plant_llegada:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: plant_llegada
-  nombres:
+   nombres:
     type: text
     mappings:
     - type: from_entity
