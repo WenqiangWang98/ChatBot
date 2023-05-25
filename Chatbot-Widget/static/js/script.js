@@ -26,7 +26,7 @@ $(document).ready(function() {
 
     
     //enable this if u have configured the bot to start the conversation. 
-    r = [{"text": "Hola! Soy un Chatbot del Real Jard\u00edn Bot\u00e1nico!"}]
+    r = [{"text": "Hola! Soy un Chatbot del Real Jard\u00edn Bot\u00e1nico ¿en qu\u00e9 te puedo ayudar? Puedes hacerme preguntas sobre las plantas y sus localizaciones dentro del jard\u00edn, y tambi\u00e9n informaciones sobre el jard\u00edn como el plano del jard\u00edn o el horario. También puedes iniciar una visita guiada dentro del jard\u00edn."}]
     //setBotResponse(r);
     showBotTyping();
     setTimeout(() => {
