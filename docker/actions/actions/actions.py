@@ -45,20 +45,6 @@ Respuesta: """.format(
         pregunta
     )
 
-def generate_prompt_prueba(pregunta,respuesta):
-    return """Genera una pregunta de tipo test sobre propiedades de {} con el siguiente formato y que la respuesta correcta sea la {}:
-
-"¿Cuál es la planta que pertenece a la familia de Ulmaceae? 
-           A. Celtis autralis   B. Quillay  C. Tejo
-¿Cuatos metros puede alcanzar Quercus frainetto? 
-           A. 10 m  B. 20 m  C. 30 m
-¿Que planta tiene  los flores precoces, agrupadas en inflorescencias de hasta 30 flores?
-           A. Taxus cuspidata  B. Ulmus minor  C. Quercus ilex ballota"
-: """.format(
-        pregunta,respuesta
-    )
-#
-
 nombres=[]
 
 coordenadas=[["c.1","map=40.412209,-3.691701"],
@@ -242,11 +228,11 @@ class ActionAskVisita(Action):
      def run(self, dispatcher: CollectingDispatcher,
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-         dispatcher.utter_message("La visita guiada se trata de una ruta popular del jardín en la que te iré diciendo ubicaciones de la plantas populares. Existen tres tipos de visitas guiadas:")
+         dispatcher.utter_message("La visita guiada se trata de una ruta popular del jardín en la que te iré diciendo ubicaciones de las plantas populares. Existen tres tipos de visitas guiadas:")
          dispatcher.utter_message("La visita guiada simple incluye las siete plantas más interesantes del jardín.")
          dispatcher.utter_message("La visita guiada completa atraviesa casi todos los lugares del jardín.")
-         dispatcher.utter_message("La visita guiada casual es intermediario de las dos anteriores.")
-         dispatcher.utter_message("¿Cual es la visita guiada que desea?")
+         dispatcher.utter_message("La visita guiada casual es intermediaria de las dos anteriores.")
+         dispatcher.utter_message("¿Cuál es la visita guiada que desea?")
          return []
 
 class ActionActualizarDatos(Action):
@@ -304,11 +290,11 @@ class ActionIniciarVisita1(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          
          if(tracker.get_slot("is_visita_guiada")=='0'):
-             dispatcher.utter_message("Visita guiada simple iniciada. En la izquierda de la entrada de Puerta Norte del Real Jardín Botánico está el Granado o Punica granatum. Avisame cuando estés.")
+             dispatcher.utter_message("Visita guiada simple iniciada. En la izquierda de la entrada de Puerta Norte del Real Jardín Botánico está el Granado o Punica granatum. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.1"))
              return[SlotSet("is_visita_guiada", "101")]
          else:
-             dispatcher.utter_message("Ya habías iniciado la visita guiada..")
+             dispatcher.utter_message("Ya habías iniciado la visita guiada.")
              return[]
 
 class ActionIniciarVisita2(Action):
@@ -321,11 +307,11 @@ class ActionIniciarVisita2(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
          if(tracker.get_slot("is_visita_guiada")=='0'):
-             dispatcher.utter_message("Visita guiada completa iniciada. En la derecha de la entrada de Puerta Norte del Real Jardín Botánico está el fraxinus pennsylvanica o fresno rojo americano. Avisame cuando llegues")
+             dispatcher.utter_message("Visita guiada completa iniciada. En la derecha de la entrada de Puerta Norte del Real Jardín Botánico está el fraxinus pennsylvanica o fresno rojo americano. Avísame cuando llegues.")
              dispatcher.utter_message(attachment = get_location("c.2"))
              return[SlotSet("is_visita_guiada", "201")]
          else:
-             dispatcher.utter_message("Ya habías iniciado la visita guiada..")
+             dispatcher.utter_message("Ya habías iniciado la visita guiada.")
              return[]
 
 
@@ -339,11 +325,11 @@ class ActionIniciarVisita3(Action):
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
          if(tracker.get_slot("is_visita_guiada")=='0'):
-             dispatcher.utter_message("Visita guiada casual iniciada. En la derecha de la entrada de Puerta Norte del Real Jardín Botánico está el morus alba o morera blanca. Avísame cuando llegues por favor.")
-             dispatcher.utter_message(attachment = get_location("c.4"))
+             dispatcher.utter_message("Visita guiada casual iniciada. Entrando por la entrada de Puerta Norte del Real Jardín Botánico y sigue recto por el Paseo de José Quer a la mano izquierda  está las plantas ornamentales. Avísame cuando llegues por favor.")
+             dispatcher.utter_message(attachment = "map=40.4120829,-3.691733")
              return[SlotSet("is_visita_guiada", "301")]
          else:
-             dispatcher.utter_message("Ya habías iniciado la visita guiada..")
+             dispatcher.utter_message("Ya habías iniciado la visita guiada.")
              return[]
 
 class ActionRegistrarNombres(Action):
@@ -371,8 +357,8 @@ class ActionVerMapa(Action):
              tracker: Tracker,
              domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
          
-         dispatcher.utter_message("Aquí tienes un link para ver el mapa en datalle")
-         dispatcher.utter_message(image = "https://rjb.csic.es/wp-content/uploads/2021/09/plano-accesible.png")
+         dispatcher.utter_message("Aquí tienes un enlace para ver el mapa en detalle.")
+         dispatcher.utter_message(text = "https://rjb.csic.es/wp-content/uploads/2021/09/plano-accesible.png")
              
          return[]
 
@@ -509,6 +495,44 @@ class ActionPrueba(Action):
                  dispatcher.utter_message(nombres[4%len(nombres)]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es A.")
              dispatcher.utter_message("Prueba terminada. ¿Algo más en te puedo ayudar?")
              return[SlotSet("is_prueba", "0")]
+         if nprueba =="300":
+             respuesta=tracker.get_slot("respuesta")
+             dispatcher.utter_message(nombres[0]+", esta pregunta es para tí: \n"+"¿Cuál es la planta que muestra en la imagen?")
+             dispatcher.utter_message(image = get_image("acacia dealbata"))
+             dispatcher.utter_message("A. Diospyros lotus\nB. Celtis occidentalis\nC. Acacia dealbata")
+             return[SlotSet("is_prueba", "301")]
+         elif nprueba =="301":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="c":
+                 dispatcher.utter_message(nombres[0]+", ¡enhorabuena! Efectivamente, la respuesta correcta es Acacia dealbata.")
+             else:
+                 dispatcher.utter_message(nombres[0]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es C. Acacia dealbata.")
+             dispatcher.utter_message(nombres[1%len(nombres)]+", esta pregunta es para tí: \n"+"¿Cuál es la planta que muestra en la imagen?")
+             dispatcher.utter_message(image = get_image("lagerstroemia indica"))
+             dispatcher.utter_message("A. Ginkgo biloba\nB. Lagerstroemia indica\nC. Juglans regia")
+             return[SlotSet("is_prueba", "302")]
+         elif nprueba =="302":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="b":
+                 dispatcher.utter_message(nombres[1%len(nombres)]+", ¡enhorabuena! Efectivamente, la respuesta correcta es Lagerstroemia indica.")
+             else:
+                 dispatcher.utter_message(nombres[1%len(nombres)]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es B. Lagerstroemia indica.")
+             dispatcher.utter_message(nombres[2%len(nombres)]+", esta pregunta es para tí: \n"+"¿Cuál de las imagenes es Parrotia persica?")
+             dispatcher.utter_message("A.")
+             dispatcher.utter_message(image = get_image("parrotia persica"))
+             dispatcher.utter_message("B.")
+             dispatcher.utter_message(image = get_image("melia azedarach"))
+             dispatcher.utter_message("C.")
+             dispatcher.utter_message(image = get_image("Ginkgo biloba"))
+             return[SlotSet("is_prueba", "303")]
+         elif nprueba =="303":
+             respuesta=tracker.get_slot("respuesta")
+             if respuesta.lower()=="a":
+                 dispatcher.utter_message(nombres[4%len(nombres)]+", ¡enhorabuena! Efectivamente, la respuesta correcta es A.")
+             else:
+                 dispatcher.utter_message(nombres[4%len(nombres)]+", Lamentablemente la respuesta "+respuesta.upper()+" es incorrecta, la respuesta correcta es A.")
+             dispatcher.utter_message("Prueba terminada. ¿Algo más en te puedo ayudar?")
+             return[SlotSet("is_prueba", "0")]
          dispatcher.utter_message("error:action_prueba "+nprueba)
          return[]
 
@@ -549,27 +573,27 @@ class ActionAvanzarVisita(Action):
          nplanta=tracker.get_slot("is_visita_guiada")
          if(nplanta=="101"):
              result="102"
-             dispatcher.utter_message("Ahora sigue recto para llegar al Tejo o taxus baccata. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora sigue recto para llegar al Tejo o taxus baccata. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.3"))
          elif(nplanta=="102"):
              result="103"
-             dispatcher.utter_message("Ahora gira a la derecha para llegar al Almez o celtis australis. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora gira a la derecha para llegar al Almez o celtis australis. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.4"))
          elif(nplanta=="103"):
              result="104"
-             dispatcher.utter_message("Ahora sigue un poco mas a la izquierda para llegar al Pino del Himalaya o Pinus wallichiana. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora sigue un poco más a la izquierda para llegar al Pino del Himalaya o Pinus wallichiana. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.8"))
          elif(nplanta=="104"):
              result="105"
-             dispatcher.utter_message("Ahora sigue recto hasta llegar al Paseo de Carlos III y girar a la izquierda hasta pasar por el Paseo Alto de Gómez Ortega y delante esta Pavonia o pavonia hastata. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora sigue recto hasta llegar al Paseo de Carlos III y girar a la izquierda hasta pasar por el Paseo Alto de Gómez Ortega y delante esta Pavonia o pavonia hastata. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.9"))
          elif(nplanta=="105"):
              result="106"
-             dispatcher.utter_message("Mirando al lago a tu izquierda está Quillay o quillaja saponaria. Avisame cuando estés.")
+             dispatcher.utter_message("Mirando al lago a tu izquierda está Quillay o quillaja saponaria. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.5"))
          elif(nplanta=="106"):
              result="107"
-             dispatcher.utter_message("Ahora sigue recto para llegar al Caboa americana o swietenia mahagoni. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora sigue recto para llegar al Caboa americana o swietenia mahagoni. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("v.2"))
          elif(nplanta=="107"):
              dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
@@ -579,64 +603,90 @@ class ActionAvanzarVisita(Action):
              return[FollowupAction(name="action_ask_visita")]
          elif(nplanta=="201"):
              result='202'
-             dispatcher.utter_message("Ahora sigue yendo hacia el sur para ver a punica granatum o granado. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora sigue yendo hacia el sur para ver a punica granatum o granado. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.6"))
          elif(nplanta=="202"):
              result='203'
-             dispatcher.utter_message("Seguiendo el camino hacia el sur cruzando por el Paseo de Carlos III podrás ver a taxus baccata o tejo negro. Avisame cuando estés.")
+             dispatcher.utter_message("Siguiendo el camino hacia el sur cruzando por el Paseo de Carlos III podrás ver a taxus baccata o tejo negro. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.10"))
          elif(nplanta=="203"):
              result='204'
-             dispatcher.utter_message("Seguiendo el camino hacia el sur hasta el ultimo bloque ansted de salir del jardín podrás ver a celtis bungeana. Avisame cuando estés.")
+             dispatcher.utter_message("Siguiendo el camino hacia el sur hasta el último bloque antes de salir del jardín podrás ver a celtis bungeana. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.16"))
          elif(nplanta=="204"):
              result='205'
-             dispatcher.utter_message("Ahora sigue el borde del jardín y hacia el este econtrarás a celtis occidentalis o almez americano. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora sigue el borde del jardín y hacia el este encontrarás a celtis occidentalis o almez americano. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.15"))
          elif(nplanta=="205"):
              result='206'
-             dispatcher.utter_message("Ahora volviendo hacia el norte dos bloques y verás a diospyros lotus. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora volviendo hacia el norte dos bloques y verás a diospyros lotus. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.11"))
          elif(nplanta=="206"):
              result='207'
-             dispatcher.utter_message("Ahora si sigues yendo hacia el norte un poco mas y luego giras hacia el este cruzando por el Paseo Bajo de Gómez y Ortega, a tu mano derecha estará ulmus minor o olmo común. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora si sigues yendo hacia el norte un poco más y luego giras hacia el este cruzando por el Paseo Bajo de Gómez y Ortega, a tu mano derecha estará ulmus minor u olmo común. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.10"))
          elif(nplanta=="207"):
              result='208'
-             dispatcher.utter_message("Ahora volviendo hacia el sur dos bloques y verás a juglans regia o nogal común. Avisame cuando estés.")
+             dispatcher.utter_message("Ahora volviendo hacia el sur dos bloques y verás a juglans regia o nogal común. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.12"))
          elif(nplanta=="208"):
              result='209'
-             dispatcher.utter_message("A la mano izquierda está el bloque donde hay la famosa planta de ginkgo biloba o ginkgo. Avisame cuando estés.")
+             dispatcher.utter_message("A la mano izquierda está el bloque donde hay la famosa planta de ginkgo biloba o ginkgo. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.1"))
          elif(nplanta=="209"):
              result='210'
-             dispatcher.utter_message("Hacia el este, cruzando por el paseo de Multis, al rededor de la glorieta de los Tilos Sur está prunus lusitanica o laurel portugués. Avisame cuando estés.")
+             dispatcher.utter_message("Hacia el este, cruzando por el paseo de Multis, alrededor de la glorieta de los Tilos Sur está prunus lusitanica o laurel portugués. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("f.24"))
          elif(nplanta=="210"):
              result='211'
-             dispatcher.utter_message("Hacia el norte, al rededor de la glorieta y estanque de Linneo está abies nordmanniana o abeto de Normandía. Avisame cuando estés.")
+             dispatcher.utter_message("Hacia el norte, alrededor de la glorieta y estanque de Linneo está abies nordmanniana o abeto de Normandía. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("f.13"))
          elif(nplanta=="211"):
              result='212'
-             dispatcher.utter_message("Sigue camiando hacia el norte y verás a fraxinus latifolia o fresno de Oregón. Avisame cuando estés.")
+             dispatcher.utter_message("Sigue caminando hacia el norte y verás a fraxinus latifolia o fresno de Oregón. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("f.5"))
          elif(nplanta=="212"):
              result='213'
-             dispatcher.utter_message("Caminar hacie el oeste y volviendo a cruzar por el paseo de Multis e ir hacia el norte verás a citrus aurantium o naranjo agrio. Avisame cuando estés.")
+             dispatcher.utter_message("Caminar hacia el oeste y volviendo a cruzar por el paseo de Multis e ir hacia el norte verás a citrus aurantium o naranjo agrio. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.6"))
          elif(nplanta=="213"):
              result='214'
-             dispatcher.utter_message("Sigue camiando hacia el oeste un poco más y verás a melia azedarach o cinamomo. Avisame cuando estés.")
+             dispatcher.utter_message("Sigue camiando hacia el oeste un poco más y verás a melia azedarach o cinamomo. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("e.7"))
          elif(nplanta=="214"):
              result='215'
-             dispatcher.utter_message("Finalmente, sigue camiando hacia el oeste un poco más y verás a aesculus x carnea briotii o castaño de Indias rojo. Avisame cuando estés.")
+             dispatcher.utter_message("Finalmente, sigue caminando hacia el oeste un poco más y verás a aesculus x carnea briotii o castaño de Indias rojo. Avísame cuando estés.")
              dispatcher.utter_message(attachment = get_location("c.3"))
          elif(nplanta=="215"):
-             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
+             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer haberte ayudado.")
              return[SlotSet("is_prueba", "200"),SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
-
+         elif(nplanta=="301"):
+             result="302"
+             dispatcher.utter_message("Ahora sigue recto por el Paseo de José Quer unos dos bloques y verás a la mano izquierda la rosaleda. Avísame cuando estés.")
+             dispatcher.utter_message(attachment = "map=40.411233,-3.691480")
+         elif(nplanta=="302"):
+             result="303"
+             dispatcher.utter_message("Ahora sigue recto por el Paseo de José Quer después de cruzar el Paseo de Carlos III y en la mano izquierda están las plantas aromáticas. Avísame cuando estés.")
+             dispatcher.utter_message(attachment = "map=40.410557,-3.691323")
+         elif(nplanta=="303"):
+             result="304"
+             dispatcher.utter_message("Ahora sigue recto hacia sur un poco más y verás el huerto. Avísame cuando estés.")
+             dispatcher.utter_message(attachment = "map=40.410342,-3.691278")
+         elif(nplanta=="304"):
+             result="305"
+             dispatcher.utter_message("Ahora volviendo al Paseo de José Quer y sigue un poco más hacia el sur a la mano derecha esta  el recorrido sensorial. Avísame cuando estés.")
+             dispatcher.utter_message(attachment = "map=40.410035,-3.691506")
+         elif(nplanta=="305"):
+             result="306"
+             dispatcher.utter_message("Al final del Paseo de José Quer está la charca. Avísame cuando estés.")
+             dispatcher.utter_message(attachment = "map=40.409901,-3.691177")
+         elif(nplanta=="306"):
+             result="307"
+             dispatcher.utter_message("Por último, también se recomienda vistar el invernadero de Santiado Castroviejo. Si no desea visitarlo puede decir terminar visita guiada para termninar.")
+             dispatcher.utter_message(attachment = "map=40.412199,-3.690262")
+         elif(nplanta=="307"):
+             dispatcher.utter_message("Ya has terminado la visita, ha sido un placer ayudarte.")
+             return[SlotSet("is_prueba", "300"),SlotSet("is_visita_guiada", "0"),FollowupAction(name="action_ask_prueba")]
          return[SlotSet("is_visita_guiada", result),FollowupAction(name="action_listen")]
 
 
