@@ -180,6 +180,7 @@ nlu:
     - ya estoy
     - ya he llegado
     - siguiente planta
+
 - lookup: plant_name
   examples: |
     - abies alba

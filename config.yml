@@ -3,7 +3,7 @@ pipeline:
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
   # Text will be processed with case sensitive as default
-    "case_sensitive": True
+    "case_sensitive": False
   # use match word boundaries for lookup table
     "use_word_boundaries": True
   - name: RegexEntityExtractor
