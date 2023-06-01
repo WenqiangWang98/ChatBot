@@ -16,7 +16,7 @@ nlu:
     - Yo quiero la visita completa
     - La visita guiada completa
     - La visita completa
-- intent: contestar_visita_2
+- intent: contestar_visita_3
   examples: |
     - Quiero la visita guiada casual
     - La casual
