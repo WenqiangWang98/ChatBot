@@ -60,7 +60,7 @@ slots:
     mappings:
     - type: from_entity
       entity: plant_name
-   nombres:
+  nombres:
     type: text
     mappings:
     - type: from_entity
