@@ -758,6 +758,19 @@ function initMap() {
     marker = new google.maps.Marker({
         map: map,
     });
+    var icon = {
+        url: './static/img/location-icon.png',
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(25, 25),
+        scaledSize: new google.maps.Size(50, 50)
+    };
+    //map.setCenter( 40.411092,  -3.690975,  19);
+    // The marker, positioned at Uluru
+    locationIcon = new google.maps.Marker({
+        map: map,
+        icon: icon,
+    });
     locationButton = document.createElement("button");
 
     locationButton.textContent = "Current Location";
@@ -817,21 +830,7 @@ function setMarker(coord) {
     map.setCenter(coord, 19);
 }
 function setCurrentLocation(coord) {
-    
-    
-    var icon = {
-        url: './static/img/location-icon.png',
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(25, 25),
-        scaledSize: new google.maps.Size(50, 50)
-    };
-    //map.setCenter( 40.411092,  -3.690975,  19);
-    // The marker, positioned at Uluru
-    locationIcon = new google.maps.Marker({
-        position: coord,
-        map: map,
-        icon: icon,
-    });
+    locationIcon.setPosition(coord);
+    map.setCenter(coord, 19);
 }
 window.initMap = initMap;
