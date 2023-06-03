@@ -773,7 +773,7 @@ function initMap() {
     });
     locationButton = document.createElement("button");
 
-    locationButton.textContent = "Ubicación actual";
+    locationButton.textContent = "Ubicaci\u00f3n actual";
     locationButton.classList.add("custom-map-control-button");
     locationButton.style.textAlign = "center";
     locationButton.style.margin = "8px 0 22px";
