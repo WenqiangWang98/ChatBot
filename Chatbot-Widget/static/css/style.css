@@ -32,10 +32,9 @@ body {
 
 .chat_header {
     height: 60px;
-    background: rgb(90, 23, 238);
+    background: #afcd89;
     border-radius: 10px 10px 0px 0px;
     padding: 5px;
-    
     font-size: 20px;
 }
 
@@ -172,7 +171,7 @@ textarea-webkit-scrollbar {
     padding: 5px;
     font-size: 20px;
     cursor: pointer;
-    color: #2b2bab;
+    color: #afcd89;
 }
 
 .imgProfile {
@@ -376,10 +375,10 @@ textarea-webkit-scrollbar {
     width: 0;
 }
 
-.stars-inner::before {
-    content: "\f005 \f005 \f005 \f005 \f005";
-    color: #f8ce0b;
-}
+    .stars-inner::before {
+        content: "\f005 \f005 \f005 \f005 \f005";
+        color: #afcd89;
+    }
 
 div.content::-webkit-scrollbar {
     width: 0 !important
@@ -524,7 +523,7 @@ div.content_data::-webkit-scrollbar {
 .cards_scroller div.carousel_cards {
     min-width: 50%;
     min-height: 70%;
-    background: #b5b5b5;
+    background: #afcd89;
     border-radius: 10px;
 }
 
@@ -619,7 +618,7 @@ div.content_data::-webkit-scrollbar {
     margin-top: 5px;
     background: white;
     color: black;
-    box-shadow: 2px 3px 9px 0px #9a82842e;
+    box-shadow: 2px 3px 9px 0px #8bb090;
     margin-left: 0.5em;
     padding: 10px;
     border-radius: 1.5em;
@@ -664,13 +663,13 @@ div.content_data::-webkit-scrollbar {
 .chip {
     background-color: white;
     border: 1px solid #2c53af;
-    color: #2c53af;
+    color: #afcd89;
     font-weight: bolder;
     text-align: center;
 }
 
 .chip:hover {
-    background-color: #2c53af;
+    background-color: #afcd89;
     color: white;
 }
 
@@ -724,7 +723,7 @@ div.content_data::-webkit-scrollbar {
 
 .collapsible-header {
     font-weight: bold;
-    color: #2c53af;
+    color: #afcd89;
 }
 
 ul.collapsible>li:first-child .collapsible-header {
@@ -751,7 +750,7 @@ ul.collapsible>li:last-child .collapsible-body {
     float: left;
     margin-top: 5px;
     background: white;
-    color: #2c53af;
+    color: #afcd89;
     box-shadow: 2px 3px 9px 0px #9a82847a;
     margin-left: 0.5em;
     padding: 15px;
