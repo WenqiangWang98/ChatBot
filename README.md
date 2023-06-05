@@ -7,23 +7,23 @@ Una asistencia virtual que ayuda al público a conocer las plantas y guiarles de
 Es necesario utilizar una máquina virtual en el Azure cloud y certificado (por ejemplo con Certbot) o cualquier otro servidor con dominio seguro.
 
 ## Instalación
-Es necesario instalar docker y neginx para iniciarlo.
+Se instala las dependencias Docker y NGINX con pip.
 
 ```bash
 sudo pip install docker-compose
 sudo pip install nginx
 ```
-Ahora clonea los archivo al directorio del servidor.
+Después se procede a copiar los archivos al directorio del servidor.
 
 ```bash
 git clone https://github.com/WenqiangWang98/ChatBot.git
 ```
 
-Configurar nginx reverse proxy.
+Configurar NGINX proxy reverso para evitar conflictos en conectividad. 
 ```bash
 sudo nano /etc/nginx/sites-available/default
 ```
-Y ecribir esto cambiando el dominio por el del usuario:
+Y es necesario introducir el dominio del servidor en el archivo de configuración:
 ```nano
 server {
     listen 443 ssl;
@@ -44,27 +44,37 @@ server {
     }
 }
 ```
-Ahora hay que copiar los archivos de la página web al direcorio /var/www/html/
+Ahora hay que copiar los archivos del sitio web estático al directorio “/var/www/html/”
 ```bash
-sudo cp <directorio de cahtbot>/Chatbot-Widget/* /var/www/html/ -r
+sudo cp <directorio de chatbot>/Chatbot-Widget/* /var/www/html/ -r
 ```
-Configurar en el archivo del sitio web para que se dirige al dominio tuyo:
+Configurar en el archivo del sitio web para que se dirige al dominio correspondiente:
 ```bash
 sudo nano /var/www/html/static/js/script.js
 ```
-Ahora encontrar en el archivo de javascrpt la funtion de enviar y escribir el dominio:
+Encontrar en el archivo de JavaScript la función de enviar y escribir el dominio:
 ```javascript
 function send(message) {
 
     $.ajax({
-        //url: "http://localhost:5008/webhooks/rest/webhook",
         url: "https://<dominio>/webhooks/rest/webhook",
         type: "POST",
 ```
+## Configuración de la aplicación móvil
+Abrir el proyecto con Android Studio, configurar el archivo “Constants” bajo la carpeta “utils”
+```java
+class Constants {
 
+    companion object {
+        val NGROCK_URL = "https://<domain>"
+…
+    }
+}
+```
+En Build > Build Bundle(s) / APK (s) > Build APK(s) para oftener el archivo APK.
 ## Iniciar el chatbot
 En el directorio del servidor de /ChatBot:
-```nano
-nano docker-compose up -d
+```bash
+docker-compose up -d
 ```
 Y esperar unos 30 s para que el servidor se inicie correctamente y ya puedes probar el chatbot en la página web.
