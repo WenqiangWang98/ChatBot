@@ -66,7 +66,7 @@ class ChatBotActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-        mChatBotRecyclerAdapter = ChatBotRecyclerAdapter()
+        mChatBotRecyclerAdapter = ChatBotRecyclerAdapter(this)
         mChatRecyclerView.layoutManager = LinearLayoutManager(this)
         (mChatRecyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
         mChatRecyclerView.adapter = mChatBotRecyclerAdapter

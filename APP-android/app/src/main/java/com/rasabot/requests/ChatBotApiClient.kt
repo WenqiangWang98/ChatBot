@@ -120,11 +120,13 @@ object ChatBotApiClient {
                         var botMessages: MutableList<Message> = mutableListOf()
 
                         for(response in botResponseList) {
+                            Log.d(TAG, "response:"+response.toString())
                             botMessages.add(
                                 Message(
                                     message = response.response,
                                     id = Constants.BOT,
-                                    imageUrl = response.imageUrl
+                                    imageUrl = response.imageUrl,
+                                    attachment =response.attachment
                                 )
                             )
                         }

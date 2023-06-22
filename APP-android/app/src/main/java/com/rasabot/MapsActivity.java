@@ -1,6 +1,7 @@
 package com.rasabot;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
@@ -142,6 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     marker=mMap.addMarker(markerOptions);
 
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng) );
+                    mMap.moveCamera(CameraUpdateFactory.zoomTo(21));
                     break;
                 }
                 fusedLocationClient.removeLocationUpdates(this);
@@ -187,11 +190,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        //LatLng sydney = new LatLng(-34, 151);
         //marker=mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-        mMap.setOnMapLongClickListener(this);
+        try{
+            Intent i = getIntent();
+            float latitude = i.getFloatExtra("latitude", 0);
+            float longitude = i.getFloatExtra("longitude", 0);
+            markLocation(new LatLng(latitude, longitude));
+            Log.d("map", "marking " + latitude + "," + longitude);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //mMap.setOnMapLongClickListener(this);
         MapStateManager mgr = new MapStateManager(this);
         CameraPosition position = mgr.getSavedCameraPosition();
         if (position != null) {
@@ -207,7 +218,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
+    public void markLocation(LatLng location){
 
+        marker=mMap.addMarker(new MarkerOptions().position(location).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+    }
 
 
 
@@ -239,33 +254,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void getLocation(){
 
-        fusedLocationClient.requestLocationUpdates(locationRequest,locationCallback, Looper.getMainLooper());
-
-
-
-
-    }
-
-
-
-
-
-
-    @Override
-    public void onMapLongClick(@NonNull LatLng latLng) {
-        if(circle!=null){
-            circle.remove();
-        }
-
-        CircleOptions circleOptions = new CircleOptions()
-                .center(latLng) // LatLng point
-                .radius(300000); // In meters
-
-        circle = mMap.addCircle(circleOptions); // circle is of type Circle
-
+            fusedLocationClient.requestLocationUpdates(locationRequest,locationCallback, Looper.getMainLooper());
 
 
     }
+
+
+
+
+
 
     protected void createLocationRequest() {
         locationRequest = LocationRequest.create();
@@ -275,5 +272,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
+    @Override
+    public void onMapLongClick(@NonNull LatLng latLng) {
 
+    }
 }

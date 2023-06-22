@@ -146,4 +146,8 @@
     <color name="medium_blue">#0000CD</color>
     <color name="dark_blue">#00008B</color>
     <color name="navy">#000080</color>
+    <color name="green_1">#c2dcc7</color>
+    <color name="green_2">#afcd89</color>
+    <color name="green_3">#8bb090</color>
+    <color name="green_4">#a8cc9c</color>
 </resources>

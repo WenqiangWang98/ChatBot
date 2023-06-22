@@ -10,5 +10,8 @@ data class BotMessage(
     val response: String?= null,
 
     @SerializedName("image")
-    val imageUrl: String?= null
+    val imageUrl: String?= null,
+
+    @SerializedName("attachment")
+    val attachment: String?= null
 )
